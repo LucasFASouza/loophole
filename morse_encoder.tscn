@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwop21mu2vyea"]
+
+[ext_resource type="Script" uid="uid://db6hmp34osh4m" path="res://morse_encoder.gd" id="1_gbc8i"]
+
+[node name="morse_encoder" type="Node"]
+script = ExtResource("1_gbc8i")
+
+[node name="Bulb" type="Label" parent="."]
+offset_left = 195.0
+offset_top = 109.0
+offset_right = 235.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 150
+
+[node name="Clock" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="Clock" to="." method="_on_clock_timeout"]
