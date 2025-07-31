@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwop21mu2vyea"]
+[gd_scene load_steps=2 format=3 uid="uid://c5np808a7uc7b"]
 
 [ext_resource type="Script" uid="uid://db6hmp34osh4m" path="res://morse_encoder.gd" id="1_gbc8i"]
 
-[node name="morse_encoder" type="Node"]
+[node name="MorseEncoder" type="Node2D"]
 script = ExtResource("1_gbc8i")
 
 [node name="Bulb" type="Label" parent="."]

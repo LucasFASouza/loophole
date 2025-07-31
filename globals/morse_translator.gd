@@ -49,9 +49,9 @@ func ascii_to_morse(ascii_text: String) -> String:
 	example: "SOS" -> "... / --- / ..."
 	"""
 	var result = []
-	for char in ascii_text.to_upper():
-		if ascii_to_morse_dict.has(char):
-			result.append(ascii_to_morse_dict[char])
+	for charac in ascii_text.to_upper():
+		if ascii_to_morse_dict.has(charac):
+			result.append(ascii_to_morse_dict[charac])
 		else:
 			result.append("?")
 	return "/".join(result).strip_edges()

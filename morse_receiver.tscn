@@ -2,36 +2,28 @@
 
 [ext_resource type="Script" uid="uid://bqqx2goac5i4s" path="res://morse_receiver.gd" id="1_uptnt"]
 
-[node name="MorseReceiver" type="CanvasLayer"]
+[node name="MorseReceiver" type="Node2D"]
 script = ExtResource("1_uptnt")
 
 [node name="DashTimer" type="Timer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-metadata/_edit_use_anchors_ = true
+[node name="ResetTimer" type="Timer" parent="."]
 
-[node name="Writting" type="Label" parent="VBoxContainer"]
+[node name="Writting" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 88.0
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 64
 
-[node name="Meaning" type="Label" parent="VBoxContainer"]
+[node name="Meaning" type="Label" parent="."]
 unique_name_in_owner = true
-layout_mode = 2
+offset_top = 103.0
+offset_right = 1152.0
+offset_bottom = 191.0
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 64
 text = "(waiting)"
 
-[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 170
-
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timeout"]
+[connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 const encoding_lengths = {
 	"BETWEEN_LETTERS": 3,
@@ -17,6 +17,10 @@ var wave_fn = []
 func _ready():
 	bulb.text = "WAIT"
 
+func start_encoding():
+	cycle_counter = 0
+	bulb.text = "🖤"
+
 	var morse_message = MorseTranslator.ascii_to_morse(message)
 
 	const char_lengths = {
@@ -32,13 +36,11 @@ func _ready():
 		wave_fn.append(0)
 
 	wave_fn.append_array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-	print("morse wave fn: ", wave_fn)
-	clk.start()
 
+	clk.start()
 
 func _on_clock_timeout() -> void:
 	bulb.text = "💛" if wave_fn[cycle_counter] else "🖤"
-	print("on")
 	cycle_counter += 1
 	if cycle_counter == wave_fn.size() - 1:
 		cycle_counter = 0
