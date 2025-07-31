@@ -22,6 +22,8 @@ var boat = {
 	"mispelling": "",
 }
 
+var chance_legitimacy := 66 # Chance of the boat being legitimate (0-100)
+
 @onready var morse_receiver: Node3D = $MorseReceiver
 @onready var morse_encoder: Node3D = $MorseEncoder
 
@@ -36,7 +38,7 @@ func get_new_boat() -> void:
 	"""
 	boat = {
 		"course": DIRECTIONS[randi() % DIRECTIONS.size()],
-		"is_legit": randi() % 2 == 0,
+		"is_legit": randi() % 100 < chance_legitimacy,
 		"mispelling": ""
 	}
 

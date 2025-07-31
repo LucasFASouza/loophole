@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dfgj2usx5hjn6"]
+
+[ext_resource type="FontFile" uid="uid://n1eu5vuo4qkw" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="1_i6sfk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ks8t7"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wl5ax"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkava"]
+
+[resource]
+Button/colors/font_color = Color(0.839557, 0.887279, 0.865671, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 0)
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_i6sfk")
+Button/styles/hover = SubResource("StyleBoxFlat_ks8t7")
+Button/styles/normal = SubResource("StyleBoxEmpty_wl5ax")
+Button/styles/pressed = SubResource("StyleBoxFlat_vkava")

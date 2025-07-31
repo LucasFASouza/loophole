@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwliuq1qo2mpa"]
+
+[ext_resource type="Script" uid="uid://bqqx2goac5i4s" path="res://gameplay_loop/morse_receiver.gd" id="1_uptnt"]
+[ext_resource type="ArrayMesh" uid="uid://bgvmmlgc5jr3n" path="res://assets/models/high_monitor.res" id="3_43xqo"]
+[ext_resource type="ArrayMesh" uid="uid://cddajfptreyhe" path="res://assets/models/low_monitor.res" id="4_pehc5"]
+
+[node name="MorseReceiver" type="Node3D"]
+script = ExtResource("1_uptnt")
+
+[node name="DashTimer" type="Timer" parent="."]
+
+[node name="StatusTimer" type="Timer" parent="."]
+
+[node name="WordTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HighMonitor" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = ExtResource("3_43xqo")
+
+[node name="LabelMeaning" type="Label3D" parent="HighMonitor"]
+unique_name_in_owner = true
+transform = Transform3D(2.49997, 0, -0.0125226, 0, 2.5, 0, 0.0125226, 0, 2.49997, 9.50878, 13.3421, 8.04559)
+modulate = Color(0, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+font_size = 180
+uppercase = true
+
+[node name="LabelWritting" type="Label3D" parent="HighMonitor"]
+unique_name_in_owner = true
+transform = Transform3D(2.49997, 0, -0.0125226, 0, 2.5, 0, 0.0125226, 0, 2.49997, 9.50878, 17.445, 8.04559)
+modulate = Color(0, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+font_size = 180
+uppercase = true
+
+[node name="LowMonitor" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+mesh = ExtResource("4_pehc5")
+
+[node name="LabelStatus" type="Label3D" parent="LowMonitor"]
+unique_name_in_owner = true
+transform = Transform3D(2.42111, 0, 0.623077, 0, 2.5, 0, -0.623077, 0, 2.42111, -11.7323, 12.0428, 7.96947)
+visible = false
+modulate = Color(0, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "INCORRECT"
+font_size = 128
+uppercase = true
+
+[node name="LabelScore" type="Label3D" parent="LowMonitor"]
+unique_name_in_owner = true
+transform = Transform3D(2.42111, 0, 0.623077, 0, 2.5, 0, -0.623077, 0, 2.42111, -11.7323, 9.61509, 7.99389)
+modulate = Color(0, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "SCORE: 0"
+font_size = 128
+uppercase = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timeout"]
+[connection signal="timeout" from="StatusTimer" to="." method="_on_status_timer_timeout"]
+[connection signal="timeout" from="WordTimer" to="." method="_on_word_timer_timeout"]
