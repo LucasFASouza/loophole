@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5np808a7uc7b"]
+[gd_scene load_steps=6 format=3 uid="uid://c5np808a7uc7b"]
 
 [ext_resource type="Script" uid="uid://db6hmp34osh4m" path="res://morse_encoder.gd" id="1_gbc8i"]
-[ext_resource type="PackedScene" uid="uid://c21y0bt4ev3vm" path="res://models/Antenna.glb" id="2_8wwca"]
+[ext_resource type="PackedScene" uid="uid://c21y0bt4ev3vm" path="res://assets/models/Antenna.glb" id="2_8wwca"]
+[ext_resource type="AudioStream" uid="uid://6hik7bha7e2q" path="res://assets/sfx/beep.wav" id="3_qpoeg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kh8q3"]
 transparency = 1
@@ -27,5 +28,9 @@ transform = Transform3D(12.425, 0, 0, 0, 12.425, 0, 0, 0, 12.425, 0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0731871, 1.65557, 0)
 visible = false
 mesh = SubResource("SphereMesh_qpoeg")
+
+[node name="BeepPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qpoeg")
+bus = &"SFX"
 
 [connection signal="timeout" from="Clock" to="." method="_on_clock_timeout"]

@@ -9,6 +9,7 @@ const encoding_lengths = {
 
 @onready var clk: Timer = $Clock
 @onready var antena_light: Node3D = $Antena/Light
+@onready var beep_player: AudioStreamPlayer = $BeepPlayer
 
 var cycle_counter: int
 
@@ -16,10 +17,12 @@ var wave_fn = []
 
 func _ready():
 	antena_light.visible = false
+	beep_player.stop()
 
 func start_encoding():
 	cycle_counter = 0
 	antena_light.visible = false
+	beep_player.stop()
 
 	var morse_message = MorseTranslator.ascii_to_morse(message)
 
@@ -40,7 +43,14 @@ func start_encoding():
 	clk.start()
 
 func _on_clock_timeout() -> void:
-	antena_light.visible = wave_fn[cycle_counter]
+	var wave_on = wave_fn[cycle_counter]
+	antena_light.visible = wave_on
+	
+	if not wave_on:
+		beep_player.stop()
+	elif not beep_player.playing:
+		beep_player.play()
+		
 	cycle_counter += 1
 	if cycle_counter == wave_fn.size() - 1:
 		cycle_counter = 0

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cadsr0ufjewd7"
-path="res://.godot/imported/Monitor.glb-9cf5c6ed4440c60c643e6124c84aa354.scn"
+path="res://.godot/imported/Monitor.glb-dfbcd458679b332082f58c4b423bd7cc.scn"
 
 [deps]
 
-source_file="res://models/Monitor.glb"
-dest_files=["res://.godot/imported/Monitor.glb-9cf5c6ed4440c60c643e6124c84aa354.scn"]
+source_file="res://assets/models/Monitor.glb"
+dest_files=["res://.godot/imported/Monitor.glb-dfbcd458679b332082f58c4b423bd7cc.scn"]
 
 [params]
 

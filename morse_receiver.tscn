@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwliuq1qo2mpa"]
 
 [ext_resource type="Script" uid="uid://bqqx2goac5i4s" path="res://morse_receiver.gd" id="1_uptnt"]
-[ext_resource type="PackedScene" uid="uid://dnvdtqhxtwvmm" path="res://models/Monitors.glb" id="2_mqnuo"]
+[ext_resource type="PackedScene" uid="uid://dnvdtqhxtwvmm" path="res://assets/models/Monitors.glb" id="2_mqnuo"]
 
 [node name="MorseReceiver" type="Node3D"]
 script = ExtResource("1_uptnt")

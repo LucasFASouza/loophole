@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="loophole"
-run/main_scene="uid://duhnj0hy56kkh"
+run/main_scene="uid://d3y2s8jgc67qw"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [autoload]
 
 MorseTranslator="*res://globals/morse_translator.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [input]
 
