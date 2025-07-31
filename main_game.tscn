@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3y2s8jgc67qw"]
+
+[ext_resource type="Script" uid="uid://dnwbjthdxt23h" path="res://main_game.gd" id="1_6bm6p"]
+[ext_resource type="PackedScene" uid="uid://dfab3wgpjnhuu" path="res://models/Table.glb" id="2_dugkq"]
+[ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://morse_encoder.tscn" id="3_2pltu"]
+[ext_resource type="PackedScene" uid="uid://cwliuq1qo2mpa" path="res://morse_receiver.tscn" id="4_f52ns"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_kh8q3"]
+sky_material = SubResource("ProceduralSkyMaterial_g8hlx")
+
+[sub_resource type="Environment" id="Environment_8gcvo"]
+background_mode = 2
+sky = SubResource("Sky_kh8q3")
+tonemap_mode = 2
+
+[node name="MainGame" type="Node3D"]
+script = ExtResource("1_6bm6p")
+
+[node name="Meshs" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Meshs"]
+environment = SubResource("Environment_8gcvo")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Meshs"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+
+[node name="Desk" parent="Meshs" instance=ExtResource("2_dugkq")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Meshs"]
+transform = Transform3D(1, 0, 0, 0, 0.987142, 0.159847, 0, -0.159847, 0.987142, 0, 49.0911, 93.5103)
+fov = 15.7
+
+[node name="MorseEncoder" parent="." instance=ExtResource("3_2pltu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9785, 23.8015, -9.82257)
+
+[node name="MorseReceiver" parent="." instance=ExtResource("4_f52ns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59917, 23.9688, 0)
+
+[connection signal="confirm_pressed" from="MorseReceiver" to="." method="_confirm_input_message"]

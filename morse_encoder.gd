@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 
 const encoding_lengths = {
 	"BETWEEN_LETTERS": 3,
@@ -7,19 +7,19 @@ const encoding_lengths = {
 
 @export var message: String = "hello"
 
-@onready var bulb: Label = $Bulb
 @onready var clk: Timer = $Clock
+@onready var antena_light: Node3D = $Antena/Light
 
 var cycle_counter: int
 
 var wave_fn = []
 
 func _ready():
-	bulb.text = "WAIT"
+	antena_light.visible = false
 
 func start_encoding():
 	cycle_counter = 0
-	bulb.text = "🖤"
+	antena_light.visible = false
 
 	var morse_message = MorseTranslator.ascii_to_morse(message)
 
@@ -40,7 +40,7 @@ func start_encoding():
 	clk.start()
 
 func _on_clock_timeout() -> void:
-	bulb.text = "💛" if wave_fn[cycle_counter] else "🖤"
+	antena_light.visible = wave_fn[cycle_counter]
 	cycle_counter += 1
 	if cycle_counter == wave_fn.size() - 1:
 		cycle_counter = 0
