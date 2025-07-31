@@ -1,5 +1,7 @@
 extends Node
 
+const CLK_TIME = 0.3
+
 var morse_to_ascii_dict: Dictionary = {}
 var ascii_to_morse_dict: Dictionary = {}
 

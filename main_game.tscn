@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d3y2s8jgc67qw"]
+[gd_scene load_steps=10 format=3 uid="uid://d3y2s8jgc67qw"]
 
 [ext_resource type="Script" uid="uid://dnwbjthdxt23h" path="res://main_game.gd" id="1_6bm6p"]
 [ext_resource type="PackedScene" uid="uid://dfab3wgpjnhuu" path="res://assets/models/Table.glb" id="2_dugkq"]
 [ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://morse_encoder.tscn" id="3_2pltu"]
 [ext_resource type="PackedScene" uid="uid://cwliuq1qo2mpa" path="res://morse_receiver.tscn" id="4_f52ns"]
+[ext_resource type="Texture2D" uid="uid://blppcsi8cia2f" path="res://assets/postit.png" id="5_dugkq"]
+[ext_resource type="Texture2D" uid="uid://bge5jgqf7hm4w" path="res://assets/postit2.png" id="6_2pltu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
 sky_top_color = Color(0.358589, 0.45983, 0.562312, 1)
@@ -74,6 +76,10 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "[SPACE] - Morse input"
 
+[node name="BACKSPACE" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "[BACKSPACE] - Delete"
+
 [node name="ENTER" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "[SPACE] - Confirm"
@@ -85,5 +91,16 @@ text = "[ESC] - Cancel"
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.987142, 0.159847, 0, -0.159847, 0.987142, 0, 49.0911, 93.5103)
 fov = 15.7
+
+[node name="Postits" type="Node3D" parent="."]
+transform = Transform3D(1.79742, -0.0963066, 0, 0.0963066, 1.79742, 0, 0, 0, 1.8, -3.53881, 42.9108, -4.67696)
+
+[node name="Compass" type="Sprite3D" parent="Postits"]
+transform = Transform3D(1.10537, 0.112825, 0, -0.112825, 1.10537, 0, 0, 0, 1.11111, -6.55109, 0.251577, 0)
+texture = ExtResource("5_dugkq")
+
+[node name="Pirates" type="Sprite3D" parent="Postits"]
+transform = Transform3D(1, 1.86265e-08, 0, -1.86265e-08, 1, 0, 0, 0, 1, -1.7167, -0.603582, 0)
+texture = ExtResource("6_2pltu")
 
 [connection signal="confirm_pressed" from="MorseReceiver" to="." method="_confirm_input_message"]

@@ -33,4 +33,8 @@ mesh = SubResource("SphereMesh_qpoeg")
 stream = ExtResource("3_qpoeg")
 bus = &"SFX"
 
+[node name="WaitTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Clock" to="." method="_on_clock_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

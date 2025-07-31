@@ -4,16 +4,16 @@ const DIRECTIONS = ["N", "E", "S", "W"]
 
 const MAP = {
 	"N": "COAST",
-	"E": "LIGHT",
-	"S": "PORT",
+	"E": "PORT",
+	"S": "LIGHT",
 	"W": "RIVER"
 }
 
 const MISSPELLINGS = {
-	"N": ["COST", "COSTA", "COASTS", "CAOST", "COATS"],
-	"E": ["LHOUSE", "LITE", "LIT", "LIHGT", "LGHT"],
-	"S": ["POTR", "PRTO", "PORTS", "POTRS", "POR"],
-	"W": ["RIEVR", "RIVR", "RIVAR", "RIO", "RIVIERA"]
+	"N": ["COST", "COSTA", "COATS", "KRAKEN"],
+	"E": ["PART", "POST", "PORK", "STORM"],
+	"S": ["EIGHT ", "LITE", "RIGHT", "HELP"],
+	"W": ["RIDER", "RISER", "RIGHT", "PLEASE"]
 }
 
 var boat = {
@@ -54,11 +54,29 @@ func get_boat_message():
 
 func _confirm_input_message(input: String) -> void:
 	var status: String
-	if input.to_upper() == boat.course:
-		score += 1
-		status = "Correct!"
+
+	print("\nConfirming input: ", input)
+	print("Boat course: ", boat.course)
+	print("Boat message: ", get_boat_message())
+	print("Boat legitimacy: ", boat.is_legit)
+
+	var correct_direction: bool = input.to_upper() == boat.course or input.to_upper()[0] == boat.course
+
+	if boat.is_legit:
+		if correct_direction:
+			status = "Correct!"
+			score += 1
+		else:
+			status = "Boat lost :("
 	else:
-		status = "Incorrect :("
+		if input.to_upper() == "O":
+			status = "Pirate avoided!"
+			score += 1
+		elif correct_direction:
+			status = "Pirates attacked :(("
+			score -= 1
+		else:
+			status = "Pirates lost at the sea :/"
 	
 	morse_receiver.finish_round(score, status)
 	get_new_boat()
