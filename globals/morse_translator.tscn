@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn3d35b60otca"]
+
+[ext_resource type="Script" uid="uid://cl3y22ro2h32m" path="res://globals/morse_translator.gd" id="1_1lkbd"]
+
+[node name="MorseTranslator" type="Node"]
+script = ExtResource("1_1lkbd")
