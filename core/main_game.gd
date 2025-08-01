@@ -20,9 +20,9 @@ extends Node3D
 
 
 var calibration_words = [
-	["UP", "EX", "OK"],
+	["UP", "WE", "OK"],
 	["SOS", "MAP", "JAM"],
-	["GAME", "GMTK", "LOOP"]
+	["GAME", "FISH", "LOOP"]
 ]
 
 var coordinates = {

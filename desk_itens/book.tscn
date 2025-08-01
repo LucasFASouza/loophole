@@ -147,9 +147,9 @@ Press or hold [SPACE] to send a signal. Wait for pauses between letters. Use [BA
 			When you're confident with your answer, press [ENTER] to submit it.
 
 Here's a list of words often used in calibrations to help you:
-			- With 2 letters: UP, EX, OK
-			- With 3 letters: SOS, MAP, JAM
-			- With 4 letters: GAME, GMTK, LOOP"
+			- With 2 letters: OK, WE, UP
+			- With 3 letters: MAP, SOS, JAM
+			- With 4 letters: FISH ,GAME, LOOP"
 autowrap_mode = 2
 
 [node name="CoordinatesPage" type="PanelContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer"]
