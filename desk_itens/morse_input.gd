@@ -24,15 +24,17 @@ func _process(_delta: float) -> void:
 		update_morse_labels()
 		word_timer.stop()
 	
-	if Input.is_action_just_released("morse_input"):
+	if Input.is_action_just_released("morse_input") and morse_text.length() > 0:
 		dash_timer.stop()
 		update_morse_labels()
 		word_timer.start(MorseTranslator.CLK_TIME * 3)
 		
 	if Input.is_action_just_pressed("morse_confirm"):
 		check_word.emit(ascii_text)
+		word_timer.stop()
 	if Input.is_action_just_pressed("morse_delete"):
 		morse_text = morse_text.substr(0, morse_text.length() - 1)
+		word_timer.stop()
 		update_morse_labels()
 
 

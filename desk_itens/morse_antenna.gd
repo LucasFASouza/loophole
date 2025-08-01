@@ -38,8 +38,8 @@ func start_encoding(new_message: String) -> void:
 
 	const char_lengths = {
 		'.': [1],
-		'-': [1, 1, 1],
-		'/': [0, 0, 0]
+		'-': [2, 2, 2, 2],
+		'/': [0, 0, 0, 0]
 	}
 	
 	for ch in morse_message:
@@ -57,8 +57,13 @@ func _on_clock_timeout() -> void:
 	
 	if not wave_on:
 		beep_player.stop()
+
 	elif not beep_player.playing:
 		beep_player.play()
+		if wave_on == 1:
+			beep_player.pitch_scale = 1.0
+		else:
+			beep_player.pitch_scale = 0.975
 		
 	cycle_counter += 1
 	if cycle_counter == wave_fn.size() - 1:

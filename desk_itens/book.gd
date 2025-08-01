@@ -59,3 +59,10 @@ func set_instructions(instructions_text: String) -> void:
 	"""
 	instructions.text = instructions_text
 	
+
+func unlock_page(page_index: int) -> void:
+	if page_index < buttons_container.get_child_count():
+		var btn = buttons_container.get_child(page_index)
+		if btn is Button:
+			btn.disabled = false
+			_on_button_pressed(page_index)

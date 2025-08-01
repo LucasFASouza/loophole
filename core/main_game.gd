@@ -20,16 +20,16 @@ extends Node3D
 
 
 var calibration_words = [
-	"HI", # ..../..
-	"HEY", # ...././-.--
-	"AHOY", # .-/-../---/-.--
+	["UP", "EX", "OK"],
+	["SOS", "MAP", "JAM"],
+	["GAME", "GMTK", "LOOP"]
 ]
 
 var coordinates = {
-	"1B": "RIVER",
-	"1D": "PORT",
-	"3A": "COAST",
-	"4D": "LIGHT",
+	"1B": "PORT",
+	"1D": "GATE",
+	"3A": "ISLE",
+	"4D": "LAKE",
 }
 
 var boat = {
@@ -42,7 +42,7 @@ var nights_data = [
 	{
 		"name": "Night 0",
 		"mission": "Calibrate the system by reproducing and confirming the transmission loops.",
-		"instructions": """Before you begin, you should calibrate your machinery.
+		"start_instructions": """Before you begin, you should calibrate your machinery.
 			Listen carefully to the looped transmissions and try to reproduce the morse message to verify its content.
 
 			Press or hold [SPACE] to send a signal.
@@ -53,11 +53,27 @@ var nights_data = [
 			At any time, you may check your book for more notes and references.""",
 		"task": "CONFIRM TRANSMISSIONS",
 		"task_threshold": 3,
+	}, 
+		{
+		"name": "Night 1",
+		"mission": "Use your GPS system to relay the destination coordinates to the boats.",
+		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
+			Listen carefully to the looped transmission to identify the 4-letter destination code.
+
+			Use your book to look up the corresponding coordinates.
+			Then, transmit them using the GPS system.
+
+			You may choose to verify the destination with the boat before sending — or trust your instincts with a half-solved message.
+
+			At any time, you can check your book for notes and reference material.""",
+		"task": "SEND COORDINATES",
+		"task_threshold": 4,
 	}
 ]
 
 var score = 0
 var night := 0
+var lost_boats = 0
 
 
 func _ready() -> void:
@@ -78,14 +94,11 @@ func get_new_boat() -> void:
 	"""
 	morse_antenna.stop_encoding()
 	morse_input.reset_input()
-	
+
 	match night:
 		0:
-			print("Score: ", score)
-			print("Words: ", calibration_words)
 			boat.type = "Calibration"
-			boat.message = calibration_words[score]
-			print("Boat message: ", boat.message)
+			boat.message = calibration_words[score][randi() % calibration_words[score].size()]
 			boat.answer = boat.message
 
 		1:
@@ -109,8 +122,6 @@ func check_word(input: String) -> void:
 
 	if input == boat.message:
 		status = "Message confirmed!"
-
-		morse_input.reset_input()
 
 		if boat.type == "Calibration" and boat.answer == input:
 			score += 1
@@ -139,7 +150,7 @@ func _send_answer(input: String) -> void:
 		score += 1
 	else:
 		status = "Boat lost :("
-		score -= 1
+		lost_boats += 1
 	
 	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 	info_screen.show_status(status)
@@ -166,9 +177,8 @@ func prepare_night() -> void:
 	mission_text.text = nights_data[night]["mission"]
 
 	night_title.text = nights_data[night]["name"]
-	night_instructions.text = nights_data[night]["instructions"]
-	book.set_instructions(nights_data[night]["instructions"])
-
+	night_instructions.text = nights_data[night]["start_instructions"]
+	
 	score = 0
 	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 
@@ -181,6 +191,9 @@ func finish_night() -> void:
 	morse_antenna.stop_encoding()
 	morse_input.reset_input()
 	morse_input.is_ready = false
+
+	night += 1
+	book.unlock_page(night)
 	prepare_night()
 
 
