@@ -22,7 +22,7 @@ var boat = {
 	"mispelling": "",
 }
 
-var chance_legitimacy := 66 # Chance of the boat being legitimate (0-100)
+var chance_legitimacy := 66
 
 @onready var morse_antenna: Node3D = $MorseAntenna
 @onready var morse_input: Node3D = $MorseInput
@@ -32,6 +32,7 @@ var chance_legitimacy := 66 # Chance of the boat being legitimate (0-100)
 @onready var options_menu: PanelContainer = $CanvasLayer/OptionsMenu
 
 var score := 0 
+var night := 0
 
 
 func _ready() -> void:
@@ -67,11 +68,6 @@ func get_boat_message():
 
 func _confirm_input_message(input: String) -> void:
 	var status: String
-
-	print("\nConfirming input: ", input)
-	print("Boat course: ", boat.course)
-	print("Boat message: ", get_boat_message())
-	print("Boat legitimacy: ", boat.is_legit)
 
 	var correct_direction: bool = input.to_upper().replace("?", "") == boat.course
 

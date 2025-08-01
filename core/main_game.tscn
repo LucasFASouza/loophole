@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://d3y2s8jgc67qw"]
+[gd_scene load_steps=15 format=3 uid="uid://d3y2s8jgc67qw"]
 
 [ext_resource type="Script" uid="uid://dnwbjthdxt23h" path="res://core/main_game.gd" id="1_is2i4"]
 [ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://desk_itens/morse_antenna.tscn" id="2_6620d"]
 [ext_resource type="PackedScene" uid="uid://cwliuq1qo2mpa" path="res://desk_itens/morse_input.tscn" id="3_2epw8"]
 [ext_resource type="PackedScene" uid="uid://csnoj5c65lrkj" path="res://desk_itens/info_screen.tscn" id="4_vlmcc"]
+[ext_resource type="PackedScene" uid="uid://dlfykwmnwo7rg" path="res://desk_itens/gps.tscn" id="5_0d78q"]
 [ext_resource type="ArrayMesh" uid="uid://dgg1ogf01rjjh" path="res://assets/models/desk.res" id="5_3k31u"]
 [ext_resource type="Texture2D" uid="uid://blppcsi8cia2f" path="res://assets/posters/postit.png" id="6_0d78q"]
 [ext_resource type="Texture2D" uid="uid://bge5jgqf7hm4w" path="res://assets/posters/postit2.png" id="7_uo27g"]
@@ -29,20 +30,28 @@ tonemap_mode = 2
 script = ExtResource("1_is2i4")
 
 [node name="MorseAntenna" parent="." instance=ExtResource("2_6620d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9785, 23.8015, -9.82257)
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, -25.1711, 23.8015, -10.9032)
 
 [node name="MorseInput" parent="." instance=ExtResource("3_2epw8")]
-transform = Transform3D(0.997726, 0, -0.0674058, 0, 1, 0, 0.0674058, 0, 0.997726, 5.14545, 23.969, 0)
+transform = Transform3D(0.997726, 0, -0.0674058, 0, 1, 0, 0.0674058, 0, 0.997726, 7.23415, 23.969, -5.03513)
 
 [node name="InfoScreen" parent="." instance=ExtResource("4_vlmcc")]
-transform = Transform3D(0.940336, 0, 0.340248, 0, 1, 0, -0.340248, 0, 0.940336, -14.1694, 23.969, 0)
+transform = Transform3D(0.997214, 0, 0.0745954, 0, 1, 0, -0.0745954, 0, 0.997214, -9.55178, 23.969, -5.02075)
+
+[node name="GPS" parent="." instance=ExtResource("5_0d78q")]
+transform = Transform3D(0.892373, 0, -0.451298, 0, 1, 0, 0.451298, 0, 0.892373, 16.3239, 23.6736, 7.03388)
 
 [node name="Desk" type="MeshInstance3D" parent="."]
 transform = Transform3D(5000, 0, 0, 0, 5000, 0, 0, 0, 5000, 0, 0, 0)
 mesh = ExtResource("5_3k31u")
 
+[node name="Book" type="MeshInstance3D" parent="."]
+transform = Transform3D(-43.7501, -994.948, -669.452, -1198.85, 20.0444, 48.5571, -29.0774, 670.58, -994.725, -20.4352, 25.1949, 6.80336)
+mesh = ExtResource("10_vlmcc")
+skeleton = NodePath("../CanvasLayer")
+
 [node name="Postits" type="Node3D" parent="."]
-transform = Transform3D(1.79742, -0.0963066, 0, 0.0963066, 1.79742, 0, 0, 0, 1.8, -10.1835, 42.9108, -9.90716)
+transform = Transform3D(1.79742, -0.0963066, 0, 0.0963066, 1.79742, 0, 0, 0, 1.8, -10.1835, 42.9108, -21.7958)
 
 [node name="Compass" type="Sprite3D" parent="Postits"]
 transform = Transform3D(1.10537, 0.112825, 0, -0.112825, 1.10537, 0, 0, 0, 1.11111, -2.31904, -0.36274, 0)
@@ -50,11 +59,12 @@ texture = ExtResource("6_0d78q")
 
 [node name="Pirates" type="Sprite3D" parent="Postits"]
 transform = Transform3D(1, 1.49012e-08, 0, -1.49012e-08, 1, 0, 0, 0, 1, 2.56381, -2.01727, 0)
+visible = false
 texture = ExtResource("7_uo27g")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.987142, 0.159847, 0, -0.159847, 0.987142, 0, 49.0911, 93.5103)
-fov = 15.7
+transform = Transform3D(1, 0, 0, 0, 0.975684, 0.219182, 0, -0.219182, 0.975684, 0, 55.6799, 93.5103)
+fov = 21.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8gcvo")
