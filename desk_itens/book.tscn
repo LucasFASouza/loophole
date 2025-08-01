@@ -31,6 +31,7 @@ transform = Transform3D(1, -8.34465e-07, -3.12179e-06, 3.72529e-09, 1, 8.34465e-
 shape = SubResource("BoxShape3D_y0hms")
 
 [node name="ItemInfo" type="CanvasLayer" parent="."]
+layer = 3
 visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]

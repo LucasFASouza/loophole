@@ -32,7 +32,6 @@ layer = 3
 visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -214,8 +213,5 @@ layout_mode = 2
 theme = ExtResource("4_p2e6t")
 text = "CONFIRM"
 
-<<<<<<< HEAD
 [connection signal="input_event" from="Tv/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
-=======
->>>>>>> 29680ab0f25e445375216787e720e2517a9634ea
 [connection signal="pressed" from="ItemInfo/PanelContainer/CenterContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
