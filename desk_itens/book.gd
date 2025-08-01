@@ -31,14 +31,16 @@ func _on_button_pressed(index: int) -> void:
 	current_page = index
 
 
-func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+func _on_static_body_3d_input_event(
+	_camera: Node,
+	event: InputEvent,
+	_event_position: Vector3,
+	_normal: Vector3,
+	_shape_idx: int
+) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			on_book_click()
-
-
-func on_book_click():
-	$ItemInfo.visible = true
+			$ItemInfo.visible = true
 
 
 func _on_back_pressed() -> void:

@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bge5jgqf7hm4w" path="res://assets/posters/postit2.png" id="7_uo27g"]
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="8_2epw8"]
 [ext_resource type="PackedScene" uid="uid://cua3g4kgtq2ns" path="res://UI/options_menu.tscn" id="9_vlmcc"]
-[ext_resource type="PackedScene" uid="uid://b8moix3bv57uf" path="res://desk_itens/book.tscn" id="10_vlmcc"]
+[ext_resource type="PackedScene" uid="uid://cywgrp1lwmvx5" path="res://desk_itens/book.tscn" id="10_vlmcc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
 sky_top_color = Color(0.655843, 0.740153, 0.826877, 1)

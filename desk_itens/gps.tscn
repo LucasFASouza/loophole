@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlfykwmnwo7rg"]
+[gd_scene load_steps=7 format=3 uid="uid://dlfykwmnwo7rg"]
 
 [ext_resource type="Script" uid="uid://d1vpqfq0alibv" path="res://desk_itens/gps.gd" id="1_2vjgp"]
 [ext_resource type="Texture2D" uid="uid://dx4q5myenv7h" path="res://assets/posters/map.png" id="1_obiia"]
 [ext_resource type="ArrayMesh" uid="uid://dr2jadqdqaddw" path="res://assets/models/tv.res" id="2_2vjgp"]
 [ext_resource type="Theme" uid="uid://c7n8ed1v02tcj" path="res://themes/gps_buttons.tres" id="4_5elpi"]
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="4_p2e6t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2e6t"]
+size = Vector3(0.00381348, 0.00344727, 0.00416504)
 
 [node name="GPS" type="Node3D"]
 script = ExtResource("1_2vjgp")
@@ -18,7 +21,15 @@ transform = Transform3D(2000, 0, 0, 0, -8.74228e-05, 2000, 0, -2000, -8.74228e-0
 mesh = ExtResource("2_2vjgp")
 skeleton = NodePath("../Postits")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Tv"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tv/StaticBody3D"]
+transform = Transform3D(0.999933, 0, 0, 0, 0.999933, 8.52651e-14, 0, -8.52651e-14, 0.999933, -3.90108e-05, 0.000575616, 0.000120475)
+shape = SubResource("BoxShape3D_p2e6t")
+
 [node name="ItemInfo" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]
 visible = false
@@ -203,4 +214,8 @@ layout_mode = 2
 theme = ExtResource("4_p2e6t")
 text = "CONFIRM"
 
+<<<<<<< HEAD
+[connection signal="input_event" from="Tv/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+=======
+>>>>>>> 29680ab0f25e445375216787e720e2517a9634ea
 [connection signal="pressed" from="ItemInfo/PanelContainer/CenterContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
