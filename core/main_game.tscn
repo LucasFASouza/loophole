@@ -8,7 +8,7 @@
 [ext_resource type="ArrayMesh" uid="uid://dgg1ogf01rjjh" path="res://assets/models/desk.res" id="5_3k31u"]
 [ext_resource type="Texture2D" uid="uid://blppcsi8cia2f" path="res://assets/posters/postit.png" id="6_0d78q"]
 [ext_resource type="Texture2D" uid="uid://bge5jgqf7hm4w" path="res://assets/posters/postit2.png" id="7_uo27g"]
-[ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://ui.tres" id="8_2epw8"]
+[ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="8_2epw8"]
 [ext_resource type="PackedScene" uid="uid://cua3g4kgtq2ns" path="res://UI/options_menu.tscn" id="9_vlmcc"]
 [ext_resource type="PackedScene" uid="uid://cywgrp1lwmvx5" path="res://desk_itens/book.tscn" id="10_vlmcc"]
 
@@ -163,5 +163,6 @@ size_flags_vertical = 3
 process_mode = 3
 
 [connection signal="confirm_pressed" from="MorseInput" to="." method="_confirm_input_message"]
+[connection signal="gps_selected" from="GPS" to="." method="_on_gps_selected"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Pause" to="." method="_on_pause_pressed"]
 [connection signal="close_options" from="CanvasLayer/OptionsMenu" to="." method="_on_options_menu_close_options"]
