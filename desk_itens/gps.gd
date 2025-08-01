@@ -34,3 +34,17 @@ func _on_grid_button_pressed(button_name: String) -> void:
 func _on_confirm_pressed() -> void:
 	gps_selected.emit(selected_button)
 	$ItemInfo.visible = false
+	reset_selection()
+
+
+func _on_back_pressed() -> void:
+	$ItemInfo.visible = false
+	reset_selection()
+
+
+func reset_selection() -> void:
+	if selected_button:
+		var btn = grid_container.get_node(selected_button)
+		if btn is Button:
+			btn.button_pressed = false
+	selected_button = ""
