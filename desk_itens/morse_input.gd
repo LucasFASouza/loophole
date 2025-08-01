@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var label_writting: Label3D = %LabelWritting
+@onready var label_writing: Label3D = %LabelWriting
 @onready var label_meaning: Label3D = %LabelMeaning
 
 @onready var dash_timer: Timer = $DashTimer
@@ -9,7 +9,8 @@ extends Node3D
 var morse_text:= ""
 var ascii_text:= ""
 
-signal confirm_pressed(input: String)
+signal check_word(input: String)
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("morse_input"):
@@ -26,13 +27,14 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("morse_cancel"):
 		reset_input()
 	if Input.is_action_just_pressed("morse_confirm"):
-		confirm_pressed.emit(ascii_text)
+		check_word.emit(ascii_text)
 	if Input.is_action_just_pressed("morse_delete"):
 		morse_text = morse_text.substr(0, morse_text.length() - 1)
 		update_morse_labels()
 
+
 func update_morse_labels() -> void:
-	label_writting.text = morse_text
+	label_writing.text = morse_text
 	ascii_text = ""
 
 	if morse_text.length() > 0:
@@ -51,10 +53,12 @@ func reset_input() -> void:
 	dash_timer.stop()
 	word_timer.stop()
 
+
 func _on_dash_timeout() -> void:
 	if morse_text.length() > 0:
 		morse_text = morse_text.substr(0, morse_text.length() - 1) + "-"
 		update_morse_labels()
+
 
 func _on_word_timer_timeout() -> void:
 	morse_text += "/"

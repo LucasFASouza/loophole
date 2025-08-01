@@ -1,11 +1,13 @@
 extends Node3D
 
+@onready var item_info: CanvasLayer = $ItemInfo
 @onready var grid_container: GridContainer = %GridContainer
 var selected_button: String
 
 signal gps_selected(coordinate: String)
 
 func _ready() -> void:
+	item_info.visible = false
 	for child in grid_container.get_children():
 		if child is Button:
 			child.pressed.connect(func(): _on_grid_button_pressed(child.name))

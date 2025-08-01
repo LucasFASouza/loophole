@@ -12,8 +12,8 @@ albedo_color = Color(1, 0, 0, 0.611765)
 
 [sub_resource type="SphereMesh" id="SphereMesh_qpoeg"]
 material = SubResource("StandardMaterial3D_kh8q3")
-radius = 0.04
-height = 0.08
+radius = 0.05
+height = 0.1
 
 [node name="MorseAntenna" type="Node3D"]
 script = ExtResource("1_gbc8i")
@@ -26,7 +26,6 @@ transform = Transform3D(12.425, 0, 0, 0, 12.425, 0, 0, 0, 12.425, 0, 0, 0)
 
 [node name="Light" type="MeshInstance3D" parent="Antena"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0720244, 1.656, 0.000170855)
-visible = false
 mesh = SubResource("SphereMesh_qpoeg")
 
 [node name="BeepPlayer" type="AudioStreamPlayer" parent="."]
@@ -34,8 +33,4 @@ stream = ExtResource("3_qpoeg")
 volume_db = -15.0
 bus = &"SFX"
 
-[node name="WaitTimer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="timeout" from="Clock" to="." method="_on_clock_timeout"]
-[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

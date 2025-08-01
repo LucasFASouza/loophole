@@ -65,19 +65,13 @@ func morse_to_ascii(morse_text: String) -> String:
 	Converts a Morse code string to ascii.
 	example: ".../---/..." -> "SOS"
 	"""
-	var words = morse_text.strip_edges().split("/")
+	var letters = morse_text.split("/")
 	var result = []
-	for word in words:
-		var letters = word.split(" ")
-		var ascii_word = ""
-		for letter in letters:
-			if MORSE_TO_ASCII_DICT.has(letter):
-				ascii_word += MORSE_TO_ASCII_DICT[letter]
-			else:
-				ascii_word += "?"
-
-		result.append(ascii_word)
-
+	for letter in letters:
+		if MORSE_TO_ASCII_DICT.has(letter):
+			result.append(MORSE_TO_ASCII_DICT[letter])
+		elif letter != "":
+			result.append("?")
 	return "".join(result).strip_edges()
 
 func ascii_to_morse(ascii_text: String) -> String:

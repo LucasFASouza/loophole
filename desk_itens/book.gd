@@ -2,12 +2,16 @@ extends Node3D
 
 var was_pressed = false
 
+@onready var item_info: CanvasLayer = $ItemInfo
+
 @onready var pages_container: MarginContainer = %PagesContainer
 @onready var buttons_container: HBoxContainer = %ButtonsContainer
 var current_page: int = 0
 
 
 func _ready() -> void:
+	item_info.visible = false
+		
 	for i in buttons_container.get_child_count():
 		var btn = buttons_container.get_child(i)
 		if btn is Button:

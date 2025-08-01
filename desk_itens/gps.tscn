@@ -19,7 +19,6 @@ texture = ExtResource("1_obiia")
 [node name="Tv" type="MeshInstance3D" parent="."]
 transform = Transform3D(2000, 0, 0, 0, -8.74228e-05, 2000, 0, -2000, -8.74228e-05, 0, 3.44225, 0)
 mesh = ExtResource("2_2vjgp")
-skeleton = NodePath("../Postits")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Tv"]
 
@@ -29,7 +28,6 @@ shape = SubResource("BoxShape3D_p2e6t")
 
 [node name="ItemInfo" type="CanvasLayer" parent="."]
 layer = 3
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]
 anchors_preset = 15
@@ -43,7 +41,6 @@ theme = ExtResource("4_p2e6t")
 
 [node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer"]
 layout_mode = 2
-size_flags_vertical = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -61,33 +58,28 @@ layout_mode = 2
 theme = ExtResource("4_p2e6t")
 text = "BACK"
 
-[node name="CenterContainer" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Control2" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_p2e6t")
 text = "SELECT THE COORDINATE TO INFORM THE SHIP"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("1_obiia")
-expand_mode = 5
 
-[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect"]
+[node name="TextureRect" type="TextureRect" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+texture = ExtResource("1_obiia")
+expand_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,150 +92,148 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="GridContainer" type="GridContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/h_separation = 6
 theme_override_constants/v_separation = 6
 columns = 4
 
-[node name="1A" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="1A" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "1A"
+text = "A1"
 
-[node name="1B" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="1B" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "1B"
+text = "B1"
 
-[node name="1C" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="1C" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "1C"
+text = "C1"
 
-[node name="1D" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="1D" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "1D"
+text = "D1"
 
-[node name="2A" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="2A" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "2A"
+text = "A2"
 
-[node name="2B" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="2B" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "2B"
+text = "B2"
 
-[node name="2C" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="2C" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "2C"
+text = "C2"
 
-[node name="2D" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="2D" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "2D"
+text = "D2"
 
-[node name="3A" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="3A" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "3A"
+text = "A3"
 
-[node name="3B" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="3B" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "3B"
+text = "B3"
 
-[node name="3C" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="3C" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "3C"
+text = "C3"
 
-[node name="3D" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="3D" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "3D"
+text = "D3"
 
-[node name="4A" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="4A" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "4A"
+text = "A4"
 
-[node name="4B" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="4B" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "4B"
+text = "B4"
 
-[node name="4C" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="4C" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "4C"
+text = "C4"
 
-[node name="4D" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+[node name="4D" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/AspectRatioContainer/TextureRect/MarginContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("4_5elpi")
 toggle_mode = true
-text = "4D"
+text = "D4"
 
-[node name="Confirm" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="Confirm" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("4_p2e6t")
 text = "CONFIRM"
 
-[node name="Control" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
 [connection signal="input_event" from="Tv/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
 [connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
