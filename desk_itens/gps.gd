@@ -33,3 +33,4 @@ func _on_grid_button_pressed(button_name: String) -> void:
 
 func _on_confirm_pressed() -> void:
 	gps_selected.emit(selected_button)
+	$ItemInfo.visible = false
