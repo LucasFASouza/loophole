@@ -60,8 +60,15 @@ theme_override_constants/separation = 16
 [node name="Label" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_unrlo")
-text = "wallkie talkie"
+text = "SELECT THE FREQUENCY TO SEND A SIGNAL"
 horizontal_alignment = 1
+
+[node name="Confirm" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_unrlo")
+text = "CONFIRM"
 
 [connection signal="input_event" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
 [connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]

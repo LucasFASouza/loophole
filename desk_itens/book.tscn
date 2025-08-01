@@ -34,7 +34,6 @@ shape = SubResource("BoxShape3D_y0hms")
 
 [node name="ItemInfo" type="CanvasLayer" parent="."]
 layer = 3
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]
 anchors_preset = 15
@@ -100,6 +99,15 @@ theme = ExtResource("3_xbbjk")
 disabled = true
 toggle_mode = true
 text = "Coordinates"
+
+[node name="RadioButton" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_xbbjk")
+disabled = true
+toggle_mode = true
+text = "Radio"
 
 [node name="MorseButton" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar/ButtonsContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -191,6 +199,35 @@ size_flags_vertical = 3
 layout_mode = 2
 texture = ExtResource("4_xbbjk")
 expand_mode = 2
+
+[node name="RadioPage" type="PanelContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_xbbjk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/RadioPage"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Instructions" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/RadioPage/MarginContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+theme_override_font_sizes/font_size = 24
+text = "Use the 4-letter transmission to identify the nature of the event. Then tune the radio to the appropriate frequency to  send the corresponding message.
+
+Radio codes:
+
+AHOY – Pirate attack reported. Alert nearby mariners on 157 kHz.
+DARK – Lighthouse failure detected. Contact the keeper on 111kHz.
+GALE – A storm is approaching. Warn the harbor via 139kHz.
+KING – A royal vessel is in the area. Dispatch an escort on 125kHz."
+autowrap_mode = 2
 
 [node name="MorsePage" type="PanelContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer"]
 visible = false

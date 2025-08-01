@@ -26,10 +26,10 @@ var calibration_words = [
 ]
 
 var coordinates = {
-	"1B": "PORT",
-	"1D": "GATE",
-	"3A": "ISLE",
-	"4D": "LAKE",
+	"1A": "KEEL",
+	"2B": "PORT",
+	"2D": "ISLE",
+	"4B": "GATE",
 }
 
 var boat = {
