@@ -19,11 +19,11 @@ bg_color = Color(0.105882, 0.105882, 0.105882, 0.768627)
 [resource]
 Button/colors/font_color = Color(0.839557, 0.887279, 0.865671, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 0)
-Button/font_sizes/font_size = 30
+Button/font_sizes/font_size = 36
 Button/fonts/font = ExtResource("1_i6sfk")
 Button/styles/hover = SubResource("StyleBoxFlat_ks8t7")
 Button/styles/normal = SubResource("StyleBoxEmpty_wl5ax")
 Button/styles/pressed = SubResource("StyleBoxFlat_vkava")
-Label/font_sizes/font_size = 32
+Label/font_sizes/font_size = 24
 Label/fonts/font = ExtResource("1_i6sfk")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_i6sfk")

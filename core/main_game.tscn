@@ -38,6 +38,7 @@ transform = Transform3D(0.997214, 0, 0.0745954, 0, 1, 0, -0.0745954, 0, 0.997214
 
 [node name="GPS" parent="." instance=ExtResource("5_0d78q")]
 transform = Transform3D(0.892373, 0, -0.451298, 0, 1, 0, 0.451298, 0, 0.892373, 16.3239, 23.6736, 7.03388)
+visible = false
 
 [node name="Desk" type="MeshInstance3D" parent="."]
 transform = Transform3D(5000, 0, 0, 0, 5000, 0, 0, 0, 5000, 0, 0, 0)
@@ -61,6 +62,7 @@ process_physics_priority = -1
 layer = 2
 
 [node name="MainUI" type="MarginContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -69,9 +71,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 36
 theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainUI"]
@@ -83,10 +85,36 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="Pause" type="Button" parent="CanvasLayer/MainUI/VBoxContainer/Topbar"]
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("8_2epw8")
 text = "PAUSE"
+
+[node name="Control" type="Control" parent="CanvasLayer/MainUI/VBoxContainer/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Mission" type="VBoxContainer" parent="CanvasLayer/MainUI/VBoxContainer/Topbar"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NightNumber" type="Label" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Mission"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+text = "NIGTH 0"
+horizontal_alignment = 2
+
+[node name="MissionText" type="Label" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Mission"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+theme_override_font_sizes/font_size = 0
+text = "Calibrate the system by reproducing and confirming the transmission loops"
+horizontal_alignment = 2
+autowrap_mode = 2
 
 [node name="Spacer" type="Control" parent="CanvasLayer/MainUI/VBoxContainer"]
 layout_mode = 2
@@ -134,16 +162,57 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ESC" type="Label" parent="CanvasLayer/MainUI/VBoxContainer/Bottombar"]
+[node name="StartContainer" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_2epw8")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/StartContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/StartContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="NightTitle" type="Label" parent="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_2epw8")
-text = "[ESC] - Cancel"
+theme_override_font_sizes/font_size = 64
+text = "NIGHT 0"
 horizontal_alignment = 1
 
-[node name="Spacer6" type="Control" parent="CanvasLayer/MainUI/VBoxContainer/Bottombar"]
+[node name="NightInstructions" type="Label" parent="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(820, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+theme = ExtResource("8_2epw8")
+theme_override_font_sizes/font_size = 28
+text = "Before you begin, you should calibrate your machinery.
+Listen carefully to the looped transmissions and try to reproduce the morse message to verify its content.
+
+Press or hold [SPACE] to send a signal.
+Wait for pauses between letters.
+Use [BACKSPACE] to delete characters.
+When you're confident with your answer, press [ENTER] to submit it.
+
+At any time, you may check your book for more notes and references."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StartNightButton" type="Button" parent="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+text = "START"
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("9_vlmcc")]
 process_mode = 3
@@ -155,5 +224,6 @@ one_shot = true
 [connection signal="check_word" from="MorseInput" to="." method="check_word"]
 [connection signal="gps_selected" from="GPS" to="." method="_send_answer"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer/StartNightButton" to="." method="_on_start_night_button_pressed"]
 [connection signal="close_options" from="CanvasLayer/OptionsMenu" to="." method="_on_options_menu_close_options"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

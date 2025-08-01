@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cybuqgryj5mb0"]
+
+[ext_resource type="FontFile" uid="uid://d06db8dxphbdi" path="res://assets/fonts/SourGummy/SourGummy-Light.ttf" id="1_5mqj6"]
+
+[resource]
+Label/colors/font_color = Color(0, 0, 0, 0.756863)
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("1_5mqj6")

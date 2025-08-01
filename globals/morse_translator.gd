@@ -60,6 +60,7 @@ const ASCII_TO_MORSE_DICT = {
   "Z": "--.."
 }
 
+
 func morse_to_ascii(morse_text: String) -> String:
 	"""
 	Converts a Morse code string to ascii.
@@ -73,6 +74,7 @@ func morse_to_ascii(morse_text: String) -> String:
 		elif letter != "":
 			result.append("?")
 	return "".join(result).strip_edges().to_upper()
+
 
 func ascii_to_morse(ascii_text: String) -> String:
 	"""

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://gar0jxwjgc72"
-path="res://.godot/imported/LCD14Italic.otf-d046330d682b345b77b45dfdf0eec5d5.fontdata"
+uid="uid://bg3glmdwxg2g2"
+path="res://.godot/imported/SourGummy-LightItalic.ttf-98d2a7ec876cc768b0fe62c432be683c.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/LCD14/LCD14Italic.otf"
-dest_files=["res://.godot/imported/LCD14Italic.otf-d046330d682b345b77b45dfdf0eec5d5.fontdata"]
+source_file="res://assets/fonts/SourGummy/SourGummy-LightItalic.ttf"
+dest_files=["res://.godot/imported/SourGummy-LightItalic.ttf-98d2a7ec876cc768b0fe62c432be683c.fontdata"]
 
 [params]
 

@@ -6,8 +6,10 @@ var was_pressed = false
 
 @onready var pages_container: MarginContainer = %PagesContainer
 @onready var buttons_container: HBoxContainer = %ButtonsContainer
-var current_page: int = 0
 
+@onready var instructions: Label = %Instructions
+
+var current_page: int = 0
 
 func _ready() -> void:
 	item_info.visible = false
@@ -49,3 +51,11 @@ func _on_static_body_3d_input_event(
 
 func _on_back_pressed() -> void:
 	$ItemInfo.visible = false
+
+
+func set_instructions(instructions_text: String) -> void:
+	"""
+	Sets the instructions text for the book.
+	"""
+	instructions.text = instructions_text
+	

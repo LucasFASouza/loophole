@@ -6,6 +6,8 @@ extends Node3D
 @onready var dash_timer: Timer = $DashTimer
 @onready var word_timer: Timer = $WordTimer
 
+var is_ready: bool = false
+
 var morse_text:= ""
 var ascii_text:= ""
 
@@ -13,6 +15,9 @@ signal check_word(input: String)
 
 
 func _process(_delta: float) -> void:
+	if not is_ready:
+		return
+
 	if Input.is_action_just_pressed("morse_input"):
 		morse_text += "."
 		dash_timer.start(MorseTranslator.CLK_TIME * 3)
@@ -24,8 +29,6 @@ func _process(_delta: float) -> void:
 		update_morse_labels()
 		word_timer.start(MorseTranslator.CLK_TIME * 3)
 		
-	if Input.is_action_just_pressed("morse_cancel"):
-		reset_input()
 	if Input.is_action_just_pressed("morse_confirm"):
 		check_word.emit(ascii_text)
 	if Input.is_action_just_pressed("morse_delete"):
