@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cywgrp1lwmvx5"]
+
+[ext_resource type="ArrayMesh" uid="uid://borrfbdagja3t" path="res://assets/models/book.res" id="1_kh36y"]
+[ext_resource type="Script" uid="uid://bi17j4o0kdqlr" path="res://book.gd" id="2_y0hms"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y0hms"]
+size = Vector3(0.00186557, 0.00515747, 0.00858307)
+
+[node name="Book" type="MeshInstance3D"]
+transform = Transform3D(5.36176e-05, -1109.21, 457.884, -1198.85, 20.0444, 48.557, -52.5316, -457.445, -1108.14, 0, 0, 0)
+mesh = ExtResource("1_kh36y")
+script = ExtResource("2_y0hms")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, -8.34465e-07, -3.12179e-06, 3.72529e-09, 1, 8.34465e-07, 7.45058e-09, 7.00355e-06, 1, -6.00641e-05, 6.49787e-05, -0.000243225)
+shape = SubResource("BoxShape3D_y0hms")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="input_event" from="StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

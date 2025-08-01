@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bge5jgqf7hm4w" path="res://assets/posters/postit2.png" id="7_uo27g"]
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://ui.tres" id="8_2epw8"]
 [ext_resource type="PackedScene" uid="uid://cua3g4kgtq2ns" path="res://UI/options_menu.tscn" id="9_vlmcc"]
-[ext_resource type="ArrayMesh" uid="uid://borrfbdagja3t" path="res://assets/models/book.res" id="10_vlmcc"]
+[ext_resource type="PackedScene" uid="uid://cywgrp1lwmvx5" path="res://book.tscn" id="10_vlmcc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
 sky_top_color = Color(0.655843, 0.740153, 0.826877, 1)
@@ -62,7 +62,14 @@ environment = SubResource("Environment_8gcvo")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
 
+[node name="Book" parent="." instance=ExtResource("10_vlmcc")]
+process_physics_priority = 1
+transform = Transform3D(7.82311e-05, -1109.21, 457.881, -1198.85, 20.0444, 48.5569, -52.5316, -457.445, -1108.14, 15.9219, 25.1148, 5.66101)
+skeleton = NodePath("../CanvasLayer")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_physics_priority = -1
+layer = 2
 
 [node name="MainUI" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
@@ -72,6 +79,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
@@ -94,6 +102,7 @@ text = "PAUSE"
 [node name="Spacer" type="Control" parent="CanvasLayer/MainUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Bottombar" type="HBoxContainer" parent="CanvasLayer/MainUI/VBoxContainer"]
 layout_mode = 2
@@ -149,10 +158,6 @@ size_flags_vertical = 3
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("9_vlmcc")]
 process_mode = 3
-
-[node name="Book" type="MeshInstance3D" parent="CanvasLayer"]
-transform = Transform3D(5.36176e-05, -1109.21, 457.884, -1198.85, 20.0444, 48.557, -52.5316, -457.445, -1108.14, 15.9219, 25.1148, 5.66101)
-mesh = ExtResource("10_vlmcc")
 
 [connection signal="confirm_pressed" from="MorseInput" to="." method="_confirm_input_message"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Pause" to="." method="_on_pause_pressed"]
