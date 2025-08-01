@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlfykwmnwo7rg"]
+[gd_scene load_steps=6 format=3 uid="uid://dlfykwmnwo7rg"]
 
 [ext_resource type="Script" uid="uid://d1vpqfq0alibv" path="res://desk_itens/gps.gd" id="1_2vjgp"]
 [ext_resource type="Texture2D" uid="uid://dx4q5myenv7h" path="res://assets/posters/map.png" id="1_obiia"]
 [ext_resource type="ArrayMesh" uid="uid://rkehb6r3nphd" path="res://assets/models/tv.res" id="2_2vjgp"]
+[ext_resource type="Theme" uid="uid://c7n8ed1v02tcj" path="res://themes/gps_buttons.tres" id="4_5elpi"]
+[ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://ui.tres" id="4_p2e6t"]
 
 [node name="GPS" type="Node3D"]
 script = ExtResource("1_2vjgp")
@@ -15,3 +17,190 @@ texture = ExtResource("1_obiia")
 transform = Transform3D(2000, 0, 0, 0, -8.74228e-05, 2000, 0, -2000, -8.74228e-05, 0, 3.44225, 0)
 mesh = ExtResource("2_2vjgp")
 skeleton = NodePath("../Postits")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_p2e6t")
+text = "SELECT THE COORDINATE TO INFORM THE SHIP"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_obiia")
+expand_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 4
+
+[node name="1A" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "1A"
+
+[node name="1B" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "1B"
+
+[node name="1C" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "1C"
+
+[node name="1D" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "1D"
+
+[node name="2A" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "2A"
+
+[node name="2B" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "2B"
+
+[node name="2C" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "2C"
+
+[node name="2D" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "2D"
+
+[node name="3A" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "3A"
+
+[node name="3B" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "3B"
+
+[node name="3C" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "3C"
+
+[node name="3D" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "3D"
+
+[node name="4A" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "4A"
+
+[node name="4B" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "4B"
+
+[node name="4C" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "4C"
+
+[node name="4D" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/TextureRect/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_5elpi")
+toggle_mode = true
+text = "4D"
+
+[node name="Confirm" type="Button" parent="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_p2e6t")
+text = "CONFIRM"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/CenterContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]
