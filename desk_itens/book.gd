@@ -11,4 +11,4 @@ func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_posit
 
 func on_book_click():
 	print("on click")
-	$BookInfo.visible = true
+	$ItemInfo.visible = true

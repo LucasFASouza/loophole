@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cywgrp1lwmvx5"]
+[gd_scene load_steps=4 format=3 uid="uid://b8moix3bv57uf"]
 
 [ext_resource type="ArrayMesh" uid="uid://borrfbdagja3t" path="res://assets/models/book.res" id="1_kh36y"]
 [ext_resource type="Script" uid="uid://bi17j4o0kdqlr" path="res://desk_itens/book.gd" id="2_y0hms"]
