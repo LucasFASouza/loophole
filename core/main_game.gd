@@ -24,13 +24,21 @@ var boat = {
 
 var chance_legitimacy := 66 # Chance of the boat being legitimate (0-100)
 
-@onready var morse_receiver: Node3D = $MorseReceiver
-@onready var morse_encoder: Node3D = $MorseEncoder
+@onready var morse_antenna: Node3D = $MorseAntenna
+@onready var morse_input: Node3D = $MorseInput
+@onready var info_screen: Node3D = $InfoScreen
+
+@onready var main_ui: MarginContainer = $CanvasLayer/MainUI
+@onready var options_menu: PanelContainer = $CanvasLayer/OptionsMenu
 
 var score := 0 
 
+
 func _ready() -> void:
 	get_new_boat()
+	options_menu.visible = false
+	main_ui.visible = true
+
 
 func get_new_boat() -> void:
 	"""
@@ -44,15 +52,18 @@ func get_new_boat() -> void:
 
 	if not boat.is_legit:
 		boat.mispelling = MISSPELLINGS[boat.course][randi() % MISSPELLINGS[boat.course].size()]
+	
+	morse_input.reset_input()
+	morse_antenna.message = get_boat_message()
+	morse_antenna.start_encoding()
 
-	morse_encoder.message = get_boat_message()
-	morse_encoder.start_encoding()
 
 func get_boat_message():
 	if boat.is_legit:
 		return MAP[boat.course]
 	else:
 		return boat.mispelling
+
 
 func _confirm_input_message(input: String) -> void:
 	var status: String
@@ -62,7 +73,7 @@ func _confirm_input_message(input: String) -> void:
 	print("Boat message: ", get_boat_message())
 	print("Boat legitimacy: ", boat.is_legit)
 
-	var correct_direction: bool = input.to_upper() == boat.course or input.to_upper()[0] == boat.course
+	var correct_direction: bool = input.to_upper().replace("?", "") == boat.course
 
 	if boat.is_legit:
 		if correct_direction:
@@ -70,15 +81,28 @@ func _confirm_input_message(input: String) -> void:
 			score += 1
 		else:
 			status = "Boat lost :("
+			score -= 1
 	else:
 		if input.to_upper() == "O":
 			status = "Pirate avoided!"
 			score += 1
 		elif correct_direction:
-			status = "Pirates attacked :(("
+			status = "Pirates fleed :("
 			score -= 1
-		else:
-			status = "Pirates lost at the sea :/"
 	
-	morse_receiver.finish_round(score, status)
+	info_screen.update_score(score)
+	info_screen.show_status(status)
 	get_new_boat()
+
+
+func _on_pause_pressed() -> void:
+	options_menu.visible = true
+	main_ui.visible = false
+	get_tree().paused = true
+
+
+func _on_options_menu_close_options() -> void:
+	options_menu.visible = false
+	main_ui.visible = true
+	get_tree().paused = false
+	

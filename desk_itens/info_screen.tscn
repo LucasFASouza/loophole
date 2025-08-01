@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://csnoj5c65lrkj"]
+
+[ext_resource type="ArrayMesh" uid="uid://cddajfptreyhe" path="res://assets/models/low_monitor.res" id="1_b7f64"]
+[ext_resource type="Script" uid="uid://dxa7wc8np4416" path="res://desk_itens/info_screen.gd" id="1_yhihp"]
+[ext_resource type="FontFile" uid="uid://n1eu5vuo4qkw" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="3_f21hf"]
+
+[node name="InfoScreen" type="Node3D"]
+script = ExtResource("1_yhihp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.771646, 0, -0.211098, 0, 0.8, 0, 0.211098, 0, 0.771646, 10.9029, 0, 0)
+mesh = ExtResource("1_b7f64")
+
+[node name="Text" type="Node3D" parent="."]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 8.49714, 3.56113)
+
+[node name="LabelStatus" type="Label3D" parent="Text"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.293487, 0)
+modulate = Color(0, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "hey :)"
+font = ExtResource("3_f21hf")
+font_size = 128
+uppercase = true
+
+[node name="LabelScore" type="Label3D" parent="Text"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03193, 0.959197, 0)
+modulate = Color(0, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "SCORE: 0"
+font = ExtResource("3_f21hf")
+font_size = 128
+uppercase = true
+
+[node name="StatusTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="StatusTimer" to="." method="_on_status_timer_timeout"]

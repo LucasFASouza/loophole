@@ -1,21 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfq6j4q0hpk2r"]
+[gd_scene load_steps=11 format=3 uid="uid://dfq6j4q0hpk2r"]
 
-[ext_resource type="Script" uid="uid://cfn7aomul4dg3" path="res://ui/main_menu.gd" id="1_8uxxo"]
+[ext_resource type="Script" uid="uid://cfn7aomul4dg3" path="res://core/main_menu.gd" id="1_8uxxo"]
 [ext_resource type="ArrayMesh" uid="uid://dgg1ogf01rjjh" path="res://assets/models/desk.res" id="2_8uxxo"]
-[ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://gameplay_loop/morse_encoder.tscn" id="2_rmr83"]
+[ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://desk_itens/morse_antenna.tscn" id="2_rmr83"]
 [ext_resource type="ArrayMesh" uid="uid://bgvmmlgc5jr3n" path="res://assets/models/high_monitor.res" id="3_8uxxo"]
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://ui.tres" id="4_rmr83"]
+[ext_resource type="FontFile" uid="uid://n1eu5vuo4qkw" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="5_i3ow4"]
+[ext_resource type="PackedScene" uid="uid://cua3g4kgtq2ns" path="res://UI/options_menu.tscn" id="7_opyrh"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ei257"]
-sky_top_color = Color(0.358589, 0.45983, 0.562312, 1)
-sky_horizon_color = Color(0.566842, 0.68376, 0.815015, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i3ow4"]
+sky_top_color = Color(0.655843, 0.740153, 0.826877, 1)
+sky_horizon_color = Color(0.6563, 0.752982, 0.862107, 1)
 ground_bottom_color = Color(0.144006, 0.180839, 0.203205, 1)
 ground_horizon_color = Color(0.12434, 0.245666, 0.184371, 1)
 
 [sub_resource type="Sky" id="Sky_kh8q3"]
-sky_material = SubResource("ProceduralSkyMaterial_ei257")
+sky_material = SubResource("ProceduralSkyMaterial_i3ow4")
 
-[sub_resource type="Environment" id="Environment_p8ri8"]
+[sub_resource type="Environment" id="Environment_opyrh"]
 background_mode = 2
 sky = SubResource("Sky_kh8q3")
 tonemap_mode = 2
@@ -23,17 +25,17 @@ tonemap_mode = 2
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_8uxxo")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_p8ri8")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_opyrh")
 
 [node name="Desk" type="MeshInstance3D" parent="."]
 transform = Transform3D(5000, 0, 0, 0, 5000, 0, 0, 0, 5000, 0, 0, 0)
 mesh = ExtResource("2_8uxxo")
 
-[node name="MorseEncoder" parent="." instance=ExtResource("2_rmr83")]
+[node name="MorseAntenna" parent="." instance=ExtResource("2_rmr83")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 18.2007, 23.8015, -2.40231)
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -50,12 +52,14 @@ transform = Transform3D(2.49997, 0, -0.0125226, 0, 2.5, 0, 0.0125226, 0, 2.49997
 modulate = Color(0, 1, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = ".../---/..."
+font = ExtResource("5_i3ow4")
 font_size = 256
 uppercase = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
+[node name="MenuUI" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -69,10 +73,10 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MenuUI"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/MenuUI/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 70
 text = "Incoming 
@@ -80,32 +84,46 @@ Transmission"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="UI/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="UI/MenuUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DownSection" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
+[node name="DownSection" type="HBoxContainer" parent="UI/MenuUI/VBoxContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="UI/MarginContainer/VBoxContainer/DownSection"]
+[node name="Control" type="Control" parent="UI/MenuUI/VBoxContainer/DownSection"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Buttons" type="VBoxContainer" parent="UI/MarginContainer/VBoxContainer/DownSection"]
+[node name="Buttons" type="VBoxContainer" parent="UI/MenuUI/VBoxContainer/DownSection"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
-[node name="Start" type="Button" parent="UI/MarginContainer/VBoxContainer/DownSection/Buttons"]
+[node name="Start" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_rmr83")
 text = "START"
 
-[node name="Control2" type="Control" parent="UI/MarginContainer/VBoxContainer/DownSection"]
+[node name="Options" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rmr83")
+text = "OPTIONS"
+
+[node name="Control2" type="Control" parent="UI/MenuUI/VBoxContainer/DownSection"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[connection signal="pressed" from="UI/MarginContainer/VBoxContainer/DownSection/Buttons/Start" to="." method="_on_start_pressed"]
+[node name="OptionsMenu" parent="UI" instance=ExtResource("7_opyrh")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="close_options" from="UI/OptionsMenu" to="." method="_on_options_menu_close_options"]

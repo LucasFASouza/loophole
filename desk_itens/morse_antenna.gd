@@ -23,8 +23,15 @@ func _ready():
 	clk.wait_time = MorseTranslator.CLK_TIME
 	wait_timer.wait_time = MorseTranslator.CLK_TIME * 10
 
+
 func start_encoding():
+	cycle_counter = 0
+	wave_fn = []
+	antena_light.visible = false
+	beep_player.stop()
+	clk.stop()
 	wait_timer.start()
+
 
 func _on_clock_timeout() -> void:
 	var wave_on = wave_fn[cycle_counter]
@@ -41,10 +48,6 @@ func _on_clock_timeout() -> void:
 
 
 func _on_wait_timer_timeout() -> void:
-	cycle_counter = 0
-	antena_light.visible = false
-	beep_player.stop()
-
 	var morse_message = MorseTranslator.ascii_to_morse(message)
 
 	const char_lengths = {
@@ -52,8 +55,6 @@ func _on_wait_timer_timeout() -> void:
 		'-': [1, 1, 1],
 		'/': [0, 0, 0]
 	}
-
-	wave_fn = []
 	
 	for ch in morse_message:
 		wave_fn.append_array(char_lengths[ch])

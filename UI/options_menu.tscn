@@ -1,0 +1,124 @@
+[gd_scene load_steps=3 format=3 uid="uid://cua3g4kgtq2ns"]
+
+[ext_resource type="Script" uid="uid://buhr84qoiuni4" path="res://UI/options_menu.gd" id="1_q6x1i"]
+[ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://ui.tres" id="2_onhes"]
+
+[node name="OptionsMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_onhes")
+script = ExtResource("1_q6x1i")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Topbar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/Topbar"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme = ExtResource("2_onhes")
+text = "BACK"
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_onhes")
+theme_override_font_sizes/font_size = 64
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Volumes" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Volumes"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Volumes"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MasterVolumeLabel" type="Label" parent="MarginContainer/VBoxContainer/Volumes/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_onhes")
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+
+[node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Volumes/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="SfxVolume" type="Label" parent="MarginContainer/VBoxContainer/Volumes/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_onhes")
+text = "SFX VOLUME"
+horizontal_alignment = 1
+
+[node name="SfxSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Volumes/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="MusicVolume" type="Label" parent="MarginContainer/VBoxContainer/Volumes/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_onhes")
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/Volumes/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/Volumes"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QuitMenu" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/QuitMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MainMenu" type="Button" parent="MarginContainer/VBoxContainer/QuitMenu"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_onhes")
+text = "BACK TO MAIN MENU"
+
+[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer/QuitMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volumes/VBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volumes/VBoxContainer/SfxSlider" to="." method="_on_sfx_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/Volumes/VBoxContainer/MusicSlider" to="." method="_on_music_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitMenu/MainMenu" to="." method="_on_main_menu_pressed"]
