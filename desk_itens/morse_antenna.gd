@@ -38,8 +38,8 @@ func start_encoding(new_message: String) -> void:
 
 	const char_lengths = {
 		'.': [1],
-		'-': [2, 2, 2, 2],
-		'/': [0, 0, 0, 0]
+		'-': [2, 2, 2],
+		'/': [0, 0, 0]
 	}
 	
 	for ch in morse_message:

@@ -41,7 +41,7 @@ var boat = {
 var nights_data = [
 	{
 		"name": "Night 0",
-		"mission": "Calibrate the system by reproducing and confirming the transmission loops.",
+		"mission": "Calibrate the system by reproducing and confirming the transmission loops.\nCheck your book for more information.\n",
 		"start_instructions": """Before you begin, you should calibrate your machinery.
 			Listen carefully to the looped transmissions and try to reproduce the morse message to verify its content.
 
@@ -56,7 +56,7 @@ var nights_data = [
 	}, 
 		{
 		"name": "Night 1",
-		"mission": "Use your GPS system to relay the destination coordinates to the boats.",
+		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
 		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
 			Listen carefully to the looped transmission to identify the 4-letter destination code.
 
@@ -127,6 +127,8 @@ func check_word(input: String) -> void:
 			score += 1
 			info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 
+			mission_text.text = nights_data[night]["mission"] + "\nCurrent calibration: " + str(score + 2) + " letters"
+
 			if score >= nights_data[night]["task_threshold"]:
 				finish_night()
 			else:
@@ -175,6 +177,9 @@ func prepare_night() -> void:
 	"""
 	night_name.text = nights_data[night]["name"]
 	mission_text.text = nights_data[night]["mission"]
+
+	if night == 0:
+		mission_text.text += "\nCurrent calibration: " + str(score + 2) + " letters"
 
 	night_title.text = nights_data[night]["name"]
 	night_instructions.text = nights_data[night]["start_instructions"]
