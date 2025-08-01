@@ -8,6 +8,9 @@ bg_color = Color(0, 0, 0, 0.803922)
 [sub_resource type="ImageTexture" id="ImageTexture_wc3r7"]
 
 [resource]
+Button/colors/font_color = Color(0.183591, 0.18359, 0.18359, 1)
+Button/colors/font_focus_color = Color(0.129558, 0.129559, 0.129559, 1)
+Button/colors/font_hover_color = Color(0.129412, 0.129412, 0.129412, 1)
 Button/font_sizes/font_size = 56
 Button/fonts/font = ExtResource("1_wc3r7")
 Button/styles/pressed = SubResource("StyleBoxFlat_wc3r7")
