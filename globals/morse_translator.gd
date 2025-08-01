@@ -2,28 +2,63 @@ extends Node
 
 const CLK_TIME = 0.3
 
-var morse_to_ascii_dict: Dictionary = {}
-var ascii_to_morse_dict: Dictionary = {}
+const MORSE_TO_ASCII_DICT = {
+  ".-": "a",
+  "-...": "b",
+  "-.-.": "c",
+  "-..": "d",
+  ".": "e",
+  "..-.": "f",
+  "--.": "g",
+  "....": "h",
+  "..": "i",
+  ".---": "j",
+  "-.-": "k",
+  ".-..": "l",
+  "--": "m",
+  "-.": "n",
+  "---": "o",
+  ".--.": "p",
+  "--.-": "q",
+  ".-.": "r",
+  "...": "s",
+  "-": "t",
+  "..-": "u",
+  "...-": "v",
+  ".--": "w",
+  "-..-": "x",
+  "-.--": "y",
+  "--..": "z"
+}
 
-func _ready() -> void:
-	_read_morse_dict()
-
-func _read_morse_dict() -> void:
-	"""
-	Populates both dictionaries from a JSON file.
-	"""
-	var file = FileAccess.open("res://data/morse.json", FileAccess.READ)
-	if file:
-		var json_text = file.get_as_text()
-		var result = JSON.parse_string(json_text)
-		if typeof(result) == TYPE_DICTIONARY:
-			morse_to_ascii_dict = result
-
-			ascii_to_morse_dict.clear()
-			for morse in morse_to_ascii_dict.keys():
-				var letter = morse_to_ascii_dict[morse].to_upper()
-				ascii_to_morse_dict[letter] = morse
-		file.close()
+const ASCII_TO_MORSE_DICT = {
+  "A": ".-",
+  "B": "-...",
+  "C": "-.-.",
+  "D": "-..",
+  "E": ".",
+  "F": "..-.",
+  "G": "--.",
+  "H": "....",
+  "I": "..",
+  "J": ".---",
+  "K": "-.-",
+  "L": ".-..",
+  "M": "--",
+  "N": "-.",
+  "O": "---",
+  "P": ".--.",
+  "Q": "--.-",
+  "R": ".-.",
+  "S": "...",
+  "T": "-",
+  "U": "..-",
+  "V": "...-",
+  "W": ".--",
+  "X": "-..-",
+  "Y": "-.--",
+  "Z": "--.."
+}
 
 func morse_to_ascii(morse_text: String) -> String:
 	"""
@@ -36,8 +71,8 @@ func morse_to_ascii(morse_text: String) -> String:
 		var letters = word.split(" ")
 		var ascii_word = ""
 		for letter in letters:
-			if morse_to_ascii_dict.has(letter):
-				ascii_word += morse_to_ascii_dict[letter]
+			if MORSE_TO_ASCII_DICT.has(letter):
+				ascii_word += MORSE_TO_ASCII_DICT[letter]
 			else:
 				ascii_word += "?"
 
@@ -52,8 +87,11 @@ func ascii_to_morse(ascii_text: String) -> String:
 	"""
 	var result = []
 	for charac in ascii_text.to_upper():
-		if ascii_to_morse_dict.has(charac):
-			result.append(ascii_to_morse_dict[charac])
+		print("Analyzing character: ", charac)
+		if ASCII_TO_MORSE_DICT.has(charac):
+			print("Found Morse code for character: ", charac, " -> ", ASCII_TO_MORSE_DICT[charac])
+			result.append(ASCII_TO_MORSE_DICT[charac])
 		else:
+			print("No Morse code found for character: ", charac)
 			result.append("?")
 	return "/".join(result).strip_edges()

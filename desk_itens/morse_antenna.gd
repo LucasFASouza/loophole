@@ -49,6 +49,8 @@ func _on_clock_timeout() -> void:
 
 func _on_wait_timer_timeout() -> void:
 	var morse_message = MorseTranslator.ascii_to_morse(message)
+	print(message)
+	print(morse_message)
 
 	const char_lengths = {
 		'.': [1],
