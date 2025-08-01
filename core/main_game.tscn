@@ -161,6 +161,7 @@ size_flags_vertical = 3
 
 [node name="OptionsMenu" parent="CanvasLayer" instance=ExtResource("9_vlmcc")]
 process_mode = 3
+visible = false
 
 [connection signal="confirm_pressed" from="MorseInput" to="." method="_confirm_input_message"]
 [connection signal="gps_selected" from="GPS" to="." method="_on_gps_selected"]

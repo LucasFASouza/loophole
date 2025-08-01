@@ -105,4 +105,4 @@ func _on_options_menu_close_options() -> void:
 
 
 func _on_gps_selected(coordinate: String) -> void:
-	print(coordinate)
+	print("Selected coordinate: ", coordinate)

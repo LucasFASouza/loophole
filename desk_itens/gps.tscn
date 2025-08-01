@@ -19,9 +19,9 @@ mesh = ExtResource("2_2vjgp")
 skeleton = NodePath("../Postits")
 
 [node name="ItemInfo" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

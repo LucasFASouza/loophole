@@ -87,11 +87,8 @@ func ascii_to_morse(ascii_text: String) -> String:
 	"""
 	var result = []
 	for charac in ascii_text.to_upper():
-		print("Analyzing character: ", charac)
 		if ASCII_TO_MORSE_DICT.has(charac):
-			print("Found Morse code for character: ", charac, " -> ", ASCII_TO_MORSE_DICT[charac])
 			result.append(ASCII_TO_MORSE_DICT[charac])
 		else:
-			print("No Morse code found for character: ", charac)
 			result.append("?")
 	return "/".join(result).strip_edges()
