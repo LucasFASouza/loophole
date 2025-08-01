@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://cywgrp1lwmvx5"]
+
+[ext_resource type="ArrayMesh" uid="uid://borrfbdagja3t" path="res://assets/models/book.res" id="1_kh36y"]
+[ext_resource type="Script" uid="uid://bi17j4o0kdqlr" path="res://desk_itens/book.gd" id="2_y0hms"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y0hms"]
+size = Vector3(0.00186557, 0.00515747, 0.00858307)
+
+[node name="Book" type="Node3D"]
+script = ExtResource("2_y0hms")
+
+[node name="BookMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.36176e-05, -1109.21, 457.884, -1198.85, 20.0444, 48.557, -52.5316, -457.445, -1108.14, 0, 0, 0)
+mesh = ExtResource("1_kh36y")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BookMesh"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BookMesh/StaticBody3D"]
+transform = Transform3D(1, -8.34465e-07, -3.12179e-06, 3.72529e-09, 1, 8.34465e-07, 7.45058e-09, 7.00355e-06, 1, -6.00641e-05, 6.49787e-05, -0.000243225)
+shape = SubResource("BoxShape3D_y0hms")
+
+[node name="ItemInfo" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ItemInfo/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "THE BOOK OF ALL KNOWLEDGE"
+
+[connection signal="input_event" from="BookMesh/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
