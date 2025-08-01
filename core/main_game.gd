@@ -52,10 +52,13 @@ func get_new_boat() -> void:
 func check_word(input: String) -> void:
 	var status: String
 
-	var correct_input: bool = input.to_upper().replace("?", "") == boat.message
+	print("Checking word: ", input)
+	print("Boat message: ", boat.message)
 
-	if correct_input:
+	if input == boat.message:
 		status = "Message confirmed!"
+	elif input in boat.message:
+		status = "That part checks out..."
 	else:
 		status = "Incorrect message :/"
 	

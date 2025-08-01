@@ -72,7 +72,7 @@ func morse_to_ascii(morse_text: String) -> String:
 			result.append(MORSE_TO_ASCII_DICT[letter])
 		elif letter != "":
 			result.append("?")
-	return "".join(result).strip_edges()
+	return "".join(result).strip_edges().to_upper()
 
 func ascii_to_morse(ascii_text: String) -> String:
 	"""
