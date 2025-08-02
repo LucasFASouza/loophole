@@ -23,7 +23,7 @@ mesh = ExtResource("2_2vjgp")
 [node name="StaticBody3D" type="StaticBody3D" parent="Tv"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tv/StaticBody3D"]
-transform = Transform3D(0.999933, 0, 0, 0, 0.999933, 8.52651e-14, 0, -8.52651e-14, 0.999933, -3.90108e-05, 0.000575616, 0.000120475)
+transform = Transform3D(0.999933, 0, 0, 0, 0.999933, 8.52651e-14, 0, -8.52651e-14, 0.999933, -0.000127195, 0.000598411, 0.000177987)
 shape = SubResource("BoxShape3D_p2e6t")
 
 [node name="ItemInfo" type="CanvasLayer" parent="."]

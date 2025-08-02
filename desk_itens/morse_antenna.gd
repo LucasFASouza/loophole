@@ -10,7 +10,8 @@ const encoding_lengths = {
 @onready var clk: Timer = $Clock
 
 @onready var antena_light: Node3D = $Antena/Light
-@onready var beep_player: AudioStreamPlayer = $BeepPlayer
+@onready var dot_sfx: AudioStreamPlayer = $DotSFX
+@onready var dash_sfx: AudioStreamPlayer = $DashSFX
 
 var cycle_counter: int
 
@@ -18,7 +19,8 @@ var wave_fn = []
 
 func _ready():
 	antena_light.visible = false
-	beep_player.stop()
+	dash_sfx.stop()
+	dot_sfx.stop()
 	clk.wait_time = MorseTranslator.CLK_TIME
 
 
@@ -27,7 +29,8 @@ func stop_encoding() -> void:
 	cycle_counter = 0
 	wave_fn = []
 	antena_light.visible = false
-	beep_player.stop()
+	dash_sfx.stop()
+	dot_sfx.stop()
 	clk.stop()
 
 
@@ -38,7 +41,7 @@ func start_encoding(new_message: String) -> void:
 
 	const char_lengths = {
 		'.': [1],
-		'-': [2, 2, 2],
+		'-': [2, 0, 0],
 		'/': [0, 0, 0]
 	}
 	
@@ -55,19 +58,24 @@ func _on_clock_timeout() -> void:
 	var wave_on = wave_fn[cycle_counter]
 	antena_light.visible = wave_on
 	
-	if not wave_on:
-		beep_player.stop()
 
-	elif not beep_player.playing:
-		beep_player.play()
-		if wave_on == 1:
-			beep_player.pitch_scale = 1.0
-		else:
-			beep_player.pitch_scale = 0.975
+	if wave_on == 1:
+		dot_sfx.play()
+	if wave_on == 2 and not dash_sfx.playing:
+		dash_sfx.play()
 		
 	cycle_counter += 1
 	if cycle_counter == wave_fn.size() - 1:
 		cycle_counter = 0
 
 
-	
+func _on_wait_timer_timeout() -> void:
+	var morse_message = MorseTranslator.ascii_to_morse(message)
+	print(message)
+	print(morse_message)
+
+	const char_lengths = {
+		'.': [1],
+		'-': [2, 0, 0],
+		'/': [0, 0, 0]
+	}

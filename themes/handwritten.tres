@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cybuqgryj5mb0"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cay7y16wy7tc8"]
 
 [ext_resource type="FontFile" uid="uid://d06db8dxphbdi" path="res://assets/fonts/SourGummy/SourGummy-Light.ttf" id="1_5mqj6"]
 [ext_resource type="Texture2D" uid="uid://rlimi7i2jv73" path="res://assets/ui/radiopicker.png" id="1_tbw83"]
