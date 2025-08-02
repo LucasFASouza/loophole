@@ -26,6 +26,8 @@ extends Node3D
 @onready var night_name: Label = %NightNumber
 @onready var mission_text: Label = %MissionText
 
+@onready var bg_music: AudioStreamPlayer = %BgMusic
+
 
 var calibration_words = [
 	["UP", "WE", "OK"],
@@ -69,7 +71,7 @@ var nights_data = [
 			At any time, you may check your book for more notes and references.""",
 		"task": "CONFIRM TRANSMISSIONS",
 		"task_threshold": 3,
-	}, 
+	},
 	{
 		"name": "Night 1",
 		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
@@ -81,7 +83,7 @@ var nights_data = [
 			You may choose to verify the destination with the boat before sending — or trust your instincts with a half-solved message.""",
 		"task": "SEND COORDINATES",
 		"task_threshold": 3,
-	}, 
+	},
 	{
 		"name": "Night 2",
 		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
@@ -195,6 +197,7 @@ func check_word(input: String) -> void:
 
 		if boat.type == "Calibration" and boat.answer == input:
 			score += 1
+			GameGlobals.play_sfx(GameGlobals.GlobalSoundEffect.CORRECT_ANSWER)
 			info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 
 			mission_text.text = nights_data[night]["mission"] + "\nCurrent calibration: " + str(score + 2) + " letters"
@@ -208,6 +211,7 @@ func check_word(input: String) -> void:
 		status = "That part checks out..."
 	else:
 		status = "Incorrect message :/"
+		GameGlobals.play_sfx(GameGlobals.GlobalSoundEffect.INCORRECT_ANSWER)
 	
 	info_screen.show_status(status)
 
@@ -219,6 +223,10 @@ func _send_answer(input: String) -> void:
 	var status: String
 
 	var correct_direction: bool = input.to_upper().replace("?", "") == boat.answer
+	if (correct_direction):
+		GameGlobals.play_sfx(GameGlobals.GlobalSoundEffect.CORRECT_ANSWER)
+	else:
+		GameGlobals.play_sfx(GameGlobals.GlobalSoundEffect.INCORRECT_ANSWER)
 
 	if correct_direction:
 		status = "Successfull relay! :D"
