@@ -34,7 +34,7 @@ var calibration_words = [
 ]
 
 var coordinates = {
-	"1A": "KEEL",
+	"1A": "KELP",
 	"2B": "PORT",
 	"2D": "ISLE",
 	"4B": "GATE",
@@ -348,6 +348,10 @@ func _on_back_main_menu_button_pressed() -> void:
 
 
 func _on_endless_timer_timeout() -> void:
+	morse_antenna.stop_encoding()
+	morse_input.reset_input()
+	morse_input.is_ready = false
+
 	main_ui.visible = false
 	var night_counters_text = "You answered " + str(helped_boats) + " successful relays.\nAnd had " + str(lost_boats) + " unresolved transmissions."
 	night_counters.text = night_counters_text
