@@ -1,0 +1,261 @@
+[gd_scene load_steps=18 format=3 uid="uid://cw8740apsb0hk"]
+
+[ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="1_50hb1"]
+[ext_resource type="Texture2D" uid="uid://cak8hy3eyg2m6" path="res://assets/ui/keyboard_backspace.png" id="2_nsmic"]
+[ext_resource type="Script" uid="uid://dlpucd0ret1ug" path="res://UI/tutorial.gd" id="2_yfxfi"]
+[ext_resource type="Texture2D" uid="uid://ba04wcbhfo1tl" path="res://assets/ui/keyboard_backspace_outline.png" id="3_sdy2q"]
+[ext_resource type="Texture2D" uid="uid://6m6dc33qbco4" path="res://assets/ui/keyboard_enter.png" id="4_nsmic"]
+[ext_resource type="Texture2D" uid="uid://cus0snbpaaqy5" path="res://assets/ui/keyboard_enter_outline.png" id="5_sdy2q"]
+[ext_resource type="Texture2D" uid="uid://b6apaqf202q0e" path="res://assets/ui/mouse.png" id="6_m8qsh"]
+[ext_resource type="Texture2D" uid="uid://dbq03otk642uc" path="res://assets/ui/mouse_left.png" id="7_yfxfi"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yfxfi"]
+load_path = "res://.godot/imported/keyboard_space_outline.png-5d8fee51a27d7925511f61a9b7de3985.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oe8iu"]
+load_path = "res://.godot/imported/keyboard_space.png-b0cc9cf8c56a590b2ee3e6f6b012436f.ctex"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_84do4"]
+frames = 3
+frame_0/texture = SubResource("CompressedTexture2D_yfxfi")
+frame_0/duration = 0.75
+frame_1/texture = SubResource("CompressedTexture2D_oe8iu")
+frame_1/duration = 0.25
+frame_2/texture = SubResource("CompressedTexture2D_yfxfi")
+frame_2/duration = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5vyj0"]
+load_path = "res://.godot/imported/keyboard_space_outline.png-5d8fee51a27d7925511f61a9b7de3985.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4wu57"]
+load_path = "res://.godot/imported/keyboard_space.png-b0cc9cf8c56a590b2ee3e6f6b012436f.ctex"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ymi0t"]
+frames = 3
+frame_0/texture = SubResource("CompressedTexture2D_5vyj0")
+frame_0/duration = 0.75
+frame_1/texture = SubResource("CompressedTexture2D_4wu57")
+frame_1/duration = 1.0
+frame_2/texture = SubResource("CompressedTexture2D_5vyj0")
+frame_2/duration = 0.25
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_kh2rn"]
+frames = 3
+frame_0/texture = ExtResource("3_sdy2q")
+frame_0/duration = 0.75
+frame_1/texture = ExtResource("2_nsmic")
+frame_1/duration = 0.25
+frame_2/texture = ExtResource("3_sdy2q")
+frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_5vyj0"]
+frames = 3
+frame_0/texture = ExtResource("5_sdy2q")
+frame_0/duration = 0.75
+frame_1/texture = ExtResource("4_nsmic")
+frame_1/duration = 0.25
+frame_2/texture = ExtResource("5_sdy2q")
+frame_2/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_oe8iu"]
+frames = 3
+frame_0/texture = ExtResource("6_m8qsh")
+frame_0/duration = 0.75
+frame_1/texture = ExtResource("7_yfxfi")
+frame_1/duration = 0.25
+frame_2/texture = ExtResource("6_m8qsh")
+frame_2/duration = 1.0
+
+[node name="Tutorial" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_50hb1")
+script = ExtResource("2_yfxfi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme = ExtResource("1_50hb1")
+text = "BACK"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("1_50hb1")
+theme_override_font_sizes/font_size = 48
+text = "CONTROLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/v_separation = 55
+columns = 3
+
+[node name="PressSpace" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Grid/PressSpace"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AnimatedTexture_84do4")
+expand_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Grid/PressSpace"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_50hb1")
+theme_override_font_sizes/font_size = 24
+text = "Press SPACE to insert a dot \".\""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HoldSpace" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Grid/HoldSpace"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AnimatedTexture_ymi0t")
+expand_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Grid/HoldSpace"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_50hb1")
+theme_override_font_sizes/font_size = 24
+text = "Hold SPACE to insert a dash \"-\""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BackSpace" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Grid/BackSpace"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AnimatedTexture_kh2rn")
+expand_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Grid/BackSpace"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_50hb1")
+theme_override_font_sizes/font_size = 24
+text = "Press BACKSPACE to delete a character"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BackSpace2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Grid/BackSpace2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AnimatedTexture_kh2rn")
+expand_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Grid/BackSpace2"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_50hb1")
+theme_override_font_sizes/font_size = 24
+text = "Just wait to separate letters with a \"/\""
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Enter" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Grid/Enter"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AnimatedTexture_5vyj0")
+expand_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Grid/Enter"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_50hb1")
+theme_override_font_sizes/font_size = 24
+text = "Press ENTER to confirm a message"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Mouse" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Grid/Mouse"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AnimatedTexture_oe8iu")
+expand_mode = 5
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Grid/Mouse"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_50hb1")
+theme_override_font_sizes/font_size = 24
+text = "Click with the mouse to interact with itens"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopBar/Back" to="." method="_on_back_pressed"]

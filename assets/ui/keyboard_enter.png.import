@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blppcsi8cia2f"
-path.s3tc="res://.godot/imported/postit.png-65dd9971ba8d9e7e52fa76788b375928.s3tc.ctex"
+uid="uid://6m6dc33qbco4"
+path="res://.godot/imported/keyboard_enter.png-7d62cdfcce0c3e6d5703b8aa08e46865.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/posters/postit.png"
-dest_files=["res://.godot/imported/postit.png-65dd9971ba8d9e7e52fa76788b375928.s3tc.ctex"]
+source_file="res://assets/ui/keyboard_enter.png"
+dest_files=["res://.godot/imported/keyboard_enter.png-7d62cdfcce0c3e6d5703b8aa08e46865.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
