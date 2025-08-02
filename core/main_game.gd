@@ -33,6 +33,9 @@ extends Node3D
 @onready var show_controls: Button = %ShowControls
 @onready var buttons_tips: Control = %ButtonsTips
 
+@onready var calendar: Node3D = $Calendar
+@onready var erase_board: Node3D = $EraseBoard
+
 var calibration_words = [
 	["UP", "WE", "OK"],
 	["SOS", "MAP", "JAM"],
@@ -62,7 +65,7 @@ var boat = {
 var nights_data = [
 	{
 		"name": "Night 0",
-		"mission": "Calibrate the system by reproducing and confirming the transmission loops.\nCheck your book for more information.\n",
+		"mission": "Calibrate the system by reproducing and confirming the transmission loops.",
 		"start_instructions": """Before you begin, you should calibrate your machinery.
 
 			Listen carefully to the looping transmissions and try to reproduce the morse message to verify its content.
@@ -78,7 +81,7 @@ var nights_data = [
 	},
 	{
 		"name": "Night 1",
-		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
+		"mission": "Use your GPS system to relay the destination coordinates to the boats.",
 		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
 
 			Listen carefully to the looping transmission to identify the 4-letter destination code.
@@ -90,7 +93,7 @@ var nights_data = [
 	},
 	{
 		"name": "Night 2",
-		"mission": "Use your radio system to relay the incoming alerts to the authorities.\nCheck your book for the references.\n",
+		"mission": "Use your radio system to relay the incoming alerts to the authorities.",
 		"start_instructions": """Help the port stay safe by relaying incoming alerts to the proper authorities.
 
 			Listen carefully to the looping transmission to identify the 4-letter alert code.
@@ -207,9 +210,7 @@ func check_word(input: String) -> void:
 		if boat.type == "Calibration" and boat.answer == input:
 			score += 1
 			GameGlobals.play_sfx(GameGlobals.GlobalSoundEffect.CORRECT_ANSWER)
-			info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
-
-			mission_text.text = nights_data[night]["mission"] + "\nCurrent calibration: " + str(score + 2) + " letters"
+			info_screen.update_score(str(score + 2) + " letters", 0, nights_data[night]["task"])
 
 			if score >= nights_data[night]["task_threshold"]:
 				finish_night()
@@ -226,7 +227,7 @@ func check_word(input: String) -> void:
 
 
 func _send_answer(input: String) -> void:
-	if not input:
+	if not input or not wait_timer.is_stopped():
 		return
 
 	var status: String
@@ -284,21 +285,26 @@ func load_night_tutorial(night_number: int) -> void:
 
 func prepare_night() -> void:
 	night_name.text = nights_data[night]["name"]
-	mission_text.text = nights_data[night]["mission"]
+	erase_board.get_node("Instructions").text = nights_data[night]["mission"]
+
+	score = 0
+	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 
 	if night == 0:
-		mission_text.text += "\nCurrent calibration: " + str(score + 2) + " letters"
+		info_screen.update_score(str(score + 2) + " letters", 0, nights_data[night]["task"])
+		calendar.get_node("Night0").visible = true
 	elif night == 1:
 		gps.visible = true
+		calendar.get_node("Night1").visible = true
 	elif night == 2:
 		walkie_talkie.visible = true
+		calendar.get_node("Night2").visible = true
+	elif night == 3:
+		calendar.get_node("Night3").visible = true
 
 	load_night_tutorial(night)
 	night_title.text = nights_data[night]["name"]
 	night_instructions.text = nights_data[night]["start_instructions"]
-	
-	score = 0
-	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 
 	# start_container.visible = true
 	start_night_button.grab_focus()
@@ -311,11 +317,17 @@ func prepare_endless_mode() -> void:
 
 	gps.visible = true
 	walkie_talkie.visible = true
+
+	calendar.get_node("Night0").visible = true
+	calendar.get_node("Night1").visible = true
+	calendar.get_node("Night2").visible = true
+	calendar.get_node("Night3").visible = true
+	calendar.get_node("Endless").visible = true
 	
 	night_title.text = "Endless Mode"
 	night_name.text = "60s"
 	night_instructions.text = nights_data[night]["start_instructions"]
-	mission_text.text = nights_data[night]["mission"]
+	erase_board.get_node("Instructions").text = nights_data[night]["mission"]
 	
 	endless_timer.wait_time = 60.0
 
@@ -388,17 +400,18 @@ func _on_endless_timer_timeout() -> void:
 	morse_antenna.stop_encoding()
 	morse_input.reset_input()
 	morse_input.is_ready = false
-
 	main_ui.visible = false
-	var night_counters_text = "You answered " + str(helped_boats) + " successful relays.\nAnd had " + str(lost_boats) + " unresolved transmissions."
-	night_counters.text = night_counters_text
-	finish_container.visible = true
 
+	var night_counters_text = "You answered " + str(helped_boats) + " successful relays.\n"
 	var final_text = ""
 	
 	if is_nights_mode:
+		night_counters_text += "And made " + str(lost_boats) + " mistakes."
+
 		final_text = "Mission accomplished — for now.\nAlso try the endless mode!"
 	else:
+		night_counters_text += "And had " + str(lost_boats) + " unresolved transmissions."
+
 		if lost_boats > helped_boats:
 			final_text = "You made more boats sink than you saved...\nBetter luck next time!"
 		elif helped_boats > 5:
@@ -408,7 +421,10 @@ func _on_endless_timer_timeout() -> void:
 		elif helped_boats <= 2:
 			final_text = "You can do better! Keep practicing."
 
+	night_counters.text = night_counters_text
 	play_endless.text = final_text
+	finish_container.visible = true
+
 
 func _on_play_again_button_pressed() -> void:
 	get_tree().reload_current_scene()

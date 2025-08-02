@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d3y2s8jgc67qw"]
+[gd_scene load_steps=26 format=3 uid="uid://d3y2s8jgc67qw"]
 
 [ext_resource type="Script" uid="uid://dnwbjthdxt23h" path="res://core/main_game.gd" id="1_is2i4"]
 [ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://desk_itens/morse_antenna.tscn" id="2_6620d"]
@@ -9,24 +9,32 @@
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="8_2epw8"]
 [ext_resource type="PackedScene" uid="uid://cua3g4kgtq2ns" path="res://UI/options_menu.tscn" id="9_vlmcc"]
 [ext_resource type="PackedScene" uid="uid://bxof50u1u1mwk" path="res://desk_itens/walkie_talkie.tscn" id="10_3k31u"]
+[ext_resource type="PackedScene" uid="uid://coxl6rnaywrl1" path="res://assets/models/Dry Erase Board.glb" id="10_db327"]
 [ext_resource type="Texture2D" uid="uid://5drgkry77k2p" path="res://assets/ui/lil_space.png" id="10_uo27g"]
 [ext_resource type="PackedScene" uid="uid://b8moix3bv57uf" path="res://desk_itens/book.tscn" id="10_vlmcc"]
 [ext_resource type="Texture2D" uid="uid://bdjdug1fajorb" path="res://assets/ui/lil_backspace.png" id="11_tqa5n"]
 [ext_resource type="Texture2D" uid="uid://y3qxqx4f5a6c" path="res://assets/ui/lil_enter.png" id="12_q54ee"]
 [ext_resource type="Texture2D" uid="uid://by1ih4w87j6qu" path="res://assets/ui/lil_mouse_left.png" id="13_tqa5n"]
 [ext_resource type="Texture2D" uid="uid://db82jlquc4rb7" path="res://assets/tutorial/night0_tutorial1.jpg" id="14_q54ee"]
+[ext_resource type="PackedScene" uid="uid://hes3h6ygciji" path="res://assets/models/wallWindow.glb" id="15_4ftaa"]
+[ext_resource type="PackedScene" uid="uid://cwv2c6058gj6y" path="res://assets/models/wall.glb" id="16_x5m8v"]
+[ext_resource type="PackedScene" uid="uid://3vk1iyxs4lj7" path="res://assets/models/Lighthouse.glb" id="17_x5m8v"]
+[ext_resource type="PackedScene" uid="uid://bg0np4lnxih53" path="res://assets/models/Calendar.glb" id="18_udylj"]
+[ext_resource type="FontFile" uid="uid://by3a6qwl8txte" path="res://assets/fonts/SourGummy/SourGummy-SemiBold.ttf" id="19_5anm3"]
+[ext_resource type="PackedScene" uid="uid://ea8aur3730lt" path="res://assets/models/Plant - White Pot.glb" id="20_x4ebu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
-sky_top_color = Color(0.655843, 0.740153, 0.826877, 1)
-sky_horizon_color = Color(0.6563, 0.752982, 0.862107, 1)
-ground_bottom_color = Color(0.144006, 0.180839, 0.203205, 1)
-ground_horizon_color = Color(0.12434, 0.245666, 0.184371, 1)
+sky_top_color = Color(0.591087, 0.687263, 0.785804, 1)
+sky_horizon_color = Color(0.592157, 0.686275, 0.784314, 1)
+ground_bottom_color = Color(0.1102, 0.206093, 0.29, 1)
+ground_horizon_color = Color(0.18, 0.189333, 0.25, 1)
 
 [sub_resource type="Sky" id="Sky_is2i4"]
 sky_material = SubResource("ProceduralSkyMaterial_g8hlx")
 
 [sub_resource type="Environment" id="Environment_8gcvo"]
 background_mode = 2
+background_energy_multiplier = 0.9
 sky = SubResource("Sky_is2i4")
 tonemap_mode = 2
 
@@ -37,40 +45,292 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tqa5n"]
-albedo_color = Color(0.276149, 0.366108, 0.386121, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_tqa5n"]
-material = SubResource("StandardMaterial3D_tqa5n")
-size = Vector2(200, 200)
-
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_is2i4")
 
 [node name="MorseAntenna" parent="." instance=ExtResource("2_6620d")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -19.6802, 23.8015, -10.9032)
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -20.9033, 23.1416, -10.9032)
 
 [node name="MorseInput" parent="." instance=ExtResource("3_2epw8")]
-transform = Transform3D(0.997726, 0, -0.0674058, 0, 1, 0, 0.0674058, 0, 0.997726, 7.23415, 23.969, -5.03513)
+transform = Transform3D(0.994298, 0, -0.106646, 0, 1, 0, 0.106646, 0, 0.994298, 7.23415, 23.969, -5.03513)
 
 [node name="InfoScreen" parent="." instance=ExtResource("4_vlmcc")]
-transform = Transform3D(0.997214, 0, 0.0745954, 0, 1, 0, -0.0745954, 0, 0.997214, -9.55178, 23.969, -5.02075)
+transform = Transform3D(0.966197, 0, 0.257807, 0, 1, 0, -0.257807, 0, 0.966197, -10.3467, 23.969, -4.06451)
 
 [node name="GPS" parent="." instance=ExtResource("5_0d78q")]
-transform = Transform3D(0.892373, 0, -0.451298, 0, 1, 0, 0.451298, 0, 0.892373, 16.3239, 23.6736, 7.03388)
+transform = Transform3D(0.900981, -0.0272208, -0.433004, 0.025102, 0.999629, -0.0106103, 0.433132, -0.00130957, 0.901329, 14.7401, 23.6736, 6.95357)
 
 [node name="WalkieTalkie" parent="." instance=ExtResource("10_3k31u")]
-transform = Transform3D(0.829399, 0, 0.558657, 0, 1, 0, -0.558657, 0, 0.829399, -25.668, 23.8833, -2.28496)
+transform = Transform3D(0.829399, 0, 0.558657, 0, 1, 0, -0.558657, 0, 0.829399, -24.4333, 23.8833, -2.28496)
 
 [node name="Book" parent="." instance=ExtResource("10_vlmcc")]
-transform = Transform3D(0.513092, 0, 0.858333, 0, 1, 0, -0.858333, 0, 0.513092, -15.5964, 25.0951, 8.96412)
+transform = Transform3D(0.583031, 0, 0.812449, 0, 1, 0, -0.812449, 0, 0.583031, -16.2221, 25.0951, 9.80323)
+
+[node name="Calendar" parent="." instance=ExtResource("18_udylj")]
+transform = Transform3D(0.999848, 0.0174524, 0, -0.0174524, 0.999848, 0, 0, 0, 1, -32.0017, 38.2115, -24.2166)
+
+[node name="Night0" type="Label3D" parent="Calendar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.84347, -1.97656, 0.110701)
+visible = false
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="Night1" type="Label3D" parent="Calendar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.111015, -1.99879, 0.110701)
+visible = false
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="Night2" type="Label3D" parent="Calendar"]
+transform = Transform3D(0.990476, 0.137687, 0, -0.137687, 0.990476, 0, 0, 0, 1, 1.77623, -1.79358, 0.110701)
+visible = false
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "x"
+font = ExtResource("19_5anm3")
+font_size = 356
+outline_size = 0
+
+[node name="Night3" type="Label3D" parent="Calendar"]
+transform = Transform3D(-0.22524, -0.974304, 0, 0.974304, -0.22524, 0, 0, 0, 1, 3.77428, -1.93098, 0.110701)
+visible = false
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="Endless" type="Node3D" parent="Calendar"]
+visible = false
+
+[node name="x18" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.72143, -2.11562, 0.440647)
+modulate = Color(0.66, 0.242, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "<-"
+font = ExtResource("19_5anm3")
+font_size = 256
+outline_size = 0
+
+[node name="x19" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.24503, -8.41384, 0.442802)
+modulate = Color(0.00569999, 0.34428, 0.57, 0.984314)
+outline_modulate = Color(0, 0, 0, 0)
+text = "-->"
+font = ExtResource("19_5anm3")
+font_size = 256
+outline_size = 0
+
+[node name="x" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.69194, -3.66652, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x2" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.97076, -3.74007, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x3" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(-0.111868, -0.993723, 0, 0.993723, -0.111868, 0, 0, 0, 1, -0.0851746, -3.70716, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x16" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(0.164325, 0.986407, 0, -0.986407, 0.164325, 0, 0, 0, 1, -1.75033, -8.33161, 0.442802)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x17" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(0.994394, -0.105744, 0, 0.105744, 0.994394, 0, 0, 0, 1, -3.641, -8.38192, 0.442802)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x4" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(-0.998598, 0.0529461, 0, -0.0529461, -0.998598, 0, 0, 0, 1, 1.80552, -3.75703, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x5" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(0.230508, 0.973071, 0, -0.973071, 0.230508, 0, 0, 0, 1, 3.75399, -3.72302, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x6" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.63427, -6.97096, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x7" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.91307, -7.04451, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x8" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(-0.111868, -0.993723, 0, 0.993723, -0.111868, 0, 0, 0, 1, -0.0274925, -7.0116, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x9" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(-0.998598, 0.0529461, 0, -0.0529461, -0.998598, 0, 0, 0, 1, 1.8632, -7.06148, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x10" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(0.230508, 0.973071, 0, -0.973071, 0.230508, 0, 0, 0, 1, 3.81167, -7.02747, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x11" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.79076, -5.32825, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x12" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0695763, -5.40181, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x13" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(-0.111868, -0.993723, 0, 0.993723, -0.111868, 0, 0, 0, 1, 1.81601, -5.3689, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x14" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(-0.998598, 0.0529461, 0, -0.0529461, -0.998598, 0, 0, 0, 1, 3.7067, -5.41877, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="x15" type="Label3D" parent="Calendar/Endless"]
+transform = Transform3D(0.230509, 0.973071, 0, -0.973071, 0.230509, 0, 0, 0, 1, -3.60695, -5.35996, 0.221401)
+modulate = Color(0.29, 0.00869999, 0.00869999, 0.639216)
+outline_modulate = Color(0, 0, 0, 0)
+text = "X"
+font = ExtResource("19_5anm3")
+font_size = 312
+outline_size = 0
+
+[node name="EraseBoard" parent="." instance=ExtResource("10_db327")]
+transform = Transform3D(-9.61599e-07, -0.229228, -21.9988, -1.00199e-08, 21.9988, -0.229228, 22, 1.221e-15, -9.61651e-07, -6.35014, 38.8485, -24.1395)
+
+[node name="Instructions" type="Label3D" parent="EraseBoard"]
+transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511289, 0.615904, -0.00560057)
+modulate = Color(0, 0, 0, 0.584314)
+text = "Make full use of your station’s systems to relay the boats’ messages and help them navigate."
+font = ExtResource("19_5anm3")
+font_size = 76
+outline_size = 0
+vertical_alignment = 0
+line_spacing = -15.0
+autowrap_mode = 2
+width = 775.0
+
+[node name="Egg" type="Label3D" parent="EraseBoard"]
+transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511289, -0.000522375, 0.200911)
+modulate = Color(0, 0, 0, 0.419608)
+outline_modulate = Color(0, 0, 0, 0.596078)
+text = "Robert Pattinson lives there -->"
+font = ExtResource("19_5anm3")
+outline_size = 0
+vertical_alignment = 0
+line_spacing = -15.0
+autowrap_mode = 2
+width = 775.0
 
 [node name="Desk" type="MeshInstance3D" parent="."]
 transform = Transform3D(5000, 0, 0, 0, 5000, 0, 0, 0, 5000, 0, 0, 0)
 mesh = ExtResource("5_3k31u")
 
+[node name="Wall" type="Node3D" parent="."]
+transform = Transform3D(42, 0, 0, 0, 42, 0, 0, 0, 42, 1.13661, 8.4328, -27.1038)
+
+[node name="wallWindow" parent="Wall" instance=ExtResource("15_4ftaa")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0.98, 0, 0)
+
+[node name="wall" parent="Wall" instance=ExtResource("16_x5m8v")]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+
+[node name="Plant - White Pot" parent="." instance=ExtResource("20_x4ebu")]
+transform = Transform3D(-0.959895, 0, -3.88312, 0, 4, 0, 3.88312, 0, -0.959895, 26.0354, 26.0605, -11.5521)
+
+[node name="Lighthouse" parent="." instance=ExtResource("17_x5m8v")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 32, 42, -66.238)
+
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.975684, 0.219182, 0, -0.219182, 0.975684, 0, 55.6799, 93.5103)
+transform = Transform3D(1, 0, 0, 0, 0.99849, 0.0549326, 0, -0.0549326, 0.99849, 0, 42.5543, 95.1056)
 fov = 21.2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -293,6 +553,7 @@ horizontal_alignment = 2
 
 [node name="MissionText" type="Label" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Mission"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme = ExtResource("8_2epw8")
@@ -490,10 +751,6 @@ one_shot = true
 [node name="EndlessTimer" type="Timer" parent="."]
 wait_time = 60.0
 one_shot = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 65.0069, -12.1371)
-mesh = SubResource("PlaneMesh_tqa5n")
 
 [connection signal="check_word" from="MorseInput" to="." method="check_word"]
 [connection signal="gps_selected" from="GPS" to="." method="_send_answer"]
