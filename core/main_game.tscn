@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d3y2s8jgc67qw"]
+[gd_scene load_steps=22 format=3 uid="uid://d3y2s8jgc67qw"]
 
 [ext_resource type="Script" uid="uid://dnwbjthdxt23h" path="res://core/main_game.gd" id="1_is2i4"]
 [ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://desk_itens/morse_antenna.tscn" id="2_6620d"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bdjdug1fajorb" path="res://assets/ui/lil_backspace.png" id="11_tqa5n"]
 [ext_resource type="Texture2D" uid="uid://y3qxqx4f5a6c" path="res://assets/ui/lil_enter.png" id="12_q54ee"]
 [ext_resource type="Texture2D" uid="uid://by1ih4w87j6qu" path="res://assets/ui/lil_mouse_left.png" id="13_tqa5n"]
+[ext_resource type="Texture2D" uid="uid://db82jlquc4rb7" path="res://assets/tutorial/night0_tutorial1.jpg" id="14_q54ee"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
 sky_top_color = Color(0.655843, 0.740153, 0.826877, 1)
@@ -352,6 +353,61 @@ layout_mode = 2
 theme = ExtResource("8_2epw8")
 text = "START"
 
+[node name="TutorialContainer" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_2epw8")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/TutorialContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TutorialImgContainer" type="VBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 36
+
+[node name="NightTitle" type="Label" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+theme_override_font_sizes/font_size = 64
+text = "NIGHT 0"
+horizontal_alignment = 1
+
+[node name="TutorialImg" type="TextureRect" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("14_q54ee")
+expand_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrevImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+text = "< PREV"
+
+[node name="Control" type="Control" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+text = "NEXT >"
+
 [node name="FinishContainer" type="PanelContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 visible = false
@@ -446,6 +502,8 @@ mesh = SubResource("PlaneMesh_tqa5n")
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ShowControls" to="." method="_on_show_controls_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox/HideControls" to="." method="_on_hide_controls_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer/StartNightButton" to="." method="_on_start_night_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/PrevImgButton" to="." method="_on_prev_img_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/NextImgButton" to="." method="_on_start_night_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FinishContainer/CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/BackMainMenuButton" to="." method="_on_back_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FinishContainer/CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="close_options" from="CanvasLayer/OptionsMenu" to="." method="_on_options_menu_close_options"]

@@ -12,8 +12,12 @@ extends Node3D
 @onready var night_title: Label = %NightTitle
 @onready var night_instructions: Label = %NightInstructions
 @onready var start_night_button: Button = %StartNightButton
+@onready var next_img_button: Button = %NextImgButton
+
 
 @onready var finish_container: PanelContainer = %FinishContainer
+@onready var tutorial_img: VBoxContainer = %TutorialImgContainer
+@onready var tutorial_container: PanelContainer = %TutorialContainer
 @onready var night_counters: Label = %NightCounters
 @onready var play_endless: Label = %PlayEndless
 
@@ -61,7 +65,7 @@ var nights_data = [
 		"mission": "Calibrate the system by reproducing and confirming the transmission loops.\nCheck your book for more information.\n",
 		"start_instructions": """Before you begin, you should calibrate your machinery.
 
-			Listen carefully to the looped transmissions and try to reproduce the morse message to verify its content.
+			Listen carefully to the looping transmissions and try to reproduce the morse message to verify its content.
 
 			Press or hold [SPACE] to send a signal.
 			Wait for pauses between letters.
@@ -77,7 +81,7 @@ var nights_data = [
 		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
 		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
 
-			Listen carefully to the looped transmission to identify the 4-letter destination code.
+			Listen carefully to the looping transmission to identify the 4-letter destination code.
 			Use your book to look up the corresponding coordinates. Then, transmit them using the GPS system.
 
 			You may choose to verify the destination with the boat before sending — or trust your instincts with a half-solved message.""",
@@ -89,7 +93,7 @@ var nights_data = [
 		"mission": "Use your radio system to relay the incoming alerts to the authorities.\nCheck your book for the references.\n",
 		"start_instructions": """Help the port stay safe by relaying incoming alerts to the proper authorities.
 
-			Listen carefully to the looped transmission to identify the 4-letter alert code.
+			Listen carefully to the looping transmission to identify the 4-letter alert code.
 			Use your book to find the corresponding radio frequency. Then, transmit the message using your walkie-talkie.
 
 			You may choose to double-check the alert’s meaning — or act quickly, trusting your first interpretation.""",
@@ -101,7 +105,7 @@ var nights_data = [
 		"mission": "Make full use of your station’s systems to relay the boats’ messages and help them navigate.",
 		"start_instructions": """Rely on all your tools to keep operations running smoothly.
 
-			Listen carefully to the looped transmission to identify the 4-letter code.
+			Listen carefully to the looping transmission to identify the 4-letter code.
 			Some messages indicate destinations — others are urgent alerts. Each requires a different response.
 
 			Use your book to determine the correct procedure. Trust your equipment, stay focused, and act fast when it matters most.""",
@@ -115,6 +119,10 @@ var night := -1
 var helped_boats := 0
 var lost_boats = 0
 var is_nights_mode := GameGlobals.GAME_MODE == "nights"
+
+var current_tutorial_img = 0;
+var night_tutorial_img: Array[ImageTexture] = []
+var tutorial_image_counts = [4, 5]
 
 func _ready() -> void:
 	wait_timer.wait_time = MorseTranslator.CLK_TIME * 8
@@ -208,7 +216,7 @@ func check_word(input: String) -> void:
 			else:
 				get_new_boat()
 
-	elif input in boat.message:
+	elif boat.message.findn(input) == 0:
 		status = "That part checks out..."
 	else:
 		status = "Incorrect message :/"
@@ -263,6 +271,17 @@ func _send_answer(input: String) -> void:
 		get_new_boat()
 
 
+func load_night_tutorial(night_number: int) -> void:
+	night_tutorial_img = []
+	for n in range(tutorial_image_counts[night_number]):
+		var img_path = "res://assets/tutorial/night{night}_tutorial{idx}.jpg"
+		var new_img = Image.load_from_file(
+			img_path.format({"night": night, "idx": n + 1})
+		)
+		var new_texture = ImageTexture.create_from_image(new_img)
+		night_tutorial_img.append(new_texture)
+		
+
 func prepare_night() -> void:
 	night_name.text = nights_data[night]["name"]
 	mission_text.text = nights_data[night]["mission"]
@@ -274,13 +293,14 @@ func prepare_night() -> void:
 	elif night == 2:
 		walkie_talkie.visible = true
 
+	load_night_tutorial(night)
 	night_title.text = nights_data[night]["name"]
 	night_instructions.text = nights_data[night]["start_instructions"]
 	
 	score = 0
 	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 
-	start_container.visible = true
+	# start_container.visible = true
 	start_night_button.grab_focus()
 	main_ui.visible = false
 
@@ -340,8 +360,15 @@ func _on_wait_timer_timeout() -> void:
 	info_screen.show_status("INCOMING TRANSMISSION")
 	morse_antenna.start_encoding(boat.message)
 
-
 func _on_start_night_button_pressed() -> void:
+	if current_tutorial_img < tutorial_image_counts[night] - 1:
+		print("changing image")
+		current_tutorial_img += 1
+		%TutorialImgContainer/TutorialImg.texture = night_tutorial_img[current_tutorial_img]
+		if current_tutorial_img == tutorial_image_counts[night] - 1:
+			next_img_button.text = "START"
+		return
+	
 	morse_input.is_ready = true
 
 	if not is_nights_mode:
@@ -349,6 +376,7 @@ func _on_start_night_button_pressed() -> void:
 
 	get_new_boat()
 	start_container.visible = false
+	tutorial_container.visible = false
 	main_ui.visible = true
 
 
@@ -394,3 +422,11 @@ func _on_show_controls_pressed() -> void:
 func _on_hide_controls_pressed() -> void:
 	show_controls.visible = true
 	buttons_tips.visible = false
+
+
+func _on_prev_img_button_pressed() -> void:
+	if current_tutorial_img > 0:
+		current_tutorial_img -= 1
+		%TutorialImgContainer/TutorialImg.texture = night_tutorial_img[current_tutorial_img]
+		if current_tutorial_img < tutorial_image_counts[night] - 1:
+			next_img_button.text = "NEXT >"
