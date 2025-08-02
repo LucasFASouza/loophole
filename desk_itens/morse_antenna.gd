@@ -57,7 +57,6 @@ func start_encoding(new_message: String) -> void:
 func _on_clock_timeout() -> void:
 	var wave_on = wave_fn[cycle_counter]
 	antena_light.visible = wave_on
-	
 
 	if wave_on == 1:
 		dot_sfx.play()
@@ -67,15 +66,3 @@ func _on_clock_timeout() -> void:
 	cycle_counter += 1
 	if cycle_counter == wave_fn.size() - 1:
 		cycle_counter = 0
-
-
-func _on_wait_timer_timeout() -> void:
-	var morse_message = MorseTranslator.ascii_to_morse(message)
-	print(message)
-	print(morse_message)
-
-	const char_lengths = {
-		'.': [1],
-		'-': [2, 0, 0],
-		'/': [0, 0, 0]
-	}
