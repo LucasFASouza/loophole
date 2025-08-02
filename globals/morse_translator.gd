@@ -1,6 +1,6 @@
 extends Node
 
-const CLK_TIME = 0.4
+const CLK_TIME = 0.2
 
 const MORSE_TO_ASCII_DICT = {
   ".-": "a",
