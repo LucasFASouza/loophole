@@ -49,6 +49,7 @@ one_shot = true
 
 [node name="BeepSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ahd3f")
+bus = &"SFX"
 playback_type = 1
 
 [connection signal="timeout" from="Clock" to="." method="_on_clock_timeout"]

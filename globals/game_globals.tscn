@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://uopm465i8mel"]
+[gd_scene load_steps=5 format=3 uid="uid://uopm465i8mel"]
 
 [ext_resource type="Script" uid="uid://d3pseb2bqkq5j" path="res://globals/game_globals.gd" id="1_tldbe"]
+[ext_resource type="AudioStream" uid="uid://cctpe18h48a8r" path="res://assets/sfx/bg.wav" id="2_rjyw7"]
+[ext_resource type="AudioStream" uid="uid://be8f355tmarad" path="res://assets/sfx/correct.wav" id="3_sy03n"]
+[ext_resource type="AudioStream" uid="uid://bueam1eihda6k" path="res://assets/sfx/incorrect.wav" id="4_sy03n"]
 
 [node name="GameGlobals" type="Node"]
 script = ExtResource("1_tldbe")
+
+[node name="BgMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_rjyw7")
+volume_db = -2.811
+autoplay = true
+bus = &"Music"
+
+[node name="CorrectAnswerSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sy03n")
+bus = &"SFX"
+
+[node name="IncorrectAnswerSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_sy03n")
+bus = &"SFX"

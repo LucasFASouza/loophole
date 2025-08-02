@@ -1,5 +1,14 @@
 extends Node
 
+enum GlobalSoundEffect {
+	CORRECT_ANSWER,
+	INCORRECT_ANSWER
+}
+
+@onready var soundEffects = {
+	GlobalSoundEffect.CORRECT_ANSWER: $CorrectAnswerSFX,
+	GlobalSoundEffect.INCORRECT_ANSWER: $IncorrectAnswerSFX
+}
 
 var volumes = {
 	"Master": 0.5,
@@ -17,3 +26,7 @@ func set_bus_volume(bus_name: String, value: float) -> void:
 	AudioServer.set_bus_volume_db(bus_idx, volume_db)
 
 	volumes[bus_name] = value
+
+
+func play_sfx(sfx: GlobalSoundEffect):
+	soundEffects[sfx].play()
