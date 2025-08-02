@@ -17,16 +17,16 @@ border_width_bottom = 4
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkava"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6ega"]
-content_margin_left = 8.0
+content_margin_left = 12.0
 content_margin_top = 24.0
-content_margin_right = 8.0
+content_margin_right = 12.0
 content_margin_bottom = 24.0
 texture = ExtResource("2_hbfgb")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7gpds"]
-content_margin_left = 8.0
+content_margin_left = 12.0
 content_margin_top = 24.0
-content_margin_right = 8.0
+content_margin_right = 12.0
 content_margin_bottom = 24.0
 texture = ExtResource("3_v6eyv")
 

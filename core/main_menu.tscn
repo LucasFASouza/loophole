@@ -109,6 +109,15 @@ size_flags_vertical = 3
 theme = ExtResource("4_rmr83")
 text = "START"
 
+[node name="Start2" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rmr83")
+disabled = true
+text = "ENDLESS MODE"
+
 [node name="Options" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2

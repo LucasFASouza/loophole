@@ -13,6 +13,9 @@ extends Node3D
 @onready var night_instructions: Label = %NightInstructions
 @onready var start_night_button: Button = %StartNightButton
 
+@onready var finish_container: PanelContainer = %FinishContainer
+@onready var night_counters: Label = %NightCounters
+
 @onready var wait_timer: Timer = $WaitTimer
 
 @onready var main_ui: MarginContainer = $CanvasLayer/MainUI
@@ -105,6 +108,7 @@ var nights_data = [
 
 var score = 0
 var night := 0
+var helped_boats := 0
 var lost_boats = 0
 
 
@@ -112,6 +116,8 @@ func _ready() -> void:
 	wait_timer.wait_time = MorseTranslator.CLK_TIME * 10
 	options_menu.visible = false
 	main_ui.visible = true
+	
+	finish_container.visible = false
 
 	morse_antenna.stop_encoding()
 	morse_input.is_ready = false
@@ -198,10 +204,11 @@ func _send_answer(input: String) -> void:
 	var correct_direction: bool = input.to_upper().replace("?", "") == boat.answer
 
 	if correct_direction:
-		status = "Correct!"
+		status = "Successfull relay! :D"
 		score += 1
+		helped_boats += 1
 	else:
-		status = "Boat lost :("
+		status = "Transmission failed :("
 		lost_boats += 1
 	
 	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
@@ -241,8 +248,15 @@ func finish_night() -> void:
 	morse_input.is_ready = false
 
 	night += 1
-	book.unlock_page(night)
-	prepare_night()
+
+	if night >= nights_data.size():
+		main_ui.visible = false
+		var night_counters_text = "You answered " + str(helped_boats) + " successful relays.\nAnd had " + str(lost_boats) + " unresolved transmissions."
+		night_counters.text = night_counters_text
+		finish_container.visible = true
+	else:
+		book.unlock_page(night)
+		prepare_night()
 
 
 func _on_pause_pressed() -> void:
@@ -267,3 +281,7 @@ func _on_start_night_button_pressed() -> void:
 	get_new_boat()
 	start_container.visible = false
 	main_ui.visible = true
+
+
+func _on_back_main_menu_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://core/main_menu.tscn")
