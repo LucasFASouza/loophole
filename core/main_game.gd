@@ -14,7 +14,6 @@ extends Node3D
 @onready var start_night_button: Button = %StartNightButton
 @onready var next_img_button: Button = %NextImgButton
 
-
 @onready var finish_container: PanelContainer = %FinishContainer
 @onready var tutorial_img: VBoxContainer = %TutorialImgContainer
 @onready var tutorial_container: PanelContainer = %TutorialContainer
@@ -142,6 +141,8 @@ func _ready() -> void:
 
 	gps.visible = false
 	walkie_talkie.visible = false
+
+	next_img_button.grab_focus()
 
 	if is_nights_mode:
 		night = 0

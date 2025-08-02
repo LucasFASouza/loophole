@@ -6,6 +6,7 @@ extends Node3D
 
 @onready var antena_signal_light: MeshInstance3D = $Antena/Light
 @onready var antena_reset_light: MeshInstance3D = $Antena/ResetLight
+@onready var antena_not_light: MeshInstance3D = $Antena/NotALight
 
 @onready var wave_sfx: AudioStreamPlayer = $BeepSFX
 
@@ -67,6 +68,7 @@ func start_encoding(new_message: String) -> void:
 func _on_clock_timeout() -> void:
 	var light_mode = light_wave_fn[cycle_counter]
 
+	antena_not_light.visible = light_mode == 0
 	antena_signal_light.visible = light_mode == 1
 	antena_reset_light.visible = light_mode == 2
 

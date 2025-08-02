@@ -312,7 +312,7 @@ autowrap_mode = 2
 width = 775.0
 
 [node name="Egg" type="Label3D" parent="EraseBoard"]
-transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511289, -0.000522375, 0.200911)
+transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511169, -0.00150728, 0.106388)
 modulate = Color(0, 0, 0, 0.419608)
 outline_modulate = Color(0, 0, 0, 0.596078)
 text = "Robert Pattinson lives there -->"
@@ -343,8 +343,17 @@ transform = Transform3D(-0.959895, 0, -3.88312, 0, 4, 0, 3.88312, 0, -0.959895, 
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 32, 42, -66.238)
 
 [node name="Lamp" type="MeshInstance3D" parent="Lighthouse"]
-transform = Transform3D(-0.306821, -0.917261, -0.253957, -0.942929, 0.32923, -0.0499303, 0.12941, 0.224144, -0.965926, 12.2067, 10.0314, -2.90222)
+transform = Transform3D(-0.306821, -0.917261, -0.253957, -0.942929, 0.32923, -0.0499303, 0.12941, 0.224144, -0.965926, 12.2067, 9.62062, -2.90222)
 mesh = SubResource("CylinderMesh_45q5k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lighthouse/Lamp"]
+transform = Transform3D(-0.87663, -2.69408, 0.369742, -2.62074, 0.940658, 0.640411, -0.725592, -0.142658, -2.75979, 0.244873, 13.2006, 0.0914154)
+light_color = Color(1, 1, 0, 1)
+light_energy = 12.03
+light_size = 0.43
+light_specular = 1.01
+light_bake_mode = 1
+omni_range = 1.824
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99849, 0.0549326, 0, -0.0549326, 0.99849, 0, 42.5543, 95.1056)
