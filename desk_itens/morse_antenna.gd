@@ -8,7 +8,6 @@ const encoding_lengths = {
 @export var message: String = "hello"
 
 @onready var clk: Timer = $Clock
-@onready var wait_timer: Timer = $WaitTimer
 
 @onready var antena_light: Node3D = $Antena/Light
 @onready var dot_sfx: AudioStreamPlayer = $DotSFX
@@ -23,17 +22,36 @@ func _ready():
 	dash_sfx.stop()
 	dot_sfx.stop()
 	clk.wait_time = MorseTranslator.CLK_TIME
-	wait_timer.wait_time = MorseTranslator.CLK_TIME * 10
 
 
-func start_encoding():
+func stop_encoding() -> void:
+	message = ""
 	cycle_counter = 0
 	wave_fn = []
 	antena_light.visible = false
 	dash_sfx.stop()
 	dot_sfx.stop()
 	clk.stop()
-	wait_timer.start()
+
+
+func start_encoding(new_message: String) -> void:
+	message = new_message
+
+	var morse_message = MorseTranslator.ascii_to_morse(message)
+
+	const char_lengths = {
+		'.': [1],
+		'-': [2, 2, 2],
+		'/': [0, 0, 0]
+	}
+	
+	for ch in morse_message:
+		wave_fn.append_array(char_lengths[ch])
+		wave_fn.append(0)
+
+	wave_fn.append_array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+	clk.start()
 
 
 func _on_clock_timeout() -> void:
@@ -61,11 +79,3 @@ func _on_wait_timer_timeout() -> void:
 		'-': [2, 2, 2],
 		'/': [0, 0, 0]
 	}
-	
-	for ch in morse_message:
-		wave_fn.append_array(char_lengths[ch])
-		wave_fn.append(0)
-
-	wave_fn.append_array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-
-	clk.start()

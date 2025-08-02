@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cybuqgryj5mb0"]
+
+[ext_resource type="FontFile" uid="uid://d06db8dxphbdi" path="res://assets/fonts/SourGummy/SourGummy-Light.ttf" id="1_5mqj6"]
+[ext_resource type="Texture2D" uid="uid://rlimi7i2jv73" path="res://assets/ui/radiopicker.png" id="1_tbw83"]
+[ext_resource type="Texture2D" uid="uid://dne00b7pctsfc" path="res://assets/ui/radioslider.png" id="2_s31gl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s31gl"]
+texture = ExtResource("1_tbw83")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_plc3y"]
+texture = ExtResource("2_s31gl")
+
+[resource]
+HScrollBar/styles/grabber = SubResource("StyleBoxTexture_s31gl")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_s31gl")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_s31gl")
+HScrollBar/styles/scroll = SubResource("StyleBoxTexture_plc3y")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxTexture_plc3y")
+Label/colors/font_color = Color(0, 0, 0, 0.756863)
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("1_5mqj6")

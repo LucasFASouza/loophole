@@ -1,6 +1,6 @@
 extends Node
 
-const CLK_TIME = 0.3
+const CLK_TIME = 0.4
 
 const MORSE_TO_ASCII_DICT = {
   ".-": "a",
@@ -60,25 +60,21 @@ const ASCII_TO_MORSE_DICT = {
   "Z": "--.."
 }
 
+
 func morse_to_ascii(morse_text: String) -> String:
 	"""
 	Converts a Morse code string to ascii.
 	example: ".../---/..." -> "SOS"
 	"""
-	var words = morse_text.strip_edges().split("/")
+	var letters = morse_text.split("/")
 	var result = []
-	for word in words:
-		var letters = word.split(" ")
-		var ascii_word = ""
-		for letter in letters:
-			if MORSE_TO_ASCII_DICT.has(letter):
-				ascii_word += MORSE_TO_ASCII_DICT[letter]
-			else:
-				ascii_word += "?"
+	for letter in letters:
+		if MORSE_TO_ASCII_DICT.has(letter):
+			result.append(MORSE_TO_ASCII_DICT[letter])
+		elif letter != "":
+			result.append("?")
+	return "".join(result).strip_edges().to_upper()
 
-		result.append(ascii_word)
-
-	return "".join(result).strip_edges()
 
 func ascii_to_morse(ascii_text: String) -> String:
 	"""
@@ -87,11 +83,8 @@ func ascii_to_morse(ascii_text: String) -> String:
 	"""
 	var result = []
 	for charac in ascii_text.to_upper():
-		print("Analyzing character: ", charac)
 		if ASCII_TO_MORSE_DICT.has(charac):
-			print("Found Morse code for character: ", charac, " -> ", ASCII_TO_MORSE_DICT[charac])
 			result.append(ASCII_TO_MORSE_DICT[charac])
 		else:
-			print("No Morse code found for character: ", charac)
 			result.append("?")
 	return "/".join(result).strip_edges()

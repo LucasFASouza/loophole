@@ -19,7 +19,7 @@ mesh = ExtResource("3_43xqo")
 [node name="Text" type="Node3D" parent="."]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 11.9552, 6.30089)
 
-[node name="LabelWritting" type="Label3D" parent="Text"]
+[node name="LabelWriting" type="Label3D" parent="Text"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 modulate = Color(0, 1, 0, 1)

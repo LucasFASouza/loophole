@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxof50u1u1mwk"]
+
+[ext_resource type="Script" uid="uid://c1poatvguh4bx" path="res://desk_itens/walkie_talkie.gd" id="1_nfjj4"]
+[ext_resource type="ArrayMesh" uid="uid://dl0rfi8e38ta4" path="res://assets/models/walkietalkie.res" id="2_6mwhd"]
+[ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="3_unrlo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jpr85"]
+size = Vector3(3.81812, 9.32706, 2.986)
+
+[node name="WalkieTalkie" type="Node3D"]
+script = ExtResource("1_nfjj4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_6mwhd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, -8.34465e-07, -3.12179e-06, 3.72529e-09, 1, 8.34465e-07, 7.45058e-09, 7.00355e-06, 1, -6.3989e-05, 4.71851, -0.00421018)
+shape = SubResource("BoxShape3D_jpr85")
+
+[node name="ItemInfo" type="CanvasLayer" parent="."]
+layer = 3
+visible = false
+
+[node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_unrlo")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Topbar" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme = ExtResource("3_unrlo")
+text = "BACK"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_unrlo")
+text = "SELECT THE FREQUENCY TO SEND A SIGNAL"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FrequencyContainer" type="VBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FrequencyLabel" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_unrlo")
+theme_override_font_sizes/font_size = 64
+text = "151 kHz"
+horizontal_alignment = 1
+
+[node name="FrequencySlider" type="HScrollBar" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_unrlo")
+min_value = 101.0
+max_value = 199.0
+step = 1.0
+value = 151.0
+
+[node name="Control" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Confirm" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_unrlo")
+text = "CONFIRM"
+
+[connection signal="input_event" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer/FrequencySlider" to="." method="_on_frequency_slider_value_changed"]
+[connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

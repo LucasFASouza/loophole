@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dmt4i1ssqr0l1"
-path="res://.godot/imported/LCD14Condensed.otf-85aa363ab4d697c8296975574edb8351.fontdata"
+uid="uid://by3a6qwl8txte"
+path="res://.godot/imported/SourGummy-SemiBold.ttf-2365d6b8fa2adbf6d58cce35dd2a49a7.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/LCD14/LCD14Condensed.otf"
-dest_files=["res://.godot/imported/LCD14Condensed.otf-85aa363ab4d697c8296975574edb8351.fontdata"]
+source_file="res://assets/fonts/SourGummy/SourGummy-SemiBold.ttf"
+dest_files=["res://.godot/imported/SourGummy-SemiBold.ttf-2365d6b8fa2adbf6d58cce35dd2a49a7.fontdata"]
 
 [params]
 

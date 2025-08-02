@@ -16,22 +16,34 @@ transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 8.49714, 3.56113)
 
 [node name="LabelStatus" type="Label3D" parent="Text"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.293487, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.241054, -0.54472, 0)
 modulate = Color(0, 1, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "hey :)"
+text = "HEYHEYHEYHEYHEYHEYHEY"
 font = ExtResource("3_f21hf")
-font_size = 128
+font_size = 112
+uppercase = true
+
+[node name="LabelObjective" type="Label3D" parent="Text"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.18604, 1.142, 0)
+modulate = Color(0, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "CONFIRM TRANSMISSIONS"
+font = ExtResource("3_f21hf")
+font_size = 96
+horizontal_alignment = 0
 uppercase = true
 
 [node name="LabelScore" type="Label3D" parent="Text"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03193, 0.959197, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70558, 0.613724, 0)
 modulate = Color(0, 1, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "SCORE: 0"
+text = "(0/3)"
 font = ExtResource("3_f21hf")
-font_size = 128
+font_size = 96
+horizontal_alignment = 2
 uppercase = true
 
 [node name="StatusTimer" type="Timer" parent="."]

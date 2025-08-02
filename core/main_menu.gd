@@ -8,8 +8,7 @@ extends Node3D
 @onready var options_menu: PanelContainer = %OptionsMenu
 
 func _ready() -> void:
-	morse_antenna.message = "SOS"
-	morse_antenna.start_encoding()
+	morse_antenna.start_encoding("SOS")
 	start.grab_focus()
 
 func _on_start_pressed() -> void:

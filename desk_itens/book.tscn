@@ -1,10 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8moix3bv57uf"]
+[gd_scene load_steps=9 format=3 uid="uid://b8moix3bv57uf"]
 
 [ext_resource type="ArrayMesh" uid="uid://borrfbdagja3t" path="res://assets/models/book.res" id="1_kh36y"]
 [ext_resource type="Script" uid="uid://bi17j4o0kdqlr" path="res://desk_itens/book.gd" id="2_y0hms"]
+[ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="3_xbbjk"]
+[ext_resource type="Theme" uid="uid://cybuqgryj5mb0" path="res://themes/handwritten.tres" id="4_fxbkg"]
+[ext_resource type="Texture2D" uid="uid://cgeshksau0mtv" path="res://assets/posters/book_map.png" id="4_xbbjk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y0hms"]
 size = Vector3(0.00186557, 0.00515747, 0.00858307)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g4d8"]
+bg_color = Color(0.957709, 0.881172, 0.689056, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id="Theme_xbbjk"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_1g4d8")
 
 [node name="Book" type="Node3D"]
 script = ExtResource("2_y0hms")
@@ -20,18 +33,466 @@ transform = Transform3D(1, -8.34465e-07, -3.12179e-06, 3.72529e-09, 1, 8.34465e-
 shape = SubResource("BoxShape3D_y0hms")
 
 [node name="ItemInfo" type="CanvasLayer" parent="."]
+layer = 3
 visible = false
 
-[node name="MarginContainer" type="MarginContainer" parent="ItemInfo"]
+[node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_xbbjk")
 
-[node name="Label" type="Label" parent="ItemInfo/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "THE BOOK OF ALL KNOWLEDGE"
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Topbar" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme = ExtResource("3_xbbjk")
+text = "BACK"
+
+[node name="BookContainer" type="VBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="TabBar" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="CalibrationButton" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_xbbjk")
+toggle_mode = true
+button_pressed = true
+text = "Calibration"
+
+[node name="CoordinatesButton" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_xbbjk")
+disabled = true
+toggle_mode = true
+text = "Coordinates"
+
+[node name="RadioButton" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_xbbjk")
+disabled = true
+toggle_mode = true
+text = "Radio"
+
+[node name="MorseButton" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar/ButtonsContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_xbbjk")
+toggle_mode = true
+text = "Morse"
+
+[node name="Control2" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/TabBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PagesContainer" type="MarginContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 12
+
+[node name="CalibrationPage" type="PanelContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer"]
+layout_mode = 2
+theme = SubResource("Theme_xbbjk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/CalibrationPage"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Instructions" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/CalibrationPage/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+theme_override_font_sizes/font_size = 24
+text = "Listen carefully to the looped transmissions and try to reproduce the morse message to verify its content.
+
+Press or hold [SPACE] to send a signal. Wait for pauses between letters. Use [BACKSPACE] to delete characters.
+			When you're confident with your answer, press [ENTER] to submit it.
+
+Here's a list of words often used in calibrations to help you:
+			- With 2 letters: OK, WE, UP
+			- With 3 letters: MAP, SOS, JAM
+			- With 4 letters: FISH ,GAME, LOOP"
+autowrap_mode = 2
+
+[node name="CoordinatesPage" type="PanelContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_xbbjk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/CoordinatesPage"]
+layout_mode = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/CoordinatesPage/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/CoordinatesPage/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+theme_override_font_sizes/font_size = 26
+text = "Use the 4-letter transmission to find the correct coordinate.
+
+With your GPS system, relay that coordinate to the boat.
+
+Before that, you may choose to confirm the destination —
+or trust your instincts with a partially decoded message."
+autowrap_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/CoordinatesPage/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/CoordinatesPage/MarginContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+texture = ExtResource("4_xbbjk")
+expand_mode = 2
+
+[node name="RadioPage" type="PanelContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_xbbjk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/RadioPage"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Instructions" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/RadioPage/MarginContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+theme_override_font_sizes/font_size = 24
+text = "Use the 4-letter transmission to identify the nature of the event. Then tune the radio to the appropriate frequency to  send the corresponding message.
+
+Radio codes:
+
+AHOY – Pirate attack reported. Alert nearby mariners on 157 kHz.
+DARK – Lighthouse failure detected. Contact the keeper on 111kHz.
+GALE – A storm is approaching. Warn the harbor via 179kHz.
+KING – A royal vessel is in the area. Dispatch an escort on 125kHz."
+autowrap_mode = 2
+
+[node name="MorsePage" type="PanelContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_xbbjk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage"]
+layout_mode = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer"]
+layout_mode = 2
+
+[node name="LettersTable" type="VFlowContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="A" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "A .-"
+autowrap_mode = 2
+
+[node name="B" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "B -..."
+autowrap_mode = 2
+
+[node name="C" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "C -.-."
+autowrap_mode = 2
+
+[node name="D" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "D -.."
+autowrap_mode = 2
+
+[node name="E" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "E ."
+autowrap_mode = 2
+
+[node name="F" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "F ..-."
+autowrap_mode = 2
+
+[node name="G" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "G --."
+autowrap_mode = 2
+
+[node name="H" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "H ...."
+autowrap_mode = 2
+
+[node name="I" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "I .."
+autowrap_mode = 2
+
+[node name="J" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "J .---"
+autowrap_mode = 2
+
+[node name="K" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "K -.-"
+autowrap_mode = 2
+
+[node name="L" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "L .-.."
+autowrap_mode = 2
+
+[node name="M" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "M --"
+autowrap_mode = 2
+
+[node name="N" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "N -."
+autowrap_mode = 2
+
+[node name="O" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "O ---"
+autowrap_mode = 2
+
+[node name="P" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "P .--."
+autowrap_mode = 2
+
+[node name="Q" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "Q --.-"
+autowrap_mode = 2
+
+[node name="R" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "R .-."
+autowrap_mode = 2
+
+[node name="S" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "S ..."
+autowrap_mode = 2
+
+[node name="T" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "T -"
+autowrap_mode = 2
+
+[node name="U" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "U ..-"
+autowrap_mode = 2
+
+[node name="V" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "V ...-"
+autowrap_mode = 2
+
+[node name="W" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "W .--"
+autowrap_mode = 2
+
+[node name="X" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "X -..-"
+autowrap_mode = 2
+
+[node name="Y" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "Y -.--"
+autowrap_mode = 2
+
+[node name="Z" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/LettersTable"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_fxbkg")
+text = "Z --.."
+autowrap_mode = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/BookContainer/PagesContainer/MorsePage/MarginContainer/VBoxContainer/AspectRatioContainer"]
+layout_mode = 2
+texture = ExtResource("4_xbbjk")
+expand_mode = 4
+stretch_mode = 6
 
 [connection signal="input_event" from="BookMesh/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]
