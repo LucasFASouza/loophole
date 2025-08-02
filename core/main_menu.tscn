@@ -109,13 +109,11 @@ size_flags_vertical = 3
 theme = ExtResource("4_rmr83")
 text = "START"
 
-[node name="Start2" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
+[node name="Endless" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("4_rmr83")
-disabled = true
 text = "ENDLESS MODE"
 
 [node name="Options" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
@@ -135,5 +133,6 @@ unique_name_in_owner = true
 visible = false
 
 [connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Endless" to="." method="_on_endless_pressed"]
 [connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="close_options" from="UI/OptionsMenu" to="." method="_on_options_menu_close_options"]
