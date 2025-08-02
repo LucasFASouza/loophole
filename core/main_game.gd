@@ -286,6 +286,7 @@ func prepare_endless_mode() -> void:
 	night_title.text = "Endless Mode"
 	night_name.text = "60s"
 	night_instructions.text = nights_data[-1]["start_instructions"]
+	mission_text.text = nights_data[-1]["mission"]
 	
 	endless_timer.wait_time = 60.0
 
