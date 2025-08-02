@@ -12,7 +12,7 @@ func _ready() -> void:
 	label_score.text = "Score: 0"
 
 
-func update_score(score: int, threshold := 0, objective := "Score") -> void:
+func update_score(score, threshold := 0, objective := "Score") -> void:
 	if threshold:
 		label_score.text = "(" + str(score) + " / " + str(threshold) + ")"
 	else:
