@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfq6j4q0hpk2r"]
+[gd_scene load_steps=12 format=3 uid="uid://dfq6j4q0hpk2r"]
 
 [ext_resource type="Script" uid="uid://cfn7aomul4dg3" path="res://core/main_menu.gd" id="1_8uxxo"]
 [ext_resource type="ArrayMesh" uid="uid://dgg1ogf01rjjh" path="res://assets/models/desk.res" id="2_8uxxo"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="4_rmr83"]
 [ext_resource type="FontFile" uid="uid://n1eu5vuo4qkw" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="5_i3ow4"]
 [ext_resource type="PackedScene" uid="uid://cua3g4kgtq2ns" path="res://UI/options_menu.tscn" id="7_opyrh"]
+[ext_resource type="PackedScene" uid="uid://cw8740apsb0hk" path="res://UI/tutorial.tscn" id="8_f2w0s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i3ow4"]
 sky_top_color = Color(0.655843, 0.740153, 0.826877, 1)
@@ -116,6 +117,13 @@ size_flags_vertical = 3
 theme = ExtResource("4_rmr83")
 text = "ENDLESS MODE"
 
+[node name="Controls" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_rmr83")
+text = "CONTROLS"
+
 [node name="Options" type="Button" parent="UI/MenuUI/VBoxContainer/DownSection/Buttons"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -132,7 +140,13 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 visible = false
 
+[node name="Tutorial" parent="UI" instance=ExtResource("8_f2w0s")]
+unique_name_in_owner = true
+visible = false
+
 [connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Endless" to="." method="_on_endless_pressed"]
+[connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="UI/MenuUI/VBoxContainer/DownSection/Buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="close_options" from="UI/OptionsMenu" to="." method="_on_options_menu_close_options"]
+[connection signal="close_controls" from="UI/Tutorial" to="." method="_on_tutorial_close_controls"]

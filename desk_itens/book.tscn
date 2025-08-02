@@ -9,7 +9,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_y0hms"]
 size = Vector3(0.00186557, 0.00515747, 0.00858307)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g4d8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxbkg"]
 bg_color = Color(0.957709, 0.881172, 0.689056, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
@@ -17,7 +17,7 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="Theme" id="Theme_xbbjk"]
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_1g4d8")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_fxbkg")
 
 [node name="Book" type="Node3D"]
 script = ExtResource("2_y0hms")

@@ -36,7 +36,7 @@ content_margin_bottom = 24.0
 texture = ExtResource("4_ffde8")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6sfk"]
-bg_color = Color(0.105882, 0.105882, 0.105882, 0.768627)
+bg_color = Color(0.105882, 0.105882, 0.105882, 0.835294)
 
 [resource]
 Button/colors/font_color = Color(0.839557, 0.887279, 0.865671, 1)
