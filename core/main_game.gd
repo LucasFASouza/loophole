@@ -26,8 +26,8 @@ extends Node3D
 @onready var night_name: Label = %NightNumber
 @onready var mission_text: Label = %MissionText
 
-@onready var bg_music: AudioStreamPlayer = %BgMusic
-
+@onready var show_controls: Button = %ShowControls
+@onready var buttons_tips: Control = %ButtonsTips
 
 var calibration_words = [
 	["UP", "WE", "OK"],
@@ -120,6 +120,7 @@ func _ready() -> void:
 	wait_timer.wait_time = MorseTranslator.CLK_TIME * 8
 	options_menu.visible = false
 	main_ui.visible = true
+	buttons_tips.visible = false
 	
 	finish_container.visible = false
 
@@ -239,7 +240,7 @@ func _send_answer(input: String) -> void:
 	if is_nights_mode:
 		info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 	else:
-		info_screen.update_score(score, 0, nights_data[-1]["task"])
+		info_screen.update_score(score, 0, nights_data[night]["task"])
 
 		var time_added: int
 
@@ -293,13 +294,13 @@ func prepare_endless_mode() -> void:
 	
 	night_title.text = "Endless Mode"
 	night_name.text = "60s"
-	night_instructions.text = nights_data[-1]["start_instructions"]
-	mission_text.text = nights_data[-1]["mission"]
+	night_instructions.text = nights_data[night]["start_instructions"]
+	mission_text.text = nights_data[night]["mission"]
 	
 	endless_timer.wait_time = 60.0
 
 	score = 0
-	info_screen.update_score(score, 0, nights_data[-1]["task"])
+	info_screen.update_score(score, 0, nights_data[night]["task"])
 
 	start_container.visible = true
 	start_night_button.grab_focus()
@@ -383,3 +384,13 @@ func _on_endless_timer_timeout() -> void:
 
 func _on_play_again_button_pressed() -> void:
 	get_tree().reload_current_scene()
+
+
+func _on_show_controls_pressed() -> void:
+	show_controls.visible = false
+	buttons_tips.visible = true
+
+
+func _on_hide_controls_pressed() -> void:
+	show_controls.visible = true
+	buttons_tips.visible = false

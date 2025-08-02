@@ -59,7 +59,7 @@ func start_encoding(new_message: String) -> void:
 		
 
 	sound_wave_fn.append_array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-	light_wave_fn.append_array([0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0])
+	light_wave_fn.append_array([0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0])
 
 	clk.start()
 
@@ -75,7 +75,7 @@ func _on_clock_timeout() -> void:
 		if is_wave_fn_high == 1:
 			wave_sfx.pitch_scale = 1.0
 		if is_wave_fn_high == 2:
-			wave_sfx.pitch_scale = 0.99
+			wave_sfx.pitch_scale = 0.985
 
 		wave_sfx.play()
 	
