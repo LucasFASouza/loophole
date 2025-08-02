@@ -86,7 +86,7 @@ var nights_data = [
 	},
 	{
 		"name": "Night 2",
-		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
+		"mission": "Use your radio system to relay the incoming alerts to the authorities.\nCheck your book for the references.\n",
 		"start_instructions": """Help the port stay safe by relaying incoming alerts to the proper authorities.
 
 			Listen carefully to the looped transmission to identify the 4-letter alert code.
