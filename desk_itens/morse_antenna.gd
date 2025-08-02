@@ -11,7 +11,8 @@ const encoding_lengths = {
 @onready var wait_timer: Timer = $WaitTimer
 
 @onready var antena_light: Node3D = $Antena/Light
-@onready var beep_player: AudioStreamPlayer = $BeepPlayer
+@onready var dot_sfx: AudioStreamPlayer = $DotSFX
+@onready var dash_sfx: AudioStreamPlayer = $DashSFX
 
 var cycle_counter: int
 
@@ -19,7 +20,8 @@ var wave_fn = []
 
 func _ready():
 	antena_light.visible = false
-	beep_player.stop()
+	dash_sfx.stop()
+	dot_sfx.stop()
 	clk.wait_time = MorseTranslator.CLK_TIME
 	wait_timer.wait_time = MorseTranslator.CLK_TIME * 10
 
@@ -28,7 +30,8 @@ func start_encoding():
 	cycle_counter = 0
 	wave_fn = []
 	antena_light.visible = false
-	beep_player.stop()
+	dash_sfx.stop()
+	dot_sfx.stop()
 	clk.stop()
 	wait_timer.start()
 
@@ -37,10 +40,11 @@ func _on_clock_timeout() -> void:
 	var wave_on = wave_fn[cycle_counter]
 	antena_light.visible = wave_on
 	
-	if not wave_on:
-		beep_player.stop()
-	elif not beep_player.playing:
-		beep_player.play()
+
+	if wave_on == 1:
+		dot_sfx.play()
+	if wave_on == 2 and not dash_sfx.playing:
+		dash_sfx.play()
 		
 	cycle_counter += 1
 	if cycle_counter == wave_fn.size() - 1:
@@ -54,7 +58,7 @@ func _on_wait_timer_timeout() -> void:
 
 	const char_lengths = {
 		'.': [1],
-		'-': [1, 1, 1],
+		'-': [2, 2, 2],
 		'/': [0, 0, 0]
 	}
 	
