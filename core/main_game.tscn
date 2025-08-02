@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://d3y2s8jgc67qw"]
+[gd_scene load_steps=29 format=3 uid="uid://d3y2s8jgc67qw"]
 
 [ext_resource type="Script" uid="uid://dnwbjthdxt23h" path="res://core/main_game.gd" id="1_is2i4"]
 [ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://desk_itens/morse_antenna.tscn" id="2_6620d"]
@@ -23,18 +23,31 @@
 [ext_resource type="FontFile" uid="uid://by3a6qwl8txte" path="res://assets/fonts/SourGummy/SourGummy-SemiBold.ttf" id="19_5anm3"]
 [ext_resource type="PackedScene" uid="uid://ea8aur3730lt" path="res://assets/models/Plant - White Pot.glb" id="20_x4ebu"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqhw1"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 0.447059)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_45q5k"]
+material = SubResource("StandardMaterial3D_iqhw1")
+top_radius = 0.0
+bottom_radius = 6.441
+height = 26.37
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
-sky_top_color = Color(0.591087, 0.687263, 0.785804, 1)
-sky_horizon_color = Color(0.592157, 0.686275, 0.784314, 1)
-ground_bottom_color = Color(0.1102, 0.206093, 0.29, 1)
-ground_horizon_color = Color(0.18, 0.189333, 0.25, 1)
+sky_top_color = Color(0.16692, 0.1326, 0.39, 1)
+sky_horizon_color = Color(0.290398, 0.191623, 0.571344, 1)
+sky_curve = 0.0699773
+ground_bottom_color = Color(0.0474419, 0.161996, 0.262095, 1)
+ground_horizon_color = Color(0.1428, 0.29064, 0.42, 1)
+ground_curve = 0.0110956
 
 [sub_resource type="Sky" id="Sky_is2i4"]
 sky_material = SubResource("ProceduralSkyMaterial_g8hlx")
 
 [sub_resource type="Environment" id="Environment_8gcvo"]
 background_mode = 2
-background_energy_multiplier = 0.9
 sky = SubResource("Sky_is2i4")
 tonemap_mode = 2
 
@@ -52,7 +65,7 @@ script = ExtResource("1_is2i4")
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -20.9033, 23.1416, -10.9032)
 
 [node name="MorseInput" parent="." instance=ExtResource("3_2epw8")]
-transform = Transform3D(0.994298, 0, -0.106646, 0, 1, 0, 0.106646, 0, 0.994298, 7.23415, 23.969, -5.03513)
+transform = Transform3D(0.978127, 0, -0.208014, 0, 1, 0, 0.208014, 0, 0.978127, 7.55727, 23.969, -5.03513)
 
 [node name="InfoScreen" parent="." instance=ExtResource("4_vlmcc")]
 transform = Transform3D(0.966197, 0, 0.257807, 0, 1, 0, -0.257807, 0, 0.966197, -10.3467, 23.969, -4.06451)
@@ -329,6 +342,10 @@ transform = Transform3D(-0.959895, 0, -3.88312, 0, 4, 0, 3.88312, 0, -0.959895, 
 [node name="Lighthouse" parent="." instance=ExtResource("17_x5m8v")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 32, 42, -66.238)
 
+[node name="Lamp" type="MeshInstance3D" parent="Lighthouse"]
+transform = Transform3D(-0.306821, -0.917261, -0.253957, -0.942929, 0.32923, -0.0499303, 0.12941, 0.224144, -0.965926, 12.2067, 10.0314, -2.90222)
+mesh = SubResource("CylinderMesh_45q5k")
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99849, 0.0549326, 0, -0.0549326, 0.99849, 0, 42.5543, 95.1056)
 fov = 21.2
@@ -337,7 +354,8 @@ fov = 21.2
 environment = SubResource("Environment_8gcvo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.249752, -0.967971, -0.0256128, 0.325561, -0.108852, 0.939234, -0.91194, 0.226238, 0.34232, 0, 0, 0)
+light_energy = 0.4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_physics_priority = -1
@@ -655,6 +673,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="PrevImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme = ExtResource("8_2epw8")
 text = "< PREV"
@@ -665,6 +684,7 @@ size_flags_horizontal = 3
 
 [node name="NextImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme = ExtResource("8_2epw8")
 text = "NEXT >"

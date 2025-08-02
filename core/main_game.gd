@@ -35,6 +35,7 @@ extends Node3D
 
 @onready var calendar: Node3D = $Calendar
 @onready var erase_board: Node3D = $EraseBoard
+@onready var lighthouse: Node3D = $Lighthouse
 
 var calibration_words = [
 	["UP", "WE", "OK"],
@@ -182,6 +183,7 @@ func get_new_boat() -> void:
 			var keys = frequencies.keys()
 			boat.answer = keys[randi() % keys.size()]
 			boat.message = frequencies[boat.answer]
+				
 		_:
 			# get a random boat type
 			var boat_types = ["GPS", "Radio"]
@@ -197,6 +199,8 @@ func get_new_boat() -> void:
 			var keys = boat_dict.keys()
 			boat.answer = keys[randi() % keys.size()]
 			boat.message = boat_dict[boat.answer]
+	
+	lighthouse.get_node("Lamp").visible = boat.message != "DARK"
 
 	wait_timer.start()
 	
