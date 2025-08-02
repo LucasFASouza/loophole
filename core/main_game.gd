@@ -3,7 +3,10 @@ extends Node3D
 @onready var morse_antenna: Node3D = $MorseAntenna
 @onready var morse_input: Node3D = $MorseInput
 @onready var info_screen: Node3D = $InfoScreen
+
 @onready var book: Node3D = $Book
+@onready var gps: Node3D = $GPS
+@onready var walkie_talkie: Node3D = $WalkieTalkie
 
 @onready var start_container: PanelContainer = %StartContainer
 @onready var night_title: Label = %NightTitle
@@ -59,7 +62,7 @@ var nights_data = [
 
 			At any time, you may check your book for more notes and references.""",
 		"task": "CONFIRM TRANSMISSIONS",
-		"task_threshold": 1,
+		"task_threshold": 3,
 	}, 
 	{
 		"name": "Night 1",
@@ -67,12 +70,11 @@ var nights_data = [
 		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
 			Listen carefully to the looped transmission to identify the 4-letter destination code.
 
-			Use your book to look up the corresponding coordinates.
-			Then, transmit them using the GPS system.
+			Use your book to look up the corresponding coordinates. Then, transmit them using the GPS system.
 
 			You may choose to verify the destination with the boat before sending — or trust your instincts with a half-solved message.""",
 		"task": "SEND COORDINATES",
-		"task_threshold": 1,
+		"task_threshold": 3,
 	}, 
 	{
 		"name": "Night 2",
@@ -80,12 +82,23 @@ var nights_data = [
 		"start_instructions": """Help the port stay safe by relaying incoming alerts to the proper authorities.
 			Listen carefully to the looped transmission to identify the 4-letter alert code.
 
-			Use your book to find the corresponding radio frequency.
-			Then, transmit the message using your walkie-talkie.
+			Use your book to find the corresponding radio frequency. Then, transmit the message using your walkie-talkie.
 
-			You may choose to double-check the alert’s meaning —
-			or act quickly, trusting your first interpretation.""",
+			You may choose to double-check the alert’s meaning — or act quickly, trusting your first interpretation.""",
 		"task": "ALERT AUTHORITIES",
+		"task_threshold": 3,
+	},
+	{
+		"name": "Night 3",
+		"mission": "Make full use of your station’s systems to relay the boats’ messages and help them navigate.",
+		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
+			Listen carefully to the looped transmission to identify the 4-letter destination code.
+
+			Interpret the message and use your book and notes to find the correct course of action.
+
+			Be careful with similar codes across different systems.
+			You may choose to verify the destination with the boat before sending — or trust your instincts""",
+		"task": "HELP SHIPS",
 		"task_threshold": 4,
 	}
 ]
@@ -103,6 +116,9 @@ func _ready() -> void:
 	morse_antenna.stop_encoding()
 	morse_input.is_ready = false
 	morse_input.reset_input()
+
+	gps.visible = false
+	walkie_talkie.visible = false
 
 	prepare_night()
 
@@ -133,11 +149,20 @@ func get_new_boat() -> void:
 			boat.answer = keys[randi() % keys.size()]
 			boat.message = frequencies[boat.answer]
 		_:
-			boat.type = "GPS"
+			# get a random boat type
+			var boat_types = ["GPS", "Radio"]
+			boat.type = boat_types[randi() % boat_types.size()]
 
-			var keys = coordinates.keys()
+			var boat_dict = {}
+
+			if boat.type == "Radio":
+				boat_dict = frequencies
+			elif boat.type == "GPS":
+				boat_dict = coordinates
+
+			var keys = boat_dict.keys()
 			boat.answer = keys[randi() % keys.size()]
-			boat.message = coordinates[boat.answer]
+			boat.message = boat_dict[boat.answer]
 
 	wait_timer.start()
 	
@@ -189,26 +214,15 @@ func _send_answer(input: String) -> void:
 
 
 func prepare_night() -> void:
-	"""
-	NIGHT 0
-	- Calibrar sistema
-	- Verificar mensagens
-	- Ensinar uso do Morse
-
-	NIGHT 1
-	- Sistema de GPS
-	- Recebe um destino e precisa informar as coordenadas no gps
-	- Ensinar interação com itens na mesa
-
-	NIGHT 3
-	- Sistema de telefone
-	- Recebe uma mensagem e precisa informar a organização correta
-	"""
 	night_name.text = nights_data[night]["name"]
 	mission_text.text = nights_data[night]["mission"]
 
 	if night == 0:
 		mission_text.text += "\nCurrent calibration: " + str(score + 2) + " letters"
+	elif night == 1:
+		gps.visible = true
+	elif night == 2:
+		walkie_talkie.visible = true
 
 	night_title.text = nights_data[night]["name"]
 	night_instructions.text = nights_data[night]["start_instructions"]
