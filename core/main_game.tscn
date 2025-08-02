@@ -72,9 +72,11 @@ transform = Transform3D(0.966197, 0, 0.257807, 0, 1, 0, -0.257807, 0, 0.966197, 
 
 [node name="GPS" parent="." instance=ExtResource("5_0d78q")]
 transform = Transform3D(0.900981, -0.0272208, -0.433004, 0.025102, 0.999629, -0.0106103, 0.433132, -0.00130957, 0.901329, 14.7401, 23.6736, 6.95357)
+visible = false
 
 [node name="WalkieTalkie" parent="." instance=ExtResource("10_3k31u")]
 transform = Transform3D(0.829399, 0, 0.558657, 0, 1, 0, -0.558657, 0, 0.829399, -24.4333, 23.8833, -2.28496)
+visible = false
 
 [node name="Book" parent="." instance=ExtResource("10_vlmcc")]
 transform = Transform3D(0.583031, 0, 0.812449, 0, 1, 0, -0.812449, 0, 0.583031, -16.2221, 25.0951, 9.80323)
@@ -301,6 +303,7 @@ transform = Transform3D(-9.61599e-07, -0.229228, -21.9988, -1.00199e-08, 21.9988
 
 [node name="Instructions" type="Label3D" parent="EraseBoard"]
 transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511289, 0.615904, -0.00560057)
+visible = false
 modulate = Color(0, 0, 0, 0.584314)
 text = "Make full use of your station’s systems to relay the boats’ messages and help them navigate."
 font = ExtResource("19_5anm3")

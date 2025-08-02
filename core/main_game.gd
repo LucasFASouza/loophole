@@ -125,7 +125,7 @@ var is_nights_mode := GameGlobals.GAME_MODE == "nights"
 
 var current_tutorial_img = 0;
 var night_tutorial_img: Array[ImageTexture] = []
-var tutorial_image_counts = [4, 5]
+var tutorial_image_counts = [4, 5, 5, 3]
 
 func _ready() -> void:
 	wait_timer.wait_time = MorseTranslator.CLK_TIME * 8
@@ -278,14 +278,19 @@ func _send_answer(input: String) -> void:
 
 
 func load_night_tutorial(night_number: int) -> void:
+	current_tutorial_img = 0;
 	night_tutorial_img = []
 	for n in range(tutorial_image_counts[night_number]):
 		var img_path = "res://assets/tutorial/night{night}_tutorial{idx}.jpg"
+		print(img_path.format({"night": night, "idx": n + 1}))
 		var new_img = Image.load_from_file(
 			img_path.format({"night": night, "idx": n + 1})
 		)
 		var new_texture = ImageTexture.create_from_image(new_img)
 		night_tutorial_img.append(new_texture)
+		
+	%TutorialImgContainer/TutorialImg.texture = night_tutorial_img[current_tutorial_img]
+	next_img_button.text = "NEXT >"
 		
 
 func prepare_night() -> void:
@@ -311,7 +316,7 @@ func prepare_night() -> void:
 	night_title.text = nights_data[night]["name"]
 	night_instructions.text = nights_data[night]["start_instructions"]
 
-	# start_container.visible = true
+	tutorial_container.visible = true
 	start_night_button.grab_focus()
 	main_ui.visible = false
 
