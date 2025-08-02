@@ -29,7 +29,7 @@ tonemap_mode = 2
 script = ExtResource("1_is2i4")
 
 [node name="MorseAntenna" parent="." instance=ExtResource("2_6620d")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -22.7483, 23.8015, -10.9032)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -19.6802, 23.8015, -10.9032)
 
 [node name="MorseInput" parent="." instance=ExtResource("3_2epw8")]
 transform = Transform3D(0.997726, 0, -0.0674058, 0, 1, 0, 0.0674058, 0, 0.997726, 7.23415, 23.969, -5.03513)

@@ -113,7 +113,7 @@ var lost_boats = 0
 
 
 func _ready() -> void:
-	wait_timer.wait_time = MorseTranslator.CLK_TIME * 10
+	wait_timer.wait_time = MorseTranslator.CLK_TIME * 8
 	options_menu.visible = false
 	main_ui.visible = true
 	

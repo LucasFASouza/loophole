@@ -4,16 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://c21y0bt4ev3vm" path="res://assets/models/Antenna.glb" id="2_8wwca"]
 [ext_resource type="AudioStream" uid="uid://6hik7bha7e2q" path="res://assets/sfx/beep.wav" id="3_qpoeg"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kh8q3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahd3f"]
 transparency = 1
 shading_mode = 0
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0, 0, 0.611765)
+albedo_color = Color(1, 0, 0, 0.752941)
 
-[sub_resource type="SphereMesh" id="SphereMesh_qpoeg"]
-material = SubResource("StandardMaterial3D_kh8q3")
-radius = 0.05
-height = 0.1
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_hsbwd"]
+material = SubResource("StandardMaterial3D_ahd3f")
+radius = 0.025
+height = 0.075
 
 [node name="MorseAntenna" type="Node3D"]
 script = ExtResource("1_gbc8i")
@@ -22,11 +22,11 @@ script = ExtResource("1_gbc8i")
 wait_time = 0.3
 
 [node name="Antena" parent="." instance=ExtResource("2_8wwca")]
-transform = Transform3D(12.425, 0, 0, 0, 12.425, 0, 0, 0, 12.425, 0, 0, 0)
+transform = Transform3D(-12.425, 0, -0.00542002, 0, 12.425, 0, 0.00542002, 0, -12.425, -0.875595, 0, 0)
 
 [node name="Light" type="MeshInstance3D" parent="Antena"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0720244, 1.656, 0.000170855)
-mesh = SubResource("SphereMesh_qpoeg")
+transform = Transform3D(1, 0, -1.16415e-10, 0, 1, 0, 1.16415e-10, 0, 1, -0.0720244, 1.64712, 0.000170855)
+mesh = SubResource("CapsuleMesh_hsbwd")
 
 [node name="BeepPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qpoeg")
