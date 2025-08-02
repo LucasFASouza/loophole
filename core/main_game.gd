@@ -15,6 +15,7 @@ extends Node3D
 
 @onready var finish_container: PanelContainer = %FinishContainer
 @onready var night_counters: Label = %NightCounters
+@onready var play_endless: Label = %PlayEndless
 
 @onready var wait_timer: Timer = $WaitTimer
 @onready var endless_timer: Timer = $EndlessTimer
@@ -24,6 +25,7 @@ extends Node3D
 
 @onready var night_name: Label = %NightNumber
 @onready var mission_text: Label = %MissionText
+
 
 var calibration_words = [
 	["UP", "WE", "OK"],
@@ -134,8 +136,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not is_nights_mode:
+	if not is_nights_mode and not endless_timer.is_stopped():
 		var seconds_left = int(endless_timer.time_left)
+		if seconds_left < 0:
+			seconds_left = 0
 		night_name.text = str(seconds_left) + "s"
 
 
@@ -228,7 +232,20 @@ func _send_answer(input: String) -> void:
 		info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 	else:
 		info_screen.update_score(score, 0, nights_data[-1]["task"])
-	
+
+		var time_added: int
+
+		if correct_direction:
+			time_added = max(30 - (3 * score), 0)
+			status += "\n+" + str(time_added) + "s to the timer!"
+		else:
+			time_added = -10
+			status += "\n-10s to the timer!"
+			
+		endless_timer.wait_time = endless_timer.time_left + time_added
+		endless_timer.stop()
+		endless_timer.start()
+
 	info_screen.show_status(status)
 
 	if score >= nights_data[night]["task_threshold"] and is_nights_mode:
@@ -269,6 +286,9 @@ func prepare_endless_mode() -> void:
 	night_title.text = "Endless Mode"
 	night_name.text = "60s"
 	night_instructions.text = nights_data[-1]["start_instructions"]
+	mission_text.text = nights_data[-1]["mission"]
+	
+	endless_timer.wait_time = 60.0
 
 	score = 0
 	info_screen.update_score(score, 0, nights_data[-1]["task"])
@@ -325,3 +345,29 @@ func _on_start_night_button_pressed() -> void:
 
 func _on_back_main_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://core/main_menu.tscn")
+
+
+func _on_endless_timer_timeout() -> void:
+	main_ui.visible = false
+	var night_counters_text = "You answered " + str(helped_boats) + " successful relays.\nAnd had " + str(lost_boats) + " unresolved transmissions."
+	night_counters.text = night_counters_text
+	finish_container.visible = true
+
+	var final_text = ""
+	
+	if is_nights_mode:
+		final_text = "Mission accomplished — for now.\nAlso try the endless mode!"
+	else:
+		if lost_boats > helped_boats:
+			final_text = "You made more boats sink than you saved...\nBetter luck next time!"
+		elif helped_boats > 5:
+			final_text = "Great job! The sea is safer thanks to you!"
+		elif helped_boats > 2:
+			final_text = "Very good! Keep it up!"
+		elif helped_boats <= 2:
+			final_text = "You can do better! Keep practicing."
+
+	play_endless.text = final_text
+
+func _on_play_again_button_pressed() -> void:
+	get_tree().reload_current_scene()

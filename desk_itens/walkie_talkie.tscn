@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxof50u1u1mwk"]
 
 [ext_resource type="Script" uid="uid://c1poatvguh4bx" path="res://desk_itens/walkie_talkie.gd" id="1_nfjj4"]
-[ext_resource type="ArrayMesh" uid="uid://dl0rfi8e38ta4" path="res://assets/models/walkietalkie.res" id="2_6mwhd"]
+[ext_resource type="ArrayMesh" uid="uid://b02y4nlt3ybav" path="res://assets/models/walkietalkie.res" id="2_6mwhd"]
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="3_unrlo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jpr85"]
