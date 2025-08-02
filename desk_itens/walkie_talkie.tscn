@@ -63,6 +63,55 @@ theme = ExtResource("3_unrlo")
 text = "SELECT THE FREQUENCY TO SEND A SIGNAL"
 horizontal_alignment = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FrequencyContainer" type="VBoxContainer" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FrequencyLabel" type="Label" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_unrlo")
+theme_override_font_sizes/font_size = 64
+text = "151 kHz"
+horizontal_alignment = 1
+
+[node name="FrequencySlider" type="HScrollBar" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_unrlo")
+min_value = 101.0
+max_value = 199.0
+step = 1.0
+value = 151.0
+
+[node name="Control" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Confirm" type="Button" parent="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -72,3 +121,5 @@ text = "CONFIRM"
 
 [connection signal="input_event" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
 [connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer/FrequencySlider" to="." method="_on_frequency_slider_value_changed"]
+[connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

@@ -32,9 +32,16 @@ var coordinates = {
 	"4B": "GATE",
 }
 
+var frequencies = {
+	"157": "AHOY",
+	"111": "DARK",
+	"179": "GALE",
+	"125": "KING"
+}
+
 var boat = {
 	"message": "",
-	"type": "", # Calibration, GPS, Telephone
+	"type": "", # Calibration, GPS, Radio
 	"answer": "",
 }
 
@@ -52,9 +59,9 @@ var nights_data = [
 
 			At any time, you may check your book for more notes and references.""",
 		"task": "CONFIRM TRANSMISSIONS",
-		"task_threshold": 3,
+		"task_threshold": 1,
 	}, 
-		{
+	{
 		"name": "Night 1",
 		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
 		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
@@ -63,10 +70,22 @@ var nights_data = [
 			Use your book to look up the corresponding coordinates.
 			Then, transmit them using the GPS system.
 
-			You may choose to verify the destination with the boat before sending — or trust your instincts with a half-solved message.
-
-			At any time, you can check your book for notes and reference material.""",
+			You may choose to verify the destination with the boat before sending — or trust your instincts with a half-solved message.""",
 		"task": "SEND COORDINATES",
+		"task_threshold": 1,
+	}, 
+	{
+		"name": "Night 2",
+		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
+		"start_instructions": """Help the port stay safe by relaying incoming alerts to the proper authorities.
+			Listen carefully to the looped transmission to identify the 4-letter alert code.
+
+			Use your book to find the corresponding radio frequency.
+			Then, transmit the message using your walkie-talkie.
+
+			You may choose to double-check the alert’s meaning —
+			or act quickly, trusting your first interpretation.""",
+		"task": "ALERT AUTHORITIES",
 		"task_threshold": 4,
 	}
 ]
@@ -107,6 +126,12 @@ func get_new_boat() -> void:
 			var keys = coordinates.keys()
 			boat.answer = keys[randi() % keys.size()]
 			boat.message = coordinates[boat.answer]
+		2:
+			boat.type = "Radio"
+
+			var keys = frequencies.keys()
+			boat.answer = keys[randi() % keys.size()]
+			boat.message = frequencies[boat.answer]
 		_:
 			boat.type = "GPS"
 
@@ -156,7 +181,11 @@ func _send_answer(input: String) -> void:
 	
 	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 	info_screen.show_status(status)
-	get_new_boat()
+
+	if score >= nights_data[night]["task_threshold"]:
+		finish_night()
+	else:
+		get_new_boat()
 
 
 func prepare_night() -> void:

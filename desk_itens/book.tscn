@@ -225,7 +225,7 @@ Radio codes:
 
 AHOY – Pirate attack reported. Alert nearby mariners on 157 kHz.
 DARK – Lighthouse failure detected. Contact the keeper on 111kHz.
-GALE – A storm is approaching. Warn the harbor via 139kHz.
+GALE – A storm is approaching. Warn the harbor via 179kHz.
 KING – A royal vessel is in the area. Dispatch an escort on 125kHz."
 autowrap_mode = 2
 

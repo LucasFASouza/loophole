@@ -225,6 +225,7 @@ one_shot = true
 
 [connection signal="check_word" from="MorseInput" to="." method="check_word"]
 [connection signal="gps_selected" from="GPS" to="." method="_send_answer"]
+[connection signal="frequency_selected" from="WalkieTalkie" to="." method="_send_answer"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer/StartNightButton" to="." method="_on_start_night_button_pressed"]
 [connection signal="close_options" from="CanvasLayer/OptionsMenu" to="." method="_on_options_menu_close_options"]
