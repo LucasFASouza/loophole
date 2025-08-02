@@ -17,13 +17,13 @@ extends Node3D
 @onready var night_counters: Label = %NightCounters
 
 @onready var wait_timer: Timer = $WaitTimer
+@onready var endless_timer: Timer = $EndlessTimer
 
 @onready var main_ui: MarginContainer = $CanvasLayer/MainUI
 @onready var options_menu: PanelContainer = $CanvasLayer/OptionsMenu
 
 @onready var night_name: Label = %NightNumber
 @onready var mission_text: Label = %MissionText
-
 
 var calibration_words = [
 	["UP", "WE", "OK"],
@@ -56,6 +56,7 @@ var nights_data = [
 		"name": "Night 0",
 		"mission": "Calibrate the system by reproducing and confirming the transmission loops.\nCheck your book for more information.\n",
 		"start_instructions": """Before you begin, you should calibrate your machinery.
+
 			Listen carefully to the looped transmissions and try to reproduce the morse message to verify its content.
 
 			Press or hold [SPACE] to send a signal.
@@ -71,8 +72,8 @@ var nights_data = [
 		"name": "Night 1",
 		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
 		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
-			Listen carefully to the looped transmission to identify the 4-letter destination code.
 
+			Listen carefully to the looped transmission to identify the 4-letter destination code.
 			Use your book to look up the corresponding coordinates. Then, transmit them using the GPS system.
 
 			You may choose to verify the destination with the boat before sending — or trust your instincts with a half-solved message.""",
@@ -83,8 +84,8 @@ var nights_data = [
 		"name": "Night 2",
 		"mission": "Use your GPS system to relay the destination coordinates to the boats.\nCheck your book for the references.\n",
 		"start_instructions": """Help the port stay safe by relaying incoming alerts to the proper authorities.
-			Listen carefully to the looped transmission to identify the 4-letter alert code.
 
+			Listen carefully to the looped transmission to identify the 4-letter alert code.
 			Use your book to find the corresponding radio frequency. Then, transmit the message using your walkie-talkie.
 
 			You may choose to double-check the alert’s meaning — or act quickly, trusting your first interpretation.""",
@@ -94,23 +95,22 @@ var nights_data = [
 	{
 		"name": "Night 3",
 		"mission": "Make full use of your station’s systems to relay the boats’ messages and help them navigate.",
-		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
-			Listen carefully to the looped transmission to identify the 4-letter destination code.
+		"start_instructions": """Rely on all your tools to keep operations running smoothly.
 
-			Interpret the message and use your book and notes to find the correct course of action.
+			Listen carefully to the looped transmission to identify the 4-letter code.
+			Some messages indicate destinations — others are urgent alerts. Each requires a different response.
 
-			Be careful with similar codes across different systems.
-			You may choose to verify the destination with the boat before sending — or trust your instincts""",
-		"task": "HELP SHIPS",
+			Use your book to determine the correct procedure. Trust your equipment, stay focused, and act fast when it matters most.""",
+		"task": "RESPOND TO SIGNALS",
 		"task_threshold": 4,
 	}
 ]
 
 var score = 0
-var night := 0
+var night := -1
 var helped_boats := 0
 var lost_boats = 0
-
+var is_nights_mode := GameGlobals.GAME_MODE == "nights"
 
 func _ready() -> void:
 	wait_timer.wait_time = MorseTranslator.CLK_TIME * 8
@@ -126,7 +126,17 @@ func _ready() -> void:
 	gps.visible = false
 	walkie_talkie.visible = false
 
-	prepare_night()
+	if is_nights_mode:
+		night = 0
+		prepare_night()
+	else:
+		prepare_endless_mode()
+
+
+func _process(_delta: float) -> void:
+	if not is_nights_mode:
+		var seconds_left = int(endless_timer.time_left)
+		night_name.text = str(seconds_left) + "s"
 
 
 func get_new_boat() -> void:
@@ -199,6 +209,9 @@ func check_word(input: String) -> void:
 
 
 func _send_answer(input: String) -> void:
+	if not input:
+		return
+
 	var status: String
 
 	var correct_direction: bool = input.to_upper().replace("?", "") == boat.answer
@@ -210,11 +223,15 @@ func _send_answer(input: String) -> void:
 	else:
 		status = "Transmission failed :("
 		lost_boats += 1
+
+	if is_nights_mode:
+		info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
+	else:
+		info_screen.update_score(score, 0, nights_data[-1]["task"])
 	
-	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
 	info_screen.show_status(status)
 
-	if score >= nights_data[night]["task_threshold"]:
+	if score >= nights_data[night]["task_threshold"] and is_nights_mode:
 		finish_night()
 	else:
 		get_new_boat()
@@ -236,6 +253,25 @@ func prepare_night() -> void:
 	
 	score = 0
 	info_screen.update_score(score, nights_data[night]["task_threshold"], nights_data[night]["task"])
+
+	start_container.visible = true
+	start_night_button.grab_focus()
+	main_ui.visible = false
+
+
+func prepare_endless_mode() -> void:
+	for night_number in range(nights_data.size()):
+		book.unlock_page(night_number)
+
+	gps.visible = true
+	walkie_talkie.visible = true
+	
+	night_title.text = "Endless Mode"
+	night_name.text = "60s"
+	night_instructions.text = nights_data[-1]["start_instructions"]
+
+	score = 0
+	info_screen.update_score(score, 0, nights_data[-1]["task"])
 
 	start_container.visible = true
 	start_night_button.grab_focus()
@@ -278,6 +314,10 @@ func _on_wait_timer_timeout() -> void:
 
 func _on_start_night_button_pressed() -> void:
 	morse_input.is_ready = true
+
+	if not is_nights_mode:
+		endless_timer.start()
+
 	get_new_boat()
 	start_container.visible = false
 	main_ui.visible = true

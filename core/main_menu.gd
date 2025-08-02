@@ -11,13 +11,22 @@ func _ready() -> void:
 	morse_antenna.start_encoding("SOS")
 	start.grab_focus()
 
+
 func _on_start_pressed() -> void:
+	GameGlobals.GAME_MODE = "nights"
 	get_tree().change_scene_to_file("res://core/main_game.tscn")
+
 
 func _on_options_pressed() -> void:
 	options_menu.visible = true
 	menu_ui.visible = false
 
+
 func _on_options_menu_close_options() -> void:
 	options_menu.visible = false
 	menu_ui.visible = true
+
+
+func _on_endless_pressed() -> void:
+	GameGlobals.GAME_MODE = "endless"
+	get_tree().change_scene_to_file("res://core/main_game.tscn")

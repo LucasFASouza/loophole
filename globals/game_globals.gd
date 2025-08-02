@@ -7,6 +7,8 @@ var volumes = {
 	"Music": 0.5
 }
 
+var GAME_MODE: String = "nights" # normal, endless
+
 
 func set_bus_volume(bus_name: String, value: float) -> void:
 	var bus_idx = AudioServer.get_bus_index(bus_name)

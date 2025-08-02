@@ -12,9 +12,12 @@ func _ready() -> void:
 	label_score.text = "Score: 0"
 
 
-func update_score(score: int, threshold: int, objective := "Score") -> void:
-	print("Updating score: ", score, " with threshold: ", threshold)
-	label_score.text = "(" + str(score) + " / " + str(threshold) + ")"
+func update_score(score: int, threshold := 0, objective := "Score") -> void:
+	if threshold:
+		label_score.text = "(" + str(score) + " / " + str(threshold) + ")"
+	else:
+		label_score.text = str(score)
+
 	label_objective.text = objective
 
 
