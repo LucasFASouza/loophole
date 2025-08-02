@@ -16,24 +16,38 @@
 [ext_resource type="Texture2D" uid="uid://bdjdug1fajorb" path="res://assets/ui/lil_backspace.png" id="11_tqa5n"]
 [ext_resource type="Texture2D" uid="uid://y3qxqx4f5a6c" path="res://assets/ui/lil_enter.png" id="12_q54ee"]
 [ext_resource type="Texture2D" uid="uid://by1ih4w87j6qu" path="res://assets/ui/lil_mouse_left.png" id="13_tqa5n"]
+[ext_resource type="Texture2D" uid="uid://db82jlquc4rb7" path="res://assets/tutorial/night0_tutorial1.jpg" id="14_q54ee"]
 [ext_resource type="PackedScene" uid="uid://hes3h6ygciji" path="res://assets/models/wallWindow.glb" id="15_4ftaa"]
 [ext_resource type="PackedScene" uid="uid://cwv2c6058gj6y" path="res://assets/models/wall.glb" id="16_x5m8v"]
 [ext_resource type="PackedScene" uid="uid://3vk1iyxs4lj7" path="res://assets/models/Lighthouse.glb" id="17_x5m8v"]
 [ext_resource type="PackedScene" uid="uid://bg0np4lnxih53" path="res://assets/models/Calendar.glb" id="18_udylj"]
 [ext_resource type="FontFile" uid="uid://by3a6qwl8txte" path="res://assets/fonts/SourGummy/SourGummy-SemiBold.ttf" id="19_5anm3"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqhw1"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 0.447059)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_45q5k"]
+material = SubResource("StandardMaterial3D_iqhw1")
+top_radius = 0.0
+bottom_radius = 6.441
+height = 26.37
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
-sky_top_color = Color(0.591087, 0.687263, 0.785804, 1)
-sky_horizon_color = Color(0.592157, 0.686275, 0.784314, 1)
-ground_bottom_color = Color(0.1102, 0.206093, 0.29, 1)
-ground_horizon_color = Color(0.18, 0.189333, 0.25, 1)
+sky_top_color = Color(0.16692, 0.1326, 0.39, 1)
+sky_horizon_color = Color(0.290398, 0.191623, 0.571344, 1)
+sky_curve = 0.0699773
+ground_bottom_color = Color(0.0474419, 0.161996, 0.262095, 1)
+ground_horizon_color = Color(0.1428, 0.29064, 0.42, 1)
+ground_curve = 0.0110956
 
 [sub_resource type="Sky" id="Sky_is2i4"]
 sky_material = SubResource("ProceduralSkyMaterial_g8hlx")
 
 [sub_resource type="Environment" id="Environment_8gcvo"]
 background_mode = 2
-background_energy_multiplier = 0.9
 sky = SubResource("Sky_is2i4")
 tonemap_mode = 2
 
@@ -165,7 +179,7 @@ script = ExtResource("1_is2i4")
 transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -20.9033, 23.1416, -10.9032)
 
 [node name="MorseInput" parent="." instance=ExtResource("3_2epw8")]
-transform = Transform3D(0.994298, 0, -0.106646, 0, 1, 0, 0.106646, 0, 0.994298, 7.23415, 23.969, -5.03513)
+transform = Transform3D(0.978127, 0, -0.208014, 0, 1, 0, 0.208014, 0, 0.978127, 7.55727, 23.969, -5.03513)
 
 [node name="InfoScreen" parent="." instance=ExtResource("4_vlmcc")]
 transform = Transform3D(0.966197, 0, 0.257807, 0, 1, 0, -0.257807, 0, 0.966197, -10.3467, 23.969, -4.06451)
@@ -412,7 +426,7 @@ autowrap_mode = 2
 width = 775.0
 
 [node name="Egg" type="Label3D" parent="EraseBoard"]
-transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511289, -0.000522375, 0.200911)
+transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511169, -0.00150728, 0.106388)
 modulate = Color(0, 0, 0, 0.419608)
 outline_modulate = Color(0, 0, 0, 0.596078)
 text = "Robert Pattinson lives there -->"
@@ -439,6 +453,19 @@ transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 
 [node name="Lighthouse" parent="." instance=ExtResource("17_x5m8v")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 32, 42, -66.238)
 
+[node name="Lamp" type="MeshInstance3D" parent="Lighthouse"]
+transform = Transform3D(-0.306821, -0.917261, -0.253957, -0.942929, 0.32923, -0.0499303, 0.12941, 0.224144, -0.965926, 12.2067, 9.62062, -2.90222)
+mesh = SubResource("CylinderMesh_45q5k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lighthouse/Lamp"]
+transform = Transform3D(-0.87663, -2.69408, 0.369742, -2.62074, 0.940658, 0.640411, -0.725592, -0.142658, -2.75979, 0.244873, 13.2006, 0.0914154)
+light_color = Color(1, 1, 0, 1)
+light_energy = 12.03
+light_size = 0.43
+light_specular = 1.01
+light_bake_mode = 1
+omni_range = 1.824
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.99849, 0.0549326, 0, -0.0549326, 0.99849, 0, 42.5543, 95.1056)
 fov = 21.2
@@ -447,7 +474,8 @@ fov = 21.2
 environment = SubResource("Environment_8gcvo")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.249752, -0.967971, -0.0256128, 0.325561, -0.108852, 0.939234, -0.91194, 0.226238, 0.34232, 0, 0, 0)
+light_energy = 0.4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_physics_priority = -1
@@ -724,6 +752,63 @@ layout_mode = 2
 theme = ExtResource("8_2epw8")
 text = "START"
 
+[node name="TutorialContainer" type="PanelContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_2epw8")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/TutorialContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="TutorialImgContainer" type="VBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 36
+
+[node name="NightTitle" type="Label" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+theme_override_font_sizes/font_size = 64
+text = "NIGHT 0"
+horizontal_alignment = 1
+
+[node name="TutorialImg" type="TextureRect" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("14_q54ee")
+expand_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PrevImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+text = "< PREV"
+
+[node name="Control" type="Control" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+text = "NEXT >"
+
 [node name="FinishContainer" type="PanelContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 visible = false
@@ -818,6 +903,8 @@ mesh = SubResource("ArrayMesh_iqhw1")
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ShowControls" to="." method="_on_show_controls_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox/HideControls" to="." method="_on_hide_controls_pressed"]
 [connection signal="pressed" from="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer/StartNightButton" to="." method="_on_start_night_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/PrevImgButton" to="." method="_on_prev_img_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/NextImgButton" to="." method="_on_start_night_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FinishContainer/CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/BackMainMenuButton" to="." method="_on_back_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FinishContainer/CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="close_options" from="CanvasLayer/OptionsMenu" to="." method="_on_options_menu_close_options"]
