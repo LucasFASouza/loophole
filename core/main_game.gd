@@ -213,7 +213,7 @@ func _send_answer(input: String) -> void:
 		GameGlobals.play_sfx(GameGlobals.GlobalSoundEffect.INCORRECT_ANSWER)
 
 	if correct_direction:
-		status = "Successfull relay! :D"
+		status = "Successful relay! :D"
 		score += 1
 		helped_boats += 1
 	else:
