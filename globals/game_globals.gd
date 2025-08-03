@@ -1,22 +1,30 @@
 extends Node
 
+
 enum GlobalSoundEffect {
 	CORRECT_ANSWER,
 	INCORRECT_ANSWER,
 	BEEP_GPS,
+	NOISE,
+	SINE,
 }
+
 
 @onready var soundEffects = {
 	GlobalSoundEffect.CORRECT_ANSWER: $CorrectAnswerSFX,
 	GlobalSoundEffect.INCORRECT_ANSWER: $IncorrectAnswerSFX,
-	GlobalSoundEffect.BEEP_GPS: $BeepGpsSFX
+	GlobalSoundEffect.BEEP_GPS: $BeepGpsSFX,
+	GlobalSoundEffect.NOISE: $NoiseSFX,
+	GlobalSoundEffect.SINE: $SineSFX
 }
+
 
 var volumes = {
 	"Master": 0.5,
 	"SFX": 0.5,
 	"Music": 0.5
 }
+
 
 var GAME_MODE: String = "nights" # normal, endless
 
