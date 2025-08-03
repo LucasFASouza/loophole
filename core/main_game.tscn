@@ -437,13 +437,12 @@ width = 775.0
 
 [node name="Egg" type="Label3D" parent="EraseBoard"]
 transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511169, 0.35606, -1.73848)
-modulate = Color(0, 0, 0, 0.419608)
+modulate = Color(1, 1, 1, 0.215686)
 outline_modulate = Color(0, 0, 0, 0.596078)
 text = "Robert Pattinson
 lives there
 <--"
 font = ExtResource("19_5anm3")
-font_size = 28
 outline_size = 0
 horizontal_alignment = 0
 vertical_alignment = 0
@@ -452,12 +451,12 @@ autowrap_mode = 2
 width = 775.0
 
 [node name="Egg2" type="Label3D" parent="EraseBoard"]
-transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.0088674, 0.249843, -0.000222648, -0.249843, 0.00886747, 7.12929e-05, -0.00225699, 0.0490924, 0.488134)
+transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.0088674, 0.249843, -0.000222648, -0.249843, 0.00886747, 7.12929e-05, -0.00282764, 0.0511159, 0.488105)
 modulate = Color(0, 0, 0, 0.419608)
 outline_modulate = Color(0, 0, 0, 0.596078)
 text = "Check your handbook
  for the full notes!"
-font = ExtResource("19_5anm3")
+font = ExtResource("11_iqhw1")
 font_size = 42
 outline_size = 0
 horizontal_alignment = 0
@@ -524,7 +523,6 @@ process_physics_priority = -1
 layer = 2
 
 [node name="MainUI" type="MarginContainer" parent="CanvasLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -551,7 +549,7 @@ layout_mode = 2
 theme_override_constants/separation = 24
 
 [node name="Pause" type="Button" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions"]
-custom_minimum_size = Vector2(90, 0)
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -770,6 +768,7 @@ autowrap_mode = 2
 
 [node name="TutorialContainer" type="PanelContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -812,6 +811,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer"]
+custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 size_flags_vertical = 8
 alignment = 1
