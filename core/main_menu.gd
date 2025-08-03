@@ -1,9 +1,9 @@
 extends Node3D
 
-@onready var morse: Label3D = %Morse
 @onready var morse_antenna: Node3D = $MorseAntenna
-@onready var start: Button = %Start
+@onready var info_screen: Node3D = $InfoScreen
 
+@onready var start: Button = %Start
 @onready var menu_ui: MarginContainer = %MenuUI
 @onready var options_menu: PanelContainer = %OptionsMenu
 @onready var tutorial: PanelContainer = %Tutorial
@@ -13,6 +13,7 @@ func _ready() -> void:
 	options_menu.visible = false
 	tutorial.visible = false
 	morse_antenna.start_encoding("SOS")
+	info_screen.update_score("SOS", 0, ".../---/...")
 	start.grab_focus()
 
 

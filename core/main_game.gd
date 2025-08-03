@@ -358,10 +358,7 @@ func finish_night() -> void:
 	night += 1
 
 	if night >= nights_data.size():
-		main_ui.visible = false
-		var night_counters_text = "You answered " + str(helped_boats) + " successful relays.\nAnd had " + str(lost_boats) + " unresolved transmissions."
-		night_counters.text = night_counters_text
-		finish_container.visible = true
+		finish_game()
 	else:
 		book.unlock_page(night)
 		prepare_night()
@@ -413,6 +410,10 @@ func _on_back_main_menu_button_pressed() -> void:
 
 
 func _on_endless_timer_timeout() -> void:
+	finish_game()
+
+
+func finish_game() -> void:
 	morse_antenna.stop_encoding()
 	morse_input.reset_input()
 	morse_input.is_ready = false
