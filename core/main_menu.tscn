@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=4 uid="uid://dfq6j4q0hpk2r"]
+[gd_scene load_steps=25 format=4 uid="uid://dfq6j4q0hpk2r"]
 
 [ext_resource type="Script" uid="uid://cfn7aomul4dg3" path="res://core/main_menu.gd" id="1_8uxxo"]
 [ext_resource type="ArrayMesh" uid="uid://dgg1ogf01rjjh" path="res://assets/models/desk.res" id="2_8uxxo"]
 [ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://desk_itens/morse_antenna.tscn" id="2_rmr83"]
+[ext_resource type="Texture2D" uid="uid://sgjxs3oy82cf" path="res://assets/ui/coastal_codes.png" id="2_vjc8w"]
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="4_rmr83"]
 [ext_resource type="PackedScene" uid="uid://csnoj5c65lrkj" path="res://desk_itens/info_screen.tscn" id="6_w8wsc"]
 [ext_resource type="PackedScene" uid="uid://cua3g4kgtq2ns" path="res://UI/options_menu.tscn" id="7_opyrh"]
@@ -185,16 +186,32 @@ metadata/_edit_use_anchors_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MenuUI"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/MenuUI/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MenuUI/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("4_rmr83")
-theme_override_font_sizes/font_size = 96
-text = "Coastal
-Codes"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_vertical = 3
 
-[node name="Control" type="Control" parent="UI/MenuUI/VBoxContainer"]
+[node name="Label" type="Label" parent="UI/MenuUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("4_rmr83")
+theme_override_font_sizes/font_size = 24
+text = "Play with sound for a
+ better experience!"
+
+[node name="TextureRect" type="TextureRect" parent="UI/MenuUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_vjc8w")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="UI/MenuUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="UI/MenuUI/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 

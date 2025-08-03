@@ -54,62 +54,30 @@ var frequencies = {
 	"125": "KING"
 }
 
-var boat = {
-	"message": "",
-	"type": "", # Calibration, GPS, Radio
-	"answer": "",
-}
+var boat = {}
 
 var nights_data = [
 	{
 		"name": "Night 0",
-		"mission": "Calibrate the system by reproducing and confirming the transmission loops.",
-		"start_instructions": """Before you begin, you should calibrate your machinery.
-
-			Listen carefully to the looping transmissions and try to reproduce the morse message to verify its content.
-
-			Press or hold [SPACE] to send a signal.
-			Wait for pauses between letters.
-			Use [BACKSPACE] to delete characters.
-			When you're confident with your answer, press [ENTER] to submit it.
-
-			At any time, you may check your book for more notes and references.""",
+		"mission": "Calibrate the system by reproducing and confirming the transmission loops",
 		"task": "CONFIRM TRANSMISSIONS",
 		"task_threshold": 3,
 	},
 	{
 		"name": "Night 1",
-		"mission": "Use your GPS system to relay the destination coordinates to the boats.",
-		"start_instructions": """Help the boats navigate by relaying their destination coordinates.
-
-			Listen carefully to the looping transmission to identify the 4-letter destination code.
-			Use your book to look up the corresponding coordinates. Then, transmit them using the GPS system.
-
-			You may choose to verify the destination with the boat before sending — or trust your instincts with a half-solved message.""",
+		"mission": "Use your GPS system to relay the destination coordinates to the boats",
 		"task": "SEND COORDINATES",
 		"task_threshold": 3,
 	},
 	{
 		"name": "Night 2",
-		"mission": "Use your radio system to relay the incoming alerts to the authorities.",
-		"start_instructions": """Help the port stay safe by relaying incoming alerts to the proper authorities.
-
-			Listen carefully to the looping transmission to identify the 4-letter alert code.
-			Use your book to find the corresponding radio frequency. Then, transmit the message using your walkie-talkie.
-
-			You may choose to double-check the alert’s meaning — or act quickly, trusting your first interpretation.""",
+		"mission": "Use your radio system to relay the incoming alerts to the authorities",
 		"task": "ALERT AUTHORITIES",
 		"task_threshold": 3,
 	},
 	{
 		"name": "Night 3",
-		"mission": "Make full use of your station’s systems to relay the boats’ messages and help them navigate.",
-		"start_instructions": """Rely on all your tools to keep operations running smoothly.
-
-			Listen carefully to the looping transmission to identify the 4-letter code.
-			Some messages indicate destinations — others are urgent alerts. Each requires a different response.
-
-			Use your book to determine the correct procedure. Trust your equipment, stay focused, and act fast when it matters most.""",
+		"mission": "Make full use of your station’s systems to relay the boats’ messages and help them navigate",
 		"task": "RESPOND TO SIGNALS",
 		"task_threshold": 4,
 	}
@@ -153,6 +121,11 @@ func _process(_delta: float) -> void:
 		if seconds_left < 0:
 			seconds_left = 0
 		night_name.text = str(seconds_left) + "s"
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_book") and boat:
+		book.item_info.visible = not book.item_info.visible
 
 
 func get_new_boat() -> void:
@@ -351,6 +324,7 @@ func prepare_endless_mode() -> void:
 
 
 func finish_night() -> void:
+	boat = {}
 	morse_antenna.stop_encoding()
 	morse_input.reset_input()
 	morse_input.is_ready = false

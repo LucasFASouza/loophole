@@ -121,6 +121,8 @@ theme = ExtResource("3_unrlo")
 text = "CONFIRM"
 
 [connection signal="input_event" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]
 [connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/FrequencyContainer/FrequencySlider" to="." method="_on_frequency_slider_value_changed"]
 [connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

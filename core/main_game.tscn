@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://d3y2s8jgc67qw"]
+[gd_scene load_steps=36 format=4 uid="uid://d3y2s8jgc67qw"]
 
 [ext_resource type="Script" uid="uid://dnwbjthdxt23h" path="res://core/main_game.gd" id="1_is2i4"]
 [ext_resource type="PackedScene" uid="uid://c5np808a7uc7b" path="res://desk_itens/morse_antenna.tscn" id="2_6620d"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://3vk1iyxs4lj7" path="res://assets/models/Lighthouse.glb" id="17_x5m8v"]
 [ext_resource type="PackedScene" uid="uid://bg0np4lnxih53" path="res://assets/models/Calendar.glb" id="18_udylj"]
 [ext_resource type="FontFile" uid="uid://by3a6qwl8txte" path="res://assets/fonts/SourGummy/SourGummy-SemiBold.ttf" id="19_5anm3"]
+[ext_resource type="Texture2D" uid="uid://btbst0joqpf1l" path="res://assets/ui/lil_tab.png" id="21_8qhsd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ii4jq"]
 resource_name = "Black"
@@ -435,12 +436,31 @@ autowrap_mode = 2
 width = 775.0
 
 [node name="Egg" type="Label3D" parent="EraseBoard"]
-transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511169, -0.00150728, 0.106388)
+transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511169, 0.35606, -1.73848)
 modulate = Color(0, 0, 0, 0.419608)
 outline_modulate = Color(0, 0, 0, 0.596078)
-text = "Robert Pattinson lives there -->"
+text = "Robert Pattinson
+lives there
+<--"
 font = ExtResource("19_5anm3")
+font_size = 28
 outline_size = 0
+horizontal_alignment = 0
+vertical_alignment = 0
+line_spacing = -15.0
+autowrap_mode = 2
+width = 775.0
+
+[node name="Egg2" type="Label3D" parent="EraseBoard"]
+transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.0088674, 0.249843, -0.000222648, -0.249843, 0.00886747, 7.12929e-05, -0.00225699, 0.0490924, 0.488134)
+modulate = Color(0, 0, 0, 0.419608)
+outline_modulate = Color(0, 0, 0, 0.596078)
+text = "Check your handbook
+ for the full notes!"
+font = ExtResource("19_5anm3")
+font_size = 42
+outline_size = 0
+horizontal_alignment = 0
 vertical_alignment = 0
 line_spacing = -15.0
 autowrap_mode = 2
@@ -504,6 +524,7 @@ process_physics_priority = -1
 layer = 2
 
 [node name="MainUI" type="MarginContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -663,6 +684,31 @@ theme_override_font_sizes/font_size = 20
 text = "to confirm a message"
 horizontal_alignment = 2
 
+[node name="Tav" type="HBoxContainer" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Press" type="Label" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox/Tav"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+theme_override_font_sizes/font_size = 20
+text = "Press"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox/Tav"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+texture = ExtResource("21_8qhsd")
+expand_mode = 3
+
+[node name="End" type="Label" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox/Tav"]
+layout_mode = 2
+theme = ExtResource("8_2epw8")
+theme_override_font_sizes/font_size = 20
+text = "to quickly open the book"
+horizontal_alignment = 2
+
 [node name="Mouse" type="HBoxContainer" parent="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox"]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -731,50 +777,57 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("8_2epw8")
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/TutorialContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TutorialContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer"]
-layout_mode = 2
-
-[node name="TutorialImgContainer" type="VBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer"]
+[node name="TutorialImgContainer" type="VBoxContainer" parent="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 36
 
-[node name="NightTitle" type="Label" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+[node name="NightTitle" type="Label" parent="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("8_2epw8")
 theme_override_font_sizes/font_size = 64
 text = "NIGHT 0"
 horizontal_alignment = 1
 
-[node name="TutorialImg" type="TextureRect" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+[node name="TutorialImg" type="TextureRect" parent="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("14_q54ee")
-expand_mode = 5
+expand_mode = 3
+stretch_mode = 5
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer"]
 layout_mode = 2
+size_flags_vertical = 8
 alignment = 1
 
-[node name="PrevImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+[node name="PrevImgButton" type="Button" parent="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme = ExtResource("8_2epw8")
 text = "< PREV"
 
-[node name="Control" type="Control" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NextImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+[node name="NextImgButton" type="Button" parent="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
@@ -870,8 +923,8 @@ one_shot = true
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ShowControls" to="." method="_on_show_controls_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox/HideControls" to="." method="_on_hide_controls_pressed"]
-[connection signal="pressed" from="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/PrevImgButton" to="." method="_on_prev_img_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/NextImgButton" to="." method="_on_start_night_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/PrevImgButton" to="." method="_on_prev_img_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/TutorialContainer/MarginContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/NextImgButton" to="." method="_on_start_night_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FinishContainer/CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/BackMainMenuButton" to="." method="_on_back_main_menu_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FinishContainer/CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
 [connection signal="close_options" from="CanvasLayer/OptionsMenu" to="." method="_on_options_menu_close_options"]

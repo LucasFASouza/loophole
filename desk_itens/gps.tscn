@@ -236,5 +236,7 @@ theme = ExtResource("4_p2e6t")
 text = "CONFIRM"
 
 [connection signal="input_event" from="Tv/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="Tv/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Tv/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]
 [connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/Confirm" to="." method="_on_confirm_pressed"]

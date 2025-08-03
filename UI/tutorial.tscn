@@ -1,11 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://cw8740apsb0hk"]
+[gd_scene load_steps=22 format=3 uid="uid://cw8740apsb0hk"]
 
 [ext_resource type="Theme" uid="uid://dfgj2usx5hjn6" path="res://themes/ui.tres" id="1_50hb1"]
 [ext_resource type="Script" uid="uid://dlpucd0ret1ug" path="res://UI/tutorial.gd" id="2_yfxfi"]
 [ext_resource type="Texture2D" uid="uid://6m6dc33qbco4" path="res://assets/ui/keyboard_enter.png" id="4_nsmic"]
-[ext_resource type="Texture2D" uid="uid://cknlswu6ri42n" path="res://assets/ui/nothing.png" id="5_m8qsh"]
 [ext_resource type="Texture2D" uid="uid://cus0snbpaaqy5" path="res://assets/ui/keyboard_enter_outline.png" id="5_sdy2q"]
+[ext_resource type="Texture2D" uid="uid://4rg3a0x1sjdb" path="res://assets/ui/keyboard_tab_outline.png" id="5_yfxfi"]
 [ext_resource type="Texture2D" uid="uid://b6apaqf202q0e" path="res://assets/ui/mouse.png" id="6_m8qsh"]
+[ext_resource type="Texture2D" uid="uid://bf6v35jil8mw6" path="res://assets/ui/keyboard_tab.png" id="6_oe8iu"]
 [ext_resource type="Texture2D" uid="uid://dbq03otk642uc" path="res://assets/ui/mouse_left.png" id="7_yfxfi"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yfxfi"]
@@ -33,8 +34,13 @@ frame_2/texture = ExtResource("5_sdy2q")
 frame_2/duration = 1.0
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_m8qsh"]
-frame_0/texture = ExtResource("5_m8qsh")
+frames = 3
+frame_0/texture = ExtResource("5_yfxfi")
 frame_0/duration = 0.75
+frame_1/texture = ExtResource("6_oe8iu")
+frame_1/duration = 0.25
+frame_2/texture = ExtResource("5_yfxfi")
+frame_2/duration = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5vyj0"]
 load_path = "res://.godot/imported/keyboard_space_outline.png-5d8fee51a27d7925511f61a9b7de3985.ctex"
@@ -199,8 +205,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_50hb1")
 theme_override_font_sizes/font_size = 24
-text = "Just wait to separate
-letters with a \"/\""
+text = "Press TAB to
+toggle the book"
 vertical_alignment = 1
 autowrap_mode = 2
 

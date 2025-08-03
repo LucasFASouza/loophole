@@ -495,4 +495,6 @@ expand_mode = 4
 stretch_mode = 6
 
 [connection signal="input_event" from="BookMesh/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="BookMesh/StaticBody3D" to="." method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="BookMesh/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]
 [connection signal="pressed" from="ItemInfo/PanelContainer/MarginContainer/VBoxContainer/Topbar/Back" to="." method="_on_back_pressed"]
