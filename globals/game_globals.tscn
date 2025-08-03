@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://uopm465i8mel"]
+[gd_scene load_steps=6 format=3 uid="uid://uopm465i8mel"]
 
 [ext_resource type="Script" uid="uid://d3pseb2bqkq5j" path="res://globals/game_globals.gd" id="1_tldbe"]
 [ext_resource type="AudioStream" uid="uid://cctpe18h48a8r" path="res://assets/sfx/bg.wav" id="2_rjyw7"]
 [ext_resource type="AudioStream" uid="uid://be8f355tmarad" path="res://assets/sfx/correct.wav" id="3_sy03n"]
 [ext_resource type="AudioStream" uid="uid://bueam1eihda6k" path="res://assets/sfx/incorrect.wav" id="4_sy03n"]
+[ext_resource type="AudioStream" uid="uid://difnfeiorjmw6" path="res://assets/sfx/beep_gps.wav" id="5_nrhdc"]
 
 [node name="GameGlobals" type="Node"]
 script = ExtResource("1_tldbe")
@@ -22,3 +23,6 @@ bus = &"SFX"
 [node name="IncorrectAnswerSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sy03n")
 bus = &"SFX"
+
+[node name="BeepGpsSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nrhdc")

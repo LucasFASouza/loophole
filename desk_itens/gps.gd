@@ -31,6 +31,7 @@ func _on_grid_button_pressed(button_name: String) -> void:
 		if btn is Button:
 			btn.button_pressed = false
 	selected_button = button_name
+	GameGlobals.play_sfx(GameGlobals.GlobalSoundEffect.BEEP_GPS)
 
 
 func _on_confirm_pressed() -> void:

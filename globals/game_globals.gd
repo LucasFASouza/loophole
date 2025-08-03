@@ -2,12 +2,14 @@ extends Node
 
 enum GlobalSoundEffect {
 	CORRECT_ANSWER,
-	INCORRECT_ANSWER
+	INCORRECT_ANSWER,
+	BEEP_GPS,
 }
 
 @onready var soundEffects = {
 	GlobalSoundEffect.CORRECT_ANSWER: $CorrectAnswerSFX,
-	GlobalSoundEffect.INCORRECT_ANSWER: $IncorrectAnswerSFX
+	GlobalSoundEffect.INCORRECT_ANSWER: $IncorrectAnswerSFX,
+	GlobalSoundEffect.BEEP_GPS: $BeepGpsSFX
 }
 
 var volumes = {
