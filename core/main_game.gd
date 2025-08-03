@@ -90,7 +90,7 @@ var lost_boats = 0
 var is_nights_mode := GameGlobals.GAME_MODE == "nights"
 
 var current_tutorial_img = 0;
-var night_tutorial_img: Array[ImageTexture] = []
+var night_tutorial_img: Array[Texture2D] = []
 var tutorial_image_counts = [4, 5, 5, 3]
 
 func _ready() -> void:
@@ -261,11 +261,10 @@ func load_night_tutorial(night_number: int) -> void:
 	night_tutorial_img = []
 	for n in range(tutorial_image_counts[night_index]):
 		var img_path = "res://assets/tutorial/night{night}_tutorial{idx}.jpg"
-		var new_img = Image.load_from_file(
+		var texture = load(
 			img_path.format({"night": night_index, "idx": n + 1})
-		)
-		var new_texture = ImageTexture.create_from_image(new_img)
-		night_tutorial_img.append(new_texture)
+		) as Texture2D
+		night_tutorial_img.append(texture)
 	
 	tutorial_container.visible = true
 	next_img_button.grab_focus()
