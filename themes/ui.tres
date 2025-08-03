@@ -1,18 +1,45 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dfgj2usx5hjn6"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dfgj2usx5hjn6"]
 
 [ext_resource type="FontFile" uid="uid://n1eu5vuo4qkw" path="res://assets/fonts/Jersey_15/Jersey15-Regular.ttf" id="1_i6sfk"]
 [ext_resource type="Texture2D" uid="uid://rlimi7i2jv73" path="res://assets/ui/radiopicker.png" id="2_hbfgb"]
 [ext_resource type="Texture2D" uid="uid://bltpttffg1tnj" path="res://assets/ui/radiopickerfocus.png" id="3_v6eyv"]
 [ext_resource type="Texture2D" uid="uid://dne00b7pctsfc" path="res://assets/ui/radioslider.png" id="4_ffde8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ks8t7"]
-draw_center = false
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbfgb"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.270588)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wl5ax"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ffde8"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.513726)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6eyv"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+draw_center = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6ega"]
 content_margin_left = 12.0
@@ -41,8 +68,9 @@ Button/colors/font_color = Color(0.839557, 0.887279, 0.865671, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 0)
 Button/font_sizes/font_size = 36
 Button/fonts/font = ExtResource("1_i6sfk")
-Button/styles/hover = SubResource("StyleBoxFlat_ks8t7")
-Button/styles/normal = SubResource("StyleBoxEmpty_wl5ax")
+Button/styles/focus = SubResource("StyleBoxFlat_hbfgb")
+Button/styles/hover = SubResource("StyleBoxFlat_ffde8")
+Button/styles/normal = SubResource("StyleBoxFlat_v6eyv")
 HScrollBar/styles/grabber = SubResource("StyleBoxTexture_n6ega")
 HScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_7gpds")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_7gpds")
