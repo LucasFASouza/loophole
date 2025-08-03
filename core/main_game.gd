@@ -8,13 +8,11 @@ extends Node3D
 @onready var gps: Node3D = $GPS
 @onready var walkie_talkie: Node3D = $WalkieTalkie
 
-@onready var start_container: PanelContainer = %StartContainer
-@onready var night_title: Label = %NightTitle
-@onready var night_instructions: Label = %NightInstructions
-@onready var start_night_button: Button = %StartNightButton
-@onready var next_img_button: Button = %NextImgButton
-
 @onready var finish_container: PanelContainer = %FinishContainer
+
+@onready var night_title: Label = %NightTitle
+@onready var next_img_button: Button = %NextImgButton
+@onready var prev_img_button: Button = %PrevImgButton
 @onready var tutorial_img: VBoxContainer = %TutorialImgContainer
 @onready var tutorial_container: PanelContainer = %TutorialContainer
 @onready var night_counters: Label = %NightCounters
@@ -141,8 +139,6 @@ func _ready() -> void:
 
 	gps.visible = false
 	walkie_talkie.visible = false
-
-	next_img_button.grab_focus()
 
 	if is_nights_mode:
 		night = 0
@@ -278,19 +274,33 @@ func _send_answer(input: String) -> void:
 
 
 func load_night_tutorial(night_number: int) -> void:
-	current_tutorial_img = 0;
+	var night_index = int(night_number)
+	if night_index < 0 or night_index >= nights_data.size():
+		night_index = nights_data.size() - 1
+
+	current_tutorial_img = 0
+
+	if is_nights_mode:
+		night_title.text = nights_data[night_index]["name"]
+	else:
+		night_title.text = "Endless Mode"
+
 	night_tutorial_img = []
-	for n in range(tutorial_image_counts[night_number]):
+	for n in range(tutorial_image_counts[night_index]):
 		var img_path = "res://assets/tutorial/night{night}_tutorial{idx}.jpg"
-		print(img_path.format({"night": night, "idx": n + 1}))
 		var new_img = Image.load_from_file(
-			img_path.format({"night": night, "idx": n + 1})
+			img_path.format({"night": night_index, "idx": n + 1})
 		)
 		var new_texture = ImageTexture.create_from_image(new_img)
 		night_tutorial_img.append(new_texture)
+	
+	tutorial_container.visible = true
+	next_img_button.grab_focus()
+	main_ui.visible = false
 		
 	%TutorialImgContainer/TutorialImg.texture = night_tutorial_img[current_tutorial_img]
 	next_img_button.text = "NEXT >"
+	prev_img_button.disabled = true
 		
 
 func prepare_night() -> void:
@@ -313,12 +323,6 @@ func prepare_night() -> void:
 		calendar.get_node("Night3").visible = true
 
 	load_night_tutorial(night)
-	night_title.text = nights_data[night]["name"]
-	night_instructions.text = nights_data[night]["start_instructions"]
-
-	tutorial_container.visible = true
-	start_night_button.grab_focus()
-	main_ui.visible = false
 
 
 func prepare_endless_mode() -> void:
@@ -336,7 +340,6 @@ func prepare_endless_mode() -> void:
 	
 	night_title.text = "Endless Mode"
 	night_name.text = "60s"
-	night_instructions.text = nights_data[night]["start_instructions"]
 	erase_board.get_node("Instructions").text = nights_data[night]["mission"]
 	
 	endless_timer.wait_time = 60.0
@@ -344,9 +347,7 @@ func prepare_endless_mode() -> void:
 	score = 0
 	info_screen.update_score(score, 0, nights_data[night]["task"])
 
-	start_container.visible = true
-	start_night_button.grab_focus()
-	main_ui.visible = false
+	load_night_tutorial(night)
 
 
 func finish_night() -> void:
@@ -382,13 +383,19 @@ func _on_wait_timer_timeout() -> void:
 	info_screen.show_status("INCOMING TRANSMISSION")
 	morse_antenna.start_encoding(boat.message)
 
+
 func _on_start_night_button_pressed() -> void:
-	if current_tutorial_img < tutorial_image_counts[night] - 1:
-		print("changing image")
+	var night_index = int(night)
+	if night == -1:
+		night_index = int(nights_data.size() - 1)
+		
+	if current_tutorial_img < tutorial_image_counts[night_index] - 1:
 		current_tutorial_img += 1
 		%TutorialImgContainer/TutorialImg.texture = night_tutorial_img[current_tutorial_img]
-		if current_tutorial_img == tutorial_image_counts[night] - 1:
+		if current_tutorial_img == tutorial_image_counts[night_index] - 1:
 			next_img_button.text = "START"
+		elif current_tutorial_img > 0:
+			prev_img_button.disabled = false
 		return
 	
 	morse_input.is_ready = true
@@ -397,7 +404,6 @@ func _on_start_night_button_pressed() -> void:
 		endless_timer.start()
 
 	get_new_boat()
-	start_container.visible = false
 	tutorial_container.visible = false
 	main_ui.visible = true
 
@@ -456,3 +462,5 @@ func _on_prev_img_button_pressed() -> void:
 		%TutorialImgContainer/TutorialImg.texture = night_tutorial_img[current_tutorial_img]
 		if current_tutorial_img < tutorial_image_counts[night] - 1:
 			next_img_button.text = "NEXT >"
+
+		prev_img_button.disabled = current_tutorial_img == 0

@@ -23,41 +23,6 @@
 [ext_resource type="PackedScene" uid="uid://bg0np4lnxih53" path="res://assets/models/Calendar.glb" id="18_udylj"]
 [ext_resource type="FontFile" uid="uid://by3a6qwl8txte" path="res://assets/fonts/SourGummy/SourGummy-SemiBold.ttf" id="19_5anm3"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqhw1"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 0, 0.447059)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_45q5k"]
-material = SubResource("StandardMaterial3D_iqhw1")
-top_radius = 0.0
-bottom_radius = 6.441
-height = 26.37
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
-sky_top_color = Color(0.16692, 0.1326, 0.39, 1)
-sky_horizon_color = Color(0.290398, 0.191623, 0.571344, 1)
-sky_curve = 0.0699773
-ground_bottom_color = Color(0.0474419, 0.161996, 0.262095, 1)
-ground_horizon_color = Color(0.1428, 0.29064, 0.42, 1)
-ground_curve = 0.0110956
-
-[sub_resource type="Sky" id="Sky_is2i4"]
-sky_material = SubResource("ProceduralSkyMaterial_g8hlx")
-
-[sub_resource type="Environment" id="Environment_8gcvo"]
-background_mode = 2
-sky = SubResource("Sky_is2i4")
-tonemap_mode = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqa5n"]
-bg_color = Color(0, 0, 0, 0.509804)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ii4jq"]
 resource_name = "Black"
 albedo_color = Color(0.183425, 0.183425, 0.183425, 1)
@@ -171,6 +136,41 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_db327")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqhw1"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 0, 0.447059)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_45q5k"]
+material = SubResource("StandardMaterial3D_iqhw1")
+top_radius = 0.0
+bottom_radius = 6.441
+height = 26.37
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8hlx"]
+sky_top_color = Color(0.16692, 0.1326, 0.39, 1)
+sky_horizon_color = Color(0.290398, 0.191623, 0.571344, 1)
+sky_curve = 0.0699773
+ground_bottom_color = Color(0.0474419, 0.161996, 0.262095, 1)
+ground_horizon_color = Color(0.1428, 0.29064, 0.42, 1)
+ground_curve = 0.0110956
+
+[sub_resource type="Sky" id="Sky_is2i4"]
+sky_material = SubResource("ProceduralSkyMaterial_g8hlx")
+
+[sub_resource type="Environment" id="Environment_8gcvo"]
+background_mode = 2
+sky = SubResource("Sky_is2i4")
+tonemap_mode = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqa5n"]
+bg_color = Color(0, 0, 0, 0.509804)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [node name="MainGame" type="Node3D"]
 script = ExtResource("1_is2i4")
@@ -417,7 +417,6 @@ transform = Transform3D(-9.61599e-07, -0.229228, -21.9988, -1.00199e-08, 21.9988
 
 [node name="Instructions" type="Label3D" parent="EraseBoard"]
 transform = Transform3D(7.91437e-05, 0.00021998, 0.25, 0.000840729, 0.249999, -0.000220244, -0.249999, 0.000840799, 7.8405e-05, -0.000511289, 0.615904, -0.00560057)
-visible = false
 modulate = Color(0, 0, 0, 0.584314)
 text = "Make full use of your station’s systems to relay the boats’ messages and help them navigate."
 font = ExtResource("11_iqhw1")
@@ -452,6 +451,10 @@ transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0.98, 
 
 [node name="wall" parent="Wall" instance=ExtResource("16_x5m8v")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, 0)
+
+[node name="Plant" type="MeshInstance3D" parent="."]
+transform = Transform3D(1500, 0, 0, 0, -6.55671e-05, 1500, 0, -1500, -6.55671e-05, 23.1257, 23.4277, -11.0574)
+mesh = SubResource("ArrayMesh_iqhw1")
 
 [node name="Lighthouse" parent="." instance=ExtResource("17_x5m8v")]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 32, 42, -66.238)
@@ -703,58 +706,6 @@ text = "Calibrate the system by reproducing and confirming the transmission loop
 horizontal_alignment = 2
 autowrap_mode = 2
 
-[node name="StartContainer" type="PanelContainer" parent="CanvasLayer"]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("8_2epw8")
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/StartContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/StartContainer/CenterContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartContainer/CenterContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 36
-
-[node name="NightTitle" type="Label" parent="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("8_2epw8")
-theme_override_font_sizes/font_size = 64
-text = "NIGHT 0"
-horizontal_alignment = 1
-
-[node name="NightInstructions" type="Label" parent="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(820, 0)
-layout_mode = 2
-theme = ExtResource("8_2epw8")
-theme_override_font_sizes/font_size = 28
-text = "Before you begin, you should calibrate your machinery.
-Listen carefully to the looped transmissions and try to reproduce the morse message to verify its content.
-
-Press or hold [SPACE] to send a signal.
-Wait for pauses between letters.
-Use [BACKSPACE] to delete characters.
-When you're confident with your answer, press [ENTER] to submit it.
-
-At any time, you may check your book for more notes and references."
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="StartNightButton" type="Button" parent="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme = ExtResource("8_2epw8")
-text = "START"
-
 [node name="TutorialContainer" type="PanelContainer" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -778,6 +729,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 36
 
 [node name="NightTitle" type="Label" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("8_2epw8")
 theme_override_font_sizes/font_size = 64
@@ -796,6 +748,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="PrevImgButton" type="Button" parent="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme = ExtResource("8_2epw8")
@@ -895,17 +848,12 @@ one_shot = true
 wait_time = 60.0
 one_shot = true
 
-[node name="Plant" type="MeshInstance3D" parent="."]
-transform = Transform3D(1500, 0, 0, 0, -6.55671e-05, 1500, 0, -1500, -6.55671e-05, 23.1257, 21.3066, -11.0574)
-mesh = SubResource("ArrayMesh_iqhw1")
-
 [connection signal="check_word" from="MorseInput" to="." method="check_word"]
 [connection signal="gps_selected" from="GPS" to="." method="_send_answer"]
 [connection signal="frequency_selected" from="WalkieTalkie" to="." method="_send_answer"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/Pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ShowControls" to="." method="_on_show_controls_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainUI/VBoxContainer/Topbar/Actions/ButtonsTips/MarginContainer/Hbox/HideControls" to="." method="_on_hide_controls_pressed"]
-[connection signal="pressed" from="CanvasLayer/StartContainer/CenterContainer/HBoxContainer/VBoxContainer/StartNightButton" to="." method="_on_start_night_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/PrevImgButton" to="." method="_on_prev_img_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/TutorialContainer/CenterContainer/HBoxContainer/TutorialImgContainer/HBoxContainer/NextImgButton" to="." method="_on_start_night_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/FinishContainer/CenterContainer/HBoxContainer/VBoxContainer/HBoxContainer/BackMainMenuButton" to="." method="_on_back_main_menu_button_pressed"]
