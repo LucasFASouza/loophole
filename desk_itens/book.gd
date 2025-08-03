@@ -69,6 +69,7 @@ func _on_static_body_3d_input_event(
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			item_info.visible = true
+			is_shaking = false
 
 
 func _on_back_pressed() -> void:
