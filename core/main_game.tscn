@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://by1ih4w87j6qu" path="res://assets/ui/lil_mouse_left.png" id="13_tqa5n"]
 [ext_resource type="Texture2D" uid="uid://db82jlquc4rb7" path="res://assets/tutorial/night0_tutorial1.jpg" id="14_q54ee"]
 [ext_resource type="PackedScene" uid="uid://hes3h6ygciji" path="res://assets/models/wallWindow.glb" id="15_4ftaa"]
-[ext_resource type="Script" path="res://desk_itens/lighthouse.gd" id="16_45q5k"]
+[ext_resource type="Script" uid="uid://bap0mlcecu0pn" path="res://desk_itens/lighthouse.gd" id="16_45q5k"]
 [ext_resource type="PackedScene" uid="uid://cwv2c6058gj6y" path="res://assets/models/wall.glb" id="16_x5m8v"]
 [ext_resource type="PackedScene" uid="uid://3vk1iyxs4lj7" path="res://assets/models/Lighthouse.glb" id="17_x5m8v"]
 [ext_resource type="PackedScene" uid="uid://bg0np4lnxih53" path="res://assets/models/Calendar.glb" id="18_udylj"]
