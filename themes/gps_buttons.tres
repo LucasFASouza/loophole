@@ -4,9 +4,17 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b46nq"]
 bg_color = Color(0, 0, 0, 0.52549)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc3r7"]
 bg_color = Color(0, 0, 0, 0.803922)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="ImageTexture" id="ImageTexture_wc3r7"]
 

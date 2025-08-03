@@ -28,7 +28,6 @@ shape = SubResource("BoxShape3D_p2e6t")
 
 [node name="ItemInfo" type="CanvasLayer" parent="."]
 layer = 3
-visible = false
 
 [node name="PanelContainer" type="PanelContainer" parent="ItemInfo"]
 anchors_preset = 15

@@ -13,6 +13,7 @@ config_version=5
 config/name="Coastal Codes"
 run/main_scene="uid://dfq6j4q0hpk2r"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+config/icon="uid://p4ik7vttr2pb"
 
 [autoload]
 
